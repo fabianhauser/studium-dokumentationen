@@ -1,0 +1,53 @@
+\input{../template.tex}
+
+\title{Zusammenfassung DMI - Diskrete Mathematik für Informatiker}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+[
+\section{Grundlagen}
+]
+
+\subsubsection{Summenzeichen}
+
+$ \sum_{k=1}^{3} k = 1+2+3 = 6$
+
+\subsection{Logik}
+
+\subsubsection{Prädikatenlogik}
+Beispiele:
+\begin{align*}
+A(n): & 5 | n \\
+B(n): & 1+2+3+\dots+n = \sum_{k=1}^{m}k = \frac{1}{2} n (n+1) \\
+R(x): & \text{der Weg X führt nach Rom}
+\end{align*}
+
+Dafür gibt es zwei Operatoren:
+
+\begin{tabular}{l l l}
+$\forall$ & Allquantor & Für alle $x$ in $M$ gilt, \\
+$\exists$ & Existenzquantor &
+Es gibt $x$ in $M$, für die gilt
+\end{tabular}
+
+Beispiel: Alle Wege führen nach Rom:
+\[
+\forall x \in W \underbracket{:}_\text{gilt} R(x)
+\]
+
+Nicht alle Wege führen nach Rom $\Leftrightarrow$ Es gibt einen Weg, der nach Rom führt.
+
+$\neg \left(\forall X \in W : R\left(X\right)\right) \Leftrightarrow \exists X \in W : \neg R(x)$
+
+
+%TODO: Einschub natürliche Zahlen?
+
+
+\subsubsection{Direkter Beweis}
+%TODO: Ergänzen Papier
+
+\end{multicols}
+\end{document}
+

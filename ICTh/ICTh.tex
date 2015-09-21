@@ -1,0 +1,86 @@
+\input{../template.tex}
+
+\title{Zusammenfassung ICTh - Informations- und Codierungstheorie}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+[
+\section{Signale}
+]
+
+\subsection{Periodische Signale (s.1-16)}
+
+\subsubsection{Charakteristische Grössen}
+\begin{tabular}{l l l}
+	Periodendauer & $\top$ & [s] \\
+	 & $s(t)$ & $=s(t+mT)$ \\
+	 & & $m=0,\pm 1,\pm 2,\dots$ \\
+	 Grundfrequenz & $f_0=\frac{1}{\top}$ & [Hz]
+\end{tabular}
+
+Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (Fourier-Analyse, FFT)
+
+\subsubsection{Sinusfunktion}
+	\begin{align*}
+	s(t) &= A \sin{ 2 \pi \frac{t}{\top}} = A \sin{2 \pi f_0 t} \\
+	s(\varphi) &= A \sin{\varphi} \\
+	0&\leq \varphi \le 2 \pi
+	\end{align*}
+	
+	\noindent\begin{tikzpicture}
+	\begin{axis}[
+		axis equal image,
+		% x-Achse
+		axis x line=center,
+		xlabel={$t \left[\text{s}\right]$},
+		xtick={1.5708,3.14159,4.7123889, 6.283185},
+		xticklabels={$\frac{\top}{4}$,$\frac{\top}{2}$,$\frac{3\top}{4}$, $\top$},
+		% y-achse
+		height= 6cm,
+		axis y line = left,
+		ytick={-1,0,1},
+		yticklabels={$-A$,$0$,$+A$},
+		ylabel={$s(t) \left[\text{???}\right]$} %TODO: Skala?
+	]
+	\addplot [color=blue,domain=0:2.07*pi,samples=100] {sin(deg(x))};
+	\end{axis}
+	\end{tikzpicture}
+
+
+\subsubsection{Cosinusfunkton}
+	$s(t) = A \cos{2 \pi \frac{t}{\top}} = A \cos{2 \pi f_0 t}$
+	
+%TODO: Graph
+
+	
+	
+	$s(\varphi) = A \cos{\varphi}$
+	$0 \leq \varphi \le 2 \pi$
+	
+
+\subsubsection{Linearer Mittelwert}
+
+	In der Praxis sollte der lineare Mittelwert 0 sein, um die Messung zu vereinfachen.
+
+	\begin{align*}
+		A_0 &= \frac{\tau}{T} A = \frac{1}{T} \int\limits_{t_0}^{t_0 + T}{s(t) dt} \\
+		\to A_0 T &=  \int\limits_{t_0}^{t_0 + T}{s(t) dt}
+	\end{align*}
+
+\subsubsection{Fourier-Reihe}
+
+	Mittels der Fourier-Reihe kann jedes Signal mittels einer unendlichen Summe von Sinus- und Cosinusfunktionen optimal angenähert werden.
+
+	$s_K(t) = A_0 + \sum^k_{k=1}{A_k \cos{(2 \pi k \frac{t}{T})} + B_k \sin{(2 \pi k \frac{t}{T})}}$
+
+	%TODO: Folie 11 (Optimale Signalapproximation mit kleinstem quadratischen Fehler)
+
+\subsubsection{Sinusapproximation}
+	%TODO: $\otimes$ => Multiplikation zweier analoger Signale
+	%TODO: Folie 13,15
+
+\end{multicols}
+\end{document}
+

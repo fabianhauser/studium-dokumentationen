@@ -1,0 +1,174 @@
+\input{../template.tex}
+
+\title{Zusammenfassung An1I - Analysis 1 für Informatiker}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+[
+\section{Funktionen}
+]
+\subsection{Mengen}
+Eine Menge ist eine Zusammenfassung verschiedener, voneinander unterscheidbarer Objekte zu einem Ganzen. Die Objekte nennen wir in diesem Zusammenhang auch die
+Elemente der Menge.
+
+\subsubsection{Grundmengen}
+\begin{tabular}{l l}
+	Reelen Zahlen & $\mathbb{R}=``\text{alle Zahlen}``$ \\
+	Ganzen Zahlen & $\mathbb{Z}=\{\dots ,-1,0,1,2,\dots\}$ \\
+	Natürliche Zahlen & $\mathbb{N}=\{0,1,2,\dots\}$ \\
+	Leere Menge & $\emptyset = \{\}$
+\end{tabular}
+
+
+\subsubsection{Elementbeziehungen}
+Die Elementbeziehungen dürfen Spiegelverkehrt verwendet werden.
+
+\begin{tabular}{l r}
+	Element von & $a \in M$ \\
+	kein Element von & $b \in M$ \\
+	Teilmenge & $N \subset M$ \\
+	keine Teilmenge & $K \not\subset M$ \\
+	Gleichheit & $N = M$
+\end{tabular}
+
+\subsubsection{Mengendarstellung}
+\begin{tabular}{l l}
+	Aufzählend & $M = \{1,2,3\}$ \\
+	Beschreibend & $M = \{x \in M|0<x<4\}$ \\
+	Negative Teilmenge & $M^-= \{\dots\ ,-2,-1,0\}$ \\
+	Positive Teilmenge & $M^+= \{0,1,2,\dots\}$
+\end{tabular}
+
+Die beschreibende Menge wird folgendermassen gelesen:
+\emph{Die Menge aller $x$ aus $M$ für die gilt: $0<x<4$} 
+
+Ein Filter darf als Prosa genannt werden, und muss auf alle Elemente anwendbar sein.
+
+\subsubsection{Intervalle}
+\begin{align*}
+	(1;200] = \{x \in\mathbb{R}|1<x \leq 200\} \\
+	[1;200] = \{x\in\mathbb{R}|1\leq x \leq 200\}
+\end{align*}
+
+\subsection{Funktionen}
+Eine Funktion hat immer einen oder mehrere Eingabe- und einen Ausgabewert. Für diese müssen Eingabe- und Ausgabemenge definiert werden, welche immer zutreffen.
+
+Für Elemente daraus ist die Funktion zwingend \emph{wohldefiniert}, d.h. vollständig Anwendbar und eine Eingabe $\to$ eine Ausgabe. Die Zielmenge darf Werte enthalten, welche im Resultat nicht vorkommen (dies Schränkt die Weiterverarbeitung ein.)
+
+Funktionen können auf Mengen angewendet werden.
+
+Eine Funktion kennt keinen Zustand (d.h. gleiche Eingabe $\Rightarrow$ gleiche Ausgabe)
+
+
+
+\subsubsection{Definition}
+	Gegeben seien zwei Mengen D und Z. Eine Zuordnungsvorschrift $f$, die jedem Element aus $D$ genau ein Element aus $Z$ zuordnet, nennen wir eine Funktion und schreiben dafür:
+	\[
+		\underbracket{
+			\overbracket{f}^\text{Name} : \left\{
+			\underbracket{
+				\begin{array}{ll}
+					\overbracket{
+						\mathbb{R}^{\vphantom{+}} % vphantom just to adjust height, no mathematical meaning. ugly workaround.
+					}^{
+						\mathclap{
+							\text{Definitionsmenge}
+						}
+					}
+					& \to \overbracket{
+						\mathbb{R}^+
+					}^{
+						\mathrlap{\!\text{Zielmenge}}
+					} \\
+					\underbracket{x}_{
+						\mathclap{\!\text{Input}}
+					}
+					& \mapsto \underbracket{x^2}_{
+						\mathclap{\!\text{Output}}
+					}
+				\end{array}
+			}_\text{Transformationsvorschrift}
+			\right.
+		}_\text{Zuordnungsvorschrift}
+	\]
+
+	$\overbracket{
+		f(\underbracket{4}_{\mathclap{\text{Funktionsargument}}})
+	}^{\mathclap{\text{Funktionsargument}}}
+	= 4^2 = 16$
+
+	%TODO: Aufräumen.
+
+\subsubsection{Lösungsvorgehen}
+	\begin{enumerate}
+		\item Liegt 4 in Definitionsmenge
+		\item Wenden Sie die Funktionsvorschrift auf Argument 4 an.
+	\end{enumerate}
+
+\subsubsection{Bild einer Funktion}
+	Das Bild von $f$, sei $D$ die Definitionsmenge.\newline
+	Dann heisst $f(D)$ das Bild von $f$; $Bild(f)=f(D)$
+	
+	%TODO: Stimmt das so?
+	D.h. ein Bild ist die Menge aller Zahlen auf einer bestimmten Achse auf dem Graphen.
+	
+	Beispiel: $f(\mathbb{R}) = \mathbb{R}^+$
+	
+	
+	Graph 
+	\begin{align*}
+		f &= \{(x,y) \in D \times Z | y=f(x)\} \\
+		  &= \{(x,f(x))|x \in D\}
+	\end{align*}
+	
+	\[
+		f:
+		\begin{cases}
+			D &\to Z \\
+			x &\mapsto f(x)
+		\end{cases}
+	\]
+
+
+\subsubsection{Funktion oder nicht?}
+	%TODO: Bereinigen
+	Implizite Definition: 
+	\[ f :
+		\begin{cases}
+			\mathbb{R} &\to \mathbb{R} \\
+			x & \mapsto \text{Lösung $y$ der Gleichung $2y-3=x$}
+		\end{cases}
+	\]
+	Umformen zu einer expliziten Definition:
+	\[ f :
+		\begin{cases}
+			\mathbb{R} &\to \mathbb{R} \\
+			x & \mapsto y=\frac{x+3}{2}
+		\end{cases}
+	\]
+
+\subsubsection{Definition der Wurzelfunktion}
+	\[
+		 \sqrt{\cdot} : \begin{cases}
+			 \mathbb{R}^+ &\to \mathbb{R}^+ \\
+			 x & \mapsto \text{positive Lösung der Gleichung: $y^2=x$}
+		 \end{cases}
+	\]
+
+
+\subsection{Elementare Funktionen ohne Trigonometrie}
+
+\subsubsection{Potenzen}
+Sei $n \in \mathbb{N}\\\{0\}$:\space\space
+$
+	\cdot^n : \begin{cases}
+		\mathbb{R} &\to \mathbb{R} \\
+		x &\mapsto \underbrace{x \cdot x \cdot \ldots \cdot x}_\text{n Faktoren}
+	\end{cases}
+$
+
+\end{multicols}
+\end{document}
+

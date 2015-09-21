@@ -1,0 +1,29 @@
+% This is a default-selection of plugins that are used widely in this repo.
+
+\documentclass[a4paper,10pt,fleqn]{article}
+\usepackage[utf8]{inputenc}
+
+% deutsche Trennmuster etc.
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+% mathematical simbols and fonts
+\usepackage{mathtools} 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{ntheorem}
+\usepackage{polynom}
+\renewcommand*{\bmod}{\mathbin{\%}}
+\everymath{\displaystyle}
+
+\usepackage{multicol}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.25pt}
+\def\columnseprulecolor{\color{gray}}
+
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
