@@ -55,12 +55,13 @@ Ein Filter darf als Prosa genannt werden, und muss auf alle Elemente anwendbar s
 \subsection{Funktionen}
 Eine Funktion hat immer einen oder mehrere Eingabe- und einen Ausgabewert. Für diese müssen Eingabe- und Ausgabemenge definiert werden, welche immer zutreffen.
 
-Für Elemente daraus ist die Funktion zwingend \emph{wohldefiniert}, d.h. vollständig Anwendbar und eine Eingabe $\to$ eine Ausgabe. Die Zielmenge darf Werte enthalten, welche im Resultat nicht vorkommen (dies Schränkt die Weiterverarbeitung ein.)
+Für Elemente daraus ist die Funktion zwingend \emph{wohldefiniert}, d.h. vollständig Anwendbar auf alle Elemente der Eingabemenge. Die Zielmenge darf Werte enthalten, welche im Resultat nicht vorkommen (dies schränkt die Weiterverarbeitung ein.)
 
-Funktionen können auf Mengen angewendet werden.
+Eine Funktion kennt keinen Zustand (d.h. gleiche Eingabe $\Rightarrow$ gleiche Ausgabe).
 
-Eine Funktion kennt keinen Zustand (d.h. gleiche Eingabe $\Rightarrow$ gleiche Ausgabe)
+Funktionen können auch auf Mengen angewendet werden.
 
+Nur wenn alle obigen Bedingungen zutreffen, handelt es sich um eine Funktion. Um dies bei einer impliziten, d.h. in Prosa definierten Funktion festzustellen, muss diese in eine explizite Funktion umgewandelt werden.
 
 
 \subsubsection{Definition}
@@ -93,14 +94,14 @@ Eine Funktion kennt keinen Zustand (d.h. gleiche Eingabe $\Rightarrow$ gleiche A
 			\right.
 		}_\text{Zuordnungsvorschrift}
 	\]
-
-	$\overbracket{
-		f(\underbracket{4}_{\mathclap{\text{Funktionsargument}}})
-	}^{\mathclap{\text{Funktionsargument}}}
-	= 4^2 = 16$
-
-	%TODO: Aufräumen.
-
+	
+	Um die Funktion anzuwenden, wird folgende Syntax verwendet:
+	\[\overbracket{
+		f(\underbracket{4}_{\mathrlap{\text{Funktionsargument}}})
+	}^{\mathrlap{\text{Funktionswert (Zahl)}}}
+	= 4^2 = 16
+	\]
+	
 \subsubsection{Lösungsvorgehen}
 	\begin{enumerate}
 		\item Liegt 4 in Definitionsmenge
@@ -108,44 +109,22 @@ Eine Funktion kennt keinen Zustand (d.h. gleiche Eingabe $\Rightarrow$ gleiche A
 	\end{enumerate}
 
 \subsubsection{Bild einer Funktion}
-	Das Bild von $f$, sei $D$ die Definitionsmenge.\newline
-	Dann heisst $f(D)$ das Bild von $f$; $Bild(f)=f(D)$
-	
-	%TODO: Stimmt das so?
-	D.h. ein Bild ist die Menge aller Zahlen auf einer bestimmten Achse auf dem Graphen.
+	Als das Bild einer Funktion wird die Menge aller möglichen Ergebnisse bezeichnet. Diese Menge lässt sich auf einem Graphen von der X-Achse auslesen.
 	
 	Beispiel: $f(\mathbb{R}) = \mathbb{R}^+$
 	
+\subsubsection{Graph einer Funktion}
+	Als Graph von $f$ bezeichnet man die möglichen Wertepaare, für die es ein y = f(x) gibt:
+	\[
+		Graph(f) = \{(x,y) \in D \times Z | y=f(x)\}
+	\]
 	
-	Graph 
-	\begin{align*}
-		f &= \{(x,y) \in D \times Z | y=f(x)\} \\
-		  &= \{(x,f(x))|x \in D\}
-	\end{align*}
-	
+	für die Funktion: 
 	\[
 		f:
 		\begin{cases}
 			D &\to Z \\
 			x &\mapsto f(x)
-		\end{cases}
-	\]
-
-
-\subsubsection{Funktion oder nicht?}
-	%TODO: Bereinigen
-	Implizite Definition: 
-	\[ f :
-		\begin{cases}
-			\mathbb{R} &\to \mathbb{R} \\
-			x & \mapsto \text{Lösung $y$ der Gleichung $2y-3=x$}
-		\end{cases}
-	\]
-	Umformen zu einer expliziten Definition:
-	\[ f :
-		\begin{cases}
-			\mathbb{R} &\to \mathbb{R} \\
-			x & \mapsto y=\frac{x+3}{2}
 		\end{cases}
 	\]
 
@@ -161,14 +140,26 @@ Eine Funktion kennt keinen Zustand (d.h. gleiche Eingabe $\Rightarrow$ gleiche A
 \subsection{Elementare Funktionen ohne Trigonometrie}
 
 \subsubsection{Potenzen}
-Sei $n \in \mathbb{N}\\\{0\}$:\space\space
-$
-	\cdot^n : \begin{cases}
-		\mathbb{R} &\to \mathbb{R} \\
-		x &\mapsto \underbrace{x \cdot x \cdot \ldots \cdot x}_\text{n Faktoren}
-	\end{cases}
-$
+	Sei $n \in \mathbb{N}\\\{0\}$:\space\space
+	$
+		\cdot^n : \begin{cases}
+			\mathbb{R} &\to \mathbb{R} \\
+			x &\mapsto \underbrace{x \cdot x \cdot \ldots \cdot x}_\text{n Faktoren}
+		\end{cases}
+	$
+	
+	Daraus folgt:
+	\begin{align*}
+		a^n a^m &= a ^{n+m} \\
+		a^{nm} &= (a^n)^m \\
+		a^n b^n &= (ab)^n
+	\end{align*}
 
+	Definitionen: \newline	
+	$a^0 = 1$ insbesondere gilt $0^0=1$, aber $0^n=0$ \newline	
+	$a^-n = \frac{1}{a^n}$ für $f\tilde{w} a \not= 0$
+	
+	%TODO: Ableichen Seite 27. Skript
 \end{multicols}
 \end{document}
 
