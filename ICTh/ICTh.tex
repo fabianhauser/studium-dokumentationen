@@ -50,14 +50,32 @@ Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (F
 
 
 \subsubsection{Cosinusfunkton}
-	$s(t) = A \cos{2 \pi \frac{t}{\top}} = A \cos{2 \pi f_0 t}$
-	
-%TODO: Graph
 
+	\begin{align*}
+		s(t) &= A \cos{2 \pi \frac{t}{\top}} = A \cos{2 \pi f_0 t} \\
+		s(\varphi) &= A \cos{\varphi} \\
+		0 &\leq \varphi \le 2 \pi
+	\end{align*}
 	
-	
-	$s(\varphi) = A \cos{\varphi}$
-	$0 \leq \varphi \le 2 \pi$
+	\noindent\begin{tikzpicture}
+	\begin{axis}[
+	axis equal image,
+	% x-Achse
+	axis x line=center,
+	xlabel={$t \left[\text{s}\right]$},
+	xtick={1.5708,3.14159,4.7123889, 6.283185},
+	xticklabels={$\frac{\top}{4}$,$\frac{\top}{2}$,$\frac{3\top}{4}$, $\top$},
+	% y-achse
+	height= 6cm,
+	axis y line = left,
+	ytick={-1,0,1},
+	yticklabels={$-A$,$0$,$+A$},
+	ylabel={$s(t) \left[\text{???}\right]$} %TODO: Skala?
+	]
+	\addplot [color=blue,domain=0:2.07*pi,samples=100] {cos(deg(x))};
+	\end{axis}
+	\end{tikzpicture}
+
 	
 
 \subsubsection{Linearer Mittelwert}
@@ -80,6 +98,7 @@ Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (F
 \subsubsection{Sinusapproximation}
 	%TODO: $\otimes$ => Multiplikation zweier analoger Signale
 	%TODO: Folie 13,15
+
 
 \end{multicols}
 \end{document}
