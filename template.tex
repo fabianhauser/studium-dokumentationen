@@ -27,3 +27,10 @@
 \usepackage{graphicx}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
+
+% make lists more compact:
+\newlength{\wideitemsep}
+\setlength{\wideitemsep}{.5\itemsep}
+\addtolength{\wideitemsep}{-5pt}
+\let\olditem\item
+\renewcommand{\item}{\setlength{\itemsep}{\wideitemsep}\olditem}
