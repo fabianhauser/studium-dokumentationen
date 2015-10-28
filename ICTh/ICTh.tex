@@ -10,14 +10,14 @@
 \section{Signale}
 ]
 
-\subsection{Periodische Signale (s.1-16)}
+\subsection{Periodische Signale}
 
 \subsubsection{Charakteristische Grössen}
 \begin{tabular}{l l l}
 	Periodendauer & $\top$ & [s] \\
 	 & $s(t)$ & $=s(t+mT)$ \\
 	 & & $m=0,\pm 1,\pm 2,\dots$ \\
-	 Grundfrequenz & $f_0=\frac{1}{\top}$ & [Hz]
+	 Grundfrequenz & $f_0=\frac{1}{\top}$ & [Hz] \\
 \end{tabular}
 
 Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (Fourier-Analyse, FFT)
@@ -42,7 +42,7 @@ Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (F
 		axis y line = left,
 		ytick={-1,0,1},
 		yticklabels={$-A$,$0$,$+A$},
-		ylabel={$s(t) \left[\text{???}\right]$} %TODO: Skala?
+		ylabel={$s(t) \left[\text{(Volt)}\right]$}
 	]
 	\addplot [color=blue,domain=0:2.07*pi,samples=100] {sin(deg(x))};
 	\end{axis}
@@ -70,7 +70,7 @@ Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (F
 	axis y line = left,
 	ytick={-1,0,1},
 	yticklabels={$-A$,$0$,$+A$},
-	ylabel={$s(t) \left[\text{???}\right]$} %TODO: Skala?
+	ylabel={$s(t) \left[\text{(Volt)}\right]$}
 	]
 	\addplot [color=blue,domain=0:2.07*pi,samples=100] {cos(deg(x))};
 	\end{axis}
@@ -86,10 +86,20 @@ Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (F
 		A_0 &= \frac{\tau}{T} A = \frac{1}{T} \int\limits_{t_0}^{t_0 + T}{s(t) dt} \\
 		\to A_0 T &=  \int\limits_{t_0}^{t_0 + T}{s(t) dt}
 	\end{align*}
+	
+\subsubsection{Mittlere Leistung}
+
+\[
+P = A_0^2 + \sum^{\infty}_{k=1}{
+		\frac{A_k^2 + B_k^2}{2}
+	} = A_0^2 + \sum^{\infty}_{k=1}{\frac{M_k^2}{2}}
+\]
+
+\emph{Sie können ruhig weiterschlafen, wir werden damit nicht sehr viel machen.}
 
 \subsubsection{Fourier-Reihe}
 
-	Mittels der Fourier-Reihe kann jedes Signal mittels einer unendlichen Summe von Sinus- und Cosinusfunktionen optimal angenähert werden.
+	Mittels der Fourier-Reihe kann jedes periodische Signal anhand einer unendlichen Summe von Sinus- und Cosinusfunktionen optimal angenähert werden.
 
 	$s_K(t) = A_0 + \sum^k_{k=1}{A_k \cos{(2 \pi k \frac{t}{T})} + B_k \sin{(2 \pi k \frac{t}{T})}}$
 
@@ -99,7 +109,174 @@ Jedes periodische Signal kann in seine harmonische Komponenten zerlegt werden (F
 	%TODO: $\otimes$ => Multiplikation zweier analoger Signale
 	%TODO: Folie 13,15
 
+\subsubsection{Funktionseigenschaften}
+
+\paragraph{Gerade Funktion}
+	\[
+		S(t) = S(-t)
+	\]
+	Achsensymetrisch (gespiegelta an der Y-Achse)
+	
+	Dies trifft auf den Cosinus zu.
+
+\paragraph{Ungerade Funktion}
+	\[
+		S(t) = -S(-t)
+	\]
+	Punktsymetrisch (gespiegelt am Achsenschnittpunkt)
+	
+	Dies trifft auf den Sinus zu.
+	
+	Nulldurchgänge:
+	\[
+		\pi \cdot \tau \cdot f_k = n \pi \Rightarrow  f_k = \frac{n}{\tau}
+	\]
+
+Frequenzspektrum:
+	\[
+		\left| S(t) \right| = \left| \frac{\sin{\pi \tau f}}{\pi \tau f} \right|
+	\]		
+
+
+\subsection{Fourier-Transformation}
+
+\subsubsection{Grössen}
+	\begin{tabular}{l l l}
+		Amplitudendichte & & $\left[\frac{\text{V}}{\text{Hz}}\right]$
+	\end{tabular}
+
+\subsubsection{Einzelpuls}
+	Ein einzelner Puls mit der Dauer $\top$ gegen $\infty$. Dies kann mittels der Fourier-Transformation ermittelt werden:
+	
+	\[
+		S(t) = \int\limits_{-\infty}^{\infty}{
+			S(t) \cdot e^{-j 2 \pi f_t} dt
+		}
+		\left[\frac{\text{V}}{\text{Hz}}\right]
+	\]
+
+\subsubsection{Energie eines Pulses}
+
+	\[
+		W = \int\limits_{-\infty}^{\infty}{
+				\left| S(t) \right|^2 dt
+			} = \int\limits_{-\infty}^{\infty}{
+				\left| S(f) \right|^2 dt
+			}
+	\]
+
+\subsubsection{Symbolrate}
+	\[
+		f_s = \frac{1}{\tau} = \frac{\text{Symbole}}{\text{Zeit}}
+		\left[\text{Baud}\right] \left[\text{Hz}\right]
+	\]
+
+\subsubsection{Bitrate}
+	\[
+		f_b = f_s \cdot \frac{\text{Bit}}{\text{Symbol}} %TODO: Gibt's hierfür ein Symbol?
+		\left[\frac{\text{Bit}}{\text{s}}\right]
+	\]
+	
+\subsubsection{Bandbreite}
+	\[
+		B=\frac{1}{\tau}
+	\]
+	
+	\[
+		[\text{dB}] = \frac{1}{\tau} \cdot \log{\frac{2}{\pi}}
+	\]
+
+Je kürzer die Dauer im Zeitbereich, desto grösser die Bandbreite:
+	\[
+		B \cdot \tau \approx 1
+	\]
+
+\subsection{Nichtperiodische Signale}
+
+\subsubsection{Charakteristische Grössen}
+	
+	\begin{tabular}{l l l}
+		Pulsdauer & $\tau$ & [s] \\
+		Pusenegerie & $W=A^2 \cdot \tau$ & \\
+		Mittlere Leistung & $P=\frac{W}{T}$ &
+	\end{tabular}
+	\[
+		\text{Zeitbereich } S(t) \mapsto \text{Frequenzbereich } S(t)
+	\]
+
+
+\subsubsection{Linearer Mittelwert}
+
+	\[
+		A \cdot \tau = A_0 \cdot \pi \Rightarrow A_0 =\frac{\tau}{\top} \cdot A
+	\]
+
+\subsection{Datenkodierungs}
+
+\subsubsection{Non Return Zero (NRZ) Code}
+	Als beim NRZ Code
+
+\subsubsection{Non Return Zero (NRZ) Mark Code}
+	Beim NRZ Mark Code wird der Pegel $A$ gewechselt, wenn die übertragene Zahl eine logische $1$ ist. Dies wird auch als Differenzielle Kodierung bezeichnet.
+
+\subsubsection{Return to Zero (RZ) Code}
+	Beim RZ Code wieturn Zerord in der Mitte des Datenbits der Pegel bei einem logischen $1$ wieder auf $0$ gesenkt. Dadurch braucht diese doppelt so viel Bandbreite.
+	Dafür lässt sich der Übertragungstakt aus dem Signal extrahieren.
+
+\subsubsection{Alternate Mark Inversion (AMI) Code}
+	Beim AMI wird bei einem Bitwechsel die Flanke geändert. Dadurch können mt dem AMI Weniger Daten kodiert werden, dafür ist aber die Gleichspannung sichergestellt.
+
+	%TODO: Einfügen Bild
+
+\subsubsection{Bi-Phase oder Manchester Code}
+	Beim Manchester Code werden die Datenbits in der Flanke (d.h. $1$ auf- bzw. $0$ Absteigend) codiert. Dadurch ist dieser Code Gleichspannungsfrei.
+	Der von IEEE spezifizierte Manchester Code hat invertierten Flanken.
+	Die Schwierigkeit beim Manchester Code ist es, die Signifikante Steigende / Fallende Flanke zu definieren.
+
+	%TODO: Einfügen Bild präsentation!
+	
+\subsubsection{Scrambling}
+	Zur Eliminierung von langen 0 bzw. 1-Folgen werden die übertragenen Bits via $\oplus$ (XOR) mit einer Scrambling-Folge verknüpft.
+	Die Scrambling-Folge ist dabei eine pseudo-zufällig generierte Folge auf Sende- und Empfangsstelle.
+	
+	Dies wird bei den Nachfolgern von 10Mbit/s Ethernet mit NRZ verwendet.
+
+\subsection{Modulation}
+	
+	Bei der Modulation wird die Amplitude oder die Phase verändert, um Daten auf ein Grundsignal aufzumodulieren.
+	
+
+\subsubsection{Signale}
+	
+	
+	Gemäss Euler:
+	\[
+		\cos \varphi = \frac{
+			e^{+j \varphi} + e^{-j \varphi}
+		}{2}
+	\]
+	\[
+		\sin \varphi = \frac{
+			e^{+j \varphi} - e^{-j \varphi}
+		}{2j}
+	\]
+	
+	%TODO: {Grafik}
+
+
+\subsection{Zeitliche Quantisierung}
+
+	Bei der Abtastung wiederholt sich das Spektrum im Intervall der Abtastfrequenz.
+	
+	Nyquist-Theorem: Bandbreite < Frequenzspektrum(s)
+	
+	Vor jeder Abtastung braucht es die Beschränkung des Frequenzspektrums auf die Hälfte der Abtastfrequenz (sonst gibt es Überlagerungen des Spektrums.)
+
+	
 
 \end{multicols}
+
+	\emph{Das Spektrum müssen Sie sich vorstellen, wie wenn ich am Big Bang am Zeiger hänge und den versuche zurückzudrehen. \--- So zumindest stelle ich mir das in meinen Träumen vor.}
+
 \end{document}
 

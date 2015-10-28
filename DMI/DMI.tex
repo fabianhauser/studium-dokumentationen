@@ -10,11 +10,15 @@
 \section{Logik}
 ]
 
-	Bei DMI ist das Ausgedruckte Script mit Notizen zur Prüfung zugelassen.
+	Bei DMI ist das Ausgedruckte Script mit Notizen auf dem Skript zur Prüfung zugelassen.
 
 \subsection{Operatoren}
 
 %TODO: Hier fehlt noch was. Papier!
+
+\subsubsection{NAND (Nicht UND)}
+
+$A \uparrow B = \overline{A \land B}$
 
 \subsubsection{Teiler von}
 	$x$ ist Teiler von $n$: $x|n$
@@ -23,7 +27,7 @@
 	Etwas ist genau gleich.
 	\[
 	t \Leftrightarrow t, f \Leftrightarrow f
-	\]
+	\]y
 
 \subsubsection{Implikation}
 	Wenn a, dann b.
@@ -100,7 +104,7 @@ Als eine \emph{Tautologie} wird eine Aussage bezeichnet, welche immer Wahr ist.
 			(X \land \neg Y \land Z) \lor
 			(X \land Y \neg \land \neg Z) \lor
 			(\neg X \land Y \land \neg Z) \lor
-			(\neg X \land \neg Y \land \neg Z) \lor 
+			(\neg X \land \neg Y \land \neg Z)
 		\]
 	
 	\paragraph{Konjunktive Normalform}
@@ -116,9 +120,210 @@ Als eine \emph{Tautologie} wird eine Aussage bezeichnet, welche immer Wahr ist.
 
 \subsection{Beweisformen}
 
-\subsubsection{Direkter Beweis / Vollständige Induktion }
-%TODO: Ergänzen Papier
+\subsubsection{Vollständige Induktion}
+	Die vollständige Induktion beweist eine Aussage für alle $n \in \mathbb{N}$ und wird vor allem bei Aussagen mit der Summenformel $\sum$ oder Teilbarkeitsaufgaben $|$ verwendet.
 
+	\paragraph{Axiome}
+	\begin{itemize}
+		\item Jede Zahl aus $\mathbb{N}$ hat genau einen Nachfolger
+		\item Null ist kein Nachfolger einer Zahl aus $\mathbb{N}$
+	\end{itemize}
+
+	\paragraph{Vorgehen}
+	\begin{enumerate}
+		\item Verankerung: Prüfen der Annahme für das kleinste mögliche $n$
+		\item Induktionsschritt: $n \to n+1$
+		\begin{enumerate}
+			\item Annahme $A(n)$
+			\item Behauptung $A(n+1)$
+			\item Beweis $A(n) \Rightarrow A(n+1)$
+		\end{enumerate}
+	\end{enumerate}
+	
+	\paragraph{Beispiel}
+	\[
+		\text{Für } a_n = 5^n -1 \text{ mit } n \in \mathbb{N} \text{ gilt: } 4a_n
+	\]
+	
+	\begin{enumerate}
+		\item Verankerung: $n=0 \rightarrow 5^0 -1 = 0$ ist ohne Rest durch 4 Teilbar.
+		\item Induktionsschritt: $n \to n+1$
+		\begin{enumerate}
+			\item Annahme $A(n)$: $4|5^n -1$
+			\item Behauptung $A(n+1)$: $4|5^{n+1} - 1$
+			\item Beweis:\newline $
+				5^{n+1} -1 = 5 \cdot 5^n -1 =\newline (4 + 1) \cdot 5^n -1 = \underbracket{
+					\overbracket{
+						4 \cdot 5^n
+					}^{\text{durch 4 Teilbar}} + \overbracket{
+						5^n -1
+					}^{\text{Annahme}}
+				}_{\text{Induktionsbehauptung}}
+			$
+		\end{enumerate}
+	\end{enumerate}
+	
+\subsubsection{Rekursion}
+%TODO!!!
+
+
+\end{multicols}
+
+
+
+\section{Mengen}
+
+\subsection{Darstellungen}
+	\begin{tabular}{l l l}	
+		Aufzählende Form & $\{...\}$ & $A = \{a,b,c\}$ \\
+		Beschreibende Form & $\{e \in M | A(e)\}$ & $B = \{x \in A | x<3 \}$ \\
+	\end{tabular}
+
+\subsection{Operatoren}
+	\begin{tabular}{l l l}
+		Teilmenge & $\subset$ & $B \subset A$ und immer $\emptyset \subset M$ \\
+		Vereinigung & $\cup$ & $A \cup B = \{x \in A,B | x \in A \lor x \in B\}$ \\
+		Durchschnitt & $\cap$ & $A \cap B = \{x \in A | x \in B\}$ \\
+		Komplement & $\overline{M}$ & $\overline{A} = \{x \in \mathbb{G} | x \not\in A\}$ \\
+		Differenz & $\setminus$ & $A \setminus B = A \cap \overline{B}$  \\
+		Potenzmenge & $P(M)$ & $P(A) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\},\{c,b\}, A\}$ \\
+		& & $|P(A)|=2^{|A|} = 8$ \\
+		Kartesisches Produkt & $\times$ & $\mathbb{R} \times \mathbb{R} = \left\{(x,y) | x \in \mathbb{R}, y \in \mathbb{R} \right\}$ \\
+		Mächtigkeit & $|M|$ & $|A| = 3$
+	\end{tabular}
+
+\subsection{Gesetze}
+	\begin{tabular}{l l}
+		Kommutativ & $A \cap B = B \cap A$ sowie $A \cup B = B \cup A$ \\
+		Assoziativ & $A \cap B \cap C = (A \cap B) \cap C$ (gilt auch für $\cup$) \\
+		Distributiv & $A \cup (B \cap C) = ( A \cup B) \cap (A \cup C)$ (auch für $\cup / \cap$)\\
+		Idempotenz & $A \cup A = A$ und $A \cap A = A$ \\
+		Verschmelzung & $A \cup (A \cap B) = A \cap (A \cup B) = A$
+	\end{tabular}
+
+\subsection{Spezialmengen}
+	\begin{tabular}{l l}
+		Leere Menge & $\emptyset = \{\}$ und $|\emptyset| = 0$
+	\end{tabular}
+
+\subsubsection{Relation}
+	Relation $R_b$ wird zum Beispiel so angewendet:
+	\[
+		R_< \subset \mathbb{N} \times \mathbb{N} =
+			\left\{ (x,y) \in \mathbb{N} \times \mathbb{N} | x<y \right\} =
+			\left\{ (0,1), ... \right\}
+	\]
+	 %TODO: Ist das jetzt eine eigene Menge oder ein Operator?
+
+
+\begin{multicols}{2}[
+	\section{Modulo-Rechnen}
+]
+
+\subsection{Relation}
+	Realtion: $y,x \in \mathbb{Z}$, $A(x,y)$, $y = y \mod z$
+	\begin{align*}
+		M_2^1 &= \{1,-1,3,-3,5,-5,...\} = [1] \\
+		M_2^0 &= \{0,2,-2,4,-2,...\} = [0]
+	\end{align*}
+	
+	\begin{tabular}{l|r r}
+		$+$ & $[0]$ & $[1]$  \\ \hline
+		$[0]$ & $[0]$ & $[1]$ \\
+		$[1]$ & $[1]$ & $[0]$
+	\end{tabular}
+	
+
+\subsection{Teiler-Relation}
+	Wenn $a \in \mathbb{Z}, b \in \mathbb{Z}$, gilt
+	\[
+		T(b,a) \Leftrightarrow \exists q \in \mathbb{Z}: b \cdot q = a
+	\]
+	\[ T \subset \mathbb{Z} \times \mathbb{Z} \]
+	\[
+		\underbracket{T(b,a) \Leftrightarrow b|a}_{\text{Teiler-Relation}}
+	\]
+	
+	Die Teiler-Relation ist eine Ordnungsrelation, d.h. eine Relation auf die menge $A, R \subset A \times A$ und ist entsprechend reflexiv, antisymetrisch und transitiv.
+
+	Antisymetrisch heisst: $R \subset A \times A$
+	\[
+		\forall a, b \in A: a R b \land b R a \Rightarrow a=b
+	\]
+
+\subsection{Modulo-Operation $\mod$ / Kongruenz $\equiv$}
+	Wenn $r$ und $a$ eine Zahl aus der Restklasse von $q$ ist, gilt:
+	\[
+		a \equiv r \mod q \Leftrightarrow q | a-r
+	\]
+	Zum Beispiel: $7 \equiv 1 \mod 3$
+
+	\paragraph{Rechenregeln}
+	
+	Alles was für ganze Zahlen gilt, gilt auch für Modulo-Rechnung.
+	
+	\begin{align*}
+		a &\equiv r_a \mod q \\
+		b &\equiv r_b \mod q \\ \\
+		a+b &\equiv r_a + r_b \mod q \\
+		a \cdot b &\equiv r_a \cdot r_b \mod q \\ \\
+		a^n \cdot a ^ m &= a^{n+m} \\
+		(a^n)^m &= a^{n \cdot m}
+	\end{align*}
+
+\subsection{Euklidscher Algorythmus}
+
+\subsubsection{Beispiel einfacher E.A.}
+	\begin{align*}
+		q &= x \text{ div } y \\
+		r &= x - q \cdot y
+	\end{align*}
+
+	\begin{tabular}{l | r r r r}
+		Ablauf & x & y & q & r \\ \hline
+		Init. & 122 & 72 & 1 & 50 \\
+		1. & 72 & 50 & 1 & 22 \\
+		2. & 50 & 22 & 2 & 6 \\
+		3. & 22 & 6 & 3 & 4 \\
+		4. & 6 & 4 & 1 & 2 \\
+		5. & 4 & $\underbracket{2}_{\mathclap{\text{ggT(122,72)}}}$ & 2 & $\underbracket{0}_{\mathclap{\text{Ende}}}$
+	\end{tabular}
+
+	Der Euklidscher Algorithmus:
+	\begin{itemize}
+		\item bricht immer nach n Iterationen ab 
+		\item liefert den ggT(a,b)
+		\item liefert das ''Inverse''
+	\end{itemize}
+
+
+\subsection{Beispiel Erweiterter E.A.}
+
+	\begin{align*}
+		q &= x \text{ div } y \\
+		r &= x - q \cdot y \\ \\
+		u &= s_{-1} \\
+		s &= u_{-1} - q_{-1} \cdot s_{-1} \\
+		v &= t_{-1} \\
+		t &= v_{-1} - q_{-1} \cdot t_{-1}
+	\end{align*}
+	
+	\begin{tabular}{l | r r r r r r r r }
+		Ablauf & x & y & q & r & u & s & v & t \\ \hline
+		Init. & 122 & 72 & 1 & 50 & 1 & 0 & 0 & 1 \\
+		1. & 72 & 50 & 1 & 22 & 0 & 1 & 1 & -1 \\
+		2. & 50 & 22 & 2 & 6 & 1 & -1 & -1 & 2 \\
+		3. & 22 & 6 & 3 & 4 & -1 & 3 & 2 & -5 \\
+		4. & 6 & 4 & 1 & 2 & 3 & -10 & -5 & 17 \\
+		5. & 4 & $\underbracket{2}_{\mathclap{\text{ggT(122,72)}}}$ & 2 & $\underbracket{0}_{\mathclap{\text{Ende}}}$ &
+		-10 & 
+		\emph{13} & 17 &$\underbracket{-22}_{\mathllap{\text{Multipl. Inverse}}}$
+	\end{tabular}
+	
+	\[
+		ggT(x,y) = s \cdot x + t \cdot y
+	\]
+	
 \end{multicols}
 \end{document}
 

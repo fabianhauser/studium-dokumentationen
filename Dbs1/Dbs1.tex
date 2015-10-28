@@ -39,14 +39,103 @@
 \section{Konzipierung}	%TODO: Kapitulierung mit Sinn.
 \subsection{UML-Diagramme}
 
-\subsubsection{Relationen}
+\subsubsection{Abhängigkeiten}
 \begin{description}
 	\item[Komposition] \hfill \\
 		Existenzielle Abhängigkeit
 	\item[Aggregation] \hfill \\
-		
+		Nichtexistenzielle Abhängigkeit
 \end{description}
 
+\subsubsection{Relationen in der DB abbilden} %TODO: ???
+1. Klassen 1:1 in die DB übertraen
+2. In Sohnklasse übertragen
+3. Alle attribute in die Vaterklases übertragen
+
+\subsubsection{Vererbung}
+\begin{description}
+	\item[Disjoint] \hfill \\
+	%TODO: https://en.wikipedia.org/wiki/File:Disjunkte_Mengen.svg
+	\item[Incomplete] \hfill \\
+	%TODO
+\end{description}
+	
+	
+\subsection{Relationales Modell}
+	
+	SET und ROW, keine Vererbung,
+	
+	Typenkonstruktionsregeln: z.B. SET OF INTEGER
+
+\section{Relationale Algebra}
+
+	%TODO
+
+\subsubsection{$\Pi$ Projektion}
+
+\subsubsection{$\Sigma$ Selection}
+
+\subsubsection{$\multiply$ Kartesisches Produkt}
+
+\subsubsection{$\left\|\multiply\right\|$ (inner join) / $Kreismitstrecke$ Joins }
+	%TODO symbol
+
+\subsubsection{$ \Rho $ ("repl") Unbe.}
+	%TODO ?
+	SIGMA
+	
+	X Kartesisches Produkt:
+	
+		Verknpüpfen aller Werte zweier Tabellen ($R1 x R2$)
+	
+	
+	Joins: Theta-Verbdung und Equi Join
+	
+	
+	%TODO: Überarbeiten. Siehe Dbs1 - DB-Entwurf: Rel. Modelle u. Algebra Folie 27
+
+
+\subsection{Normalformen}
+
+\subsubsection{1. Normalform}
+
+	\begin{itemize}
+		\item Attributwerte sind Atomar (d.h. einmalig)
+		\item Kommalisten werden in "duplizierte" Datensätze umgewandelt
+	\end{itemize}
+
+\subsubsection{2. Normalform}
+
+	\begin{itemize}
+		\item Es wird festgelegt, welche Attribute von welcher ID \emph{funktional} abhängig sind.
+		\item Nichtschlüsselattribute voll vom Schlüssel abhängig
+		\item Determinante (uniq id)
+	\end{itemize}
+
+\subsubsection{3. Normalform}
+	\begin{itemize}
+		\item Auslagern in mehrere Tabellen mit Relationen
+	\end{itemize}
+
+\subsubsection{Boyce-Codd-Normalform}
+\subsubsection{4. Normalform}
+\subsubsection{5. Normalform}
+
+
+\section{PGSQL}
+
+Text anhängen 
+
+\begin{sql}
+	select distinct(wohnort) || ' (Schweiz)' as "wohnort" from angestelter;
+\end{sql}
+
+COAELESCE(vorname, '') (Nullwert ersetzten)
+
+
+GROUP BY wohnort HAVING AVG( Salaer) >= 7000
+
 \end{multicols}
+
 \end{document}
 
