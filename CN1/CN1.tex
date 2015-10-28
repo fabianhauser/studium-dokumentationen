@@ -1,0 +1,98 @@
+\input{../template.tex}
+
+\title{Zusammenfassung CN1 - Computernetze 1}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+\section{Signale}
+
+\subsection{Grössen}
+	%TODO: Tabelle unvollständig
+	\begin{tabular} {l l l}
+		Symboldauer & $T_s$ & [s] \\
+		Kanalbandbreite & $B_k$ \\
+		Kanalkapazität & $C$ \\
+		Bandbreite & $B_s = \frac{T_s}{1}$ \\
+		Schrittgeschwindigkeit & $R = f_s \cdot n$ & $\left[\frac{\text{Bit}}{\text{s}}\right]$\\ %TODO
+		Abtastrate & $f_s$
+	\end{tabular}
+
+\subsection{Digitalisierung}
+	Gemäss dem \emph{Abtasttheorem} gilt für die Rekonstruktion eines Signals: $f_s > B_s$
+
+\subsection{Übertragungskanal}
+	
+	Im Übertragungskanal kommt in der Praxis immer ein Rauschen $N$ dazu. Je nach stärke des Rauschens wird ein Signal schwieriger zu digitalisieren. Ohne Rauschen wären unendlich viele Stufen = unendlich viele Bits pro Zeit zur verfügung.
+	
+	Die maximale Schrittgeschwindkeit gemäss Nyquist ist $R=2 \cdot B_k$ in $\left[\frac{\text{Schritte}}{\text{s}}\right]$
+	
+	Die Kanalkapazität $C$ wird berechnet mit:
+	\[
+		C = B_k \cdot \log_2{(1 + \frac{S}{N})}
+	\]
+	(unter der Voraussetzung $S$ Signalleistung und $N$ Rauschleistung)
+	
+\subsection{100BaseT Signaling}
+
+\subsubsection{MLT3}
+	Wenn ein 1 vorliegt, wird der Pegel gewechselt in der Mitte des Datenbits (gemäss der Clock).
+	%TODO: Einfügen Bild Folie 50
+	
+	Benötigt 125 MBaud (20\% Verlust durch erhöhten Bandbreitenbedarf; dafür einfache Taktrückgewinnung).
+	
+\subsubsection{4b5b Codierung}
+	Zuordnung von 4B-Symbole an 5B-Symbole. Die verbleibende 5b-Symbole werden für Statusangaben verwendet.
+	Zur Sicherstellung des Takterhalt wird als Idle-Signal 11111 gesendet.
+	Diese wird vor der Übertragung mit MLT3 angewendet
+
+\subsection{Fiber}
+
+\subsubsection{Ausgleichen der Signalgeschwindigkeit}
+	Versuch, den inneren Kern der Glasfaser mit einem höheren Brechungsindex als den rest der Kerns zu machen, damit diese nicht "verschmiert" ankommen.
+
+	64*8*1.25/(1'000'000'000b/s)
+	
+	1.25b/(1'000'000'000b/s) * 200'000'000m/s
+	
+	\subsubsection{Dämpfung und Dispersion}
+	
+	Wichtige Bereiche: 1310-1340nm, 1340-1440nm
+	
+	Im Glas wird bei 1400nm sehr stark gedämpft. %TODO: Grafik Folie 61 / 12.10.15 einbinden.
+	Die Dämpfung bei ca. 1500nm ist am geringsten, und auf dieser Wellenlänge funktionieren die EDFA (Verstärkung des Signals) %TODO: Abkürzung ausschreiben)
+
+\subsubsection{1000BASE-LX}
+	L für Loong Wavelength
+	
+	1310nm Wellenlänge
+
+\subsubsection{1000BASE-BX10}
+
+FTTH nutzt diesen Standard, nutzt nur eine Singlemode Faser, bis 10 KM, Wellenlängemultiplex zur Richtungstrennung, downstream, 1490nm, upstream 1210nm
+ 
+ 
+ \section{Internet Protocol IP}
+ 
+ \subsection{AS}
+
+ \subsubsection{As Typen}
+ \begin{itemize}
+	 Stub-AS
+	 (Verbindung zu einzelnem AS)
+	 
+	 Multihomed AS (Verbindung zu mehreren anderen AS)
+	 
+	 
+	 Transit AS (Verbindung zu mehreren AS und leitet Verkehr anderer AS weiter.	
+ \end{itemize}
+ 
+ \subsubsection{Network Levels}
+ Tier-1-ISP Anschluss Zielserver
+ Tier2-ISP Vermittlung
+ TIER-3 ISP Endkundennetz
+ 
+\end{multicols}
+\end{document}
+
