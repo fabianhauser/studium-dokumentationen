@@ -288,6 +288,22 @@
 		 \sin(\alpha) &= \sin(\pi - \alpha)
 	\end{align*}
 	
+\subsubsection{Umkehrfunktion Cosinus}
+
+	Der Cosinus ist nicht injektiv, da er nach $\frac{\pi}{2}$ immer die gleichen $y$-Werte liefert. Daher ist eine Einschränkung nötig:
+	$\cos|_{[0;\pi]}$
+	\[
+		arccos : \begin{cases}
+			[-1, -1] &\to [0;\pi]\\
+			y &\mapsto \text{Lösung } x \in [0;\pi] \text{ der}\\
+			  &\indent \text{Gleichung }  cos(x) = y
+		\end{cases}
+	\]
+	
+	Aufgrund der repetitiven sowie nicht injektiven Eigenschaft des Cosinus lässt sich daraus folgendes festlegen:
+	\[
+		cos(x) = y \iff x = \pm \arccos(y) + 2 \pi k, k \in \mathbb{Z}
+	\]
 	
 	
 \end{multicols}
