@@ -1,0 +1,117 @@
+\input{../template.tex}
+
+\title{Zusammenfassung OO - Objektorientierte Programmierung mit Java}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+[
+\section{Java}
+]
+
+\subsection{Variablen}
+
+	%TODO: - wenn variable in klasse, im heap memory
+	%TODO: - wenn variable in methode, im stack memory
+	%TODO: - type casting
+	%TODO: - heap / stack
+	%TODO: - final keyword (einmal zuweisung in constructor)
+
+\subsubsection{Typen}
+	Java unterscheidet zwischen Grundlegenden Typen und erstellten Typen ...
+	%TODO: - Variabletypes
+
+\subsubsection{Strings}
+	Vergleichen: $a.equals(b)$ (ausser bei String Pooling (Optimierung von Compiler bei gleichen Strings)
+	Kopieren: $String b = new string(a);$
+
+\subsection{Methoden}
+	Eine Methode kann immer mit einer gleichnameigen Methode mit einer anderen Signatur überschrieben werden.
+	%TODO: Demo 
+
+\subsection{Objekte}
+
+\subsubsection{Polymorphism}
+	Eine unterklasse kann auch immer als Objekt vom übergeordneten Typ behandelt werden.
+	%TODO: Demo
+
+	Eine überklasse kann als Objekt von einem Untergeordneten Typ behandelt werden, sofern dies explizit mit einem Cast vorgegeben wurde.
+	Dies funktioniert nur, wenn im Objekt von einem Untergeordneten Typ in wirklichkeit ein Objekt vom bergeordneten Objekt steckt.
+
+	Dies funktioniert nicht mit Eigenschaften. %TODO: Stimmt das so? innerhalb der subklasse auf jeden fall. (Folie 62 OO HS2015-Vererbung)
+	%TODO: Demo
+
+
+\subsection{Exceptions}
+
+\subsubsection{Beispiele}
+	
+	\begin{java}	
+		ArayIndexOutOfBoundsExceptionArithmeticException
+		NullPointerError
+		StackOverflowError
+		ClassCastException
+		
+		InputMismatchExcelption
+		IllegalArgumentException
+	\end{java}
+	
+	
+	\subsubsection{Multicatch}
+	
+	try \{...\} catch(NoStringException e | AnotherStringException e)\{...\} finally \{ This get's executed anyways. \}
+
+	\subsection{Packages und Import}
+
+	1. Single Type Import $import pack.A$
+	2. Eigenes Paket $class A$
+	3. Import on Demand $import pack.*$
+
+
+	\subsubsection{Statisch}
+		import static java.lang.System.out;
+		out.println("works");
+
+\subsection{Spezielle implementationen}
+
+\subsubsection{a.equals(b)}
+... div. cases 00 HS2015 - Unit Testing Folie ~50
+
+\subsubsection{a.clone()}
+
+	Person implements Cloneable {
+
+		@Override
+		public Person cone() {
+			return new Person(firstName, lastName);
+		}
+	}
+
+\subsubsection{Comparable interface}
+
+	int compareTo(Type other);
+	Resultate: 
+	<0: this is smaller than other
+	>0: this is larger than other
+	0: this is equal to other
+
+
+	Beispiel:
+
+	Class X implements Comparable<Student> {
+		private int regNumber;
+		@Override
+		public int compareTo(Student other) {
+			return regNumber - other.regNumber
+		}
+	}
+\end{multicols}
+
+
+\section{Quotes}
+	...manchmal werden wir von den C-Leuten ein wenig gebrainwashed!
+	- zur Diskussion des Unterschieds zwischen Pointern und Referenzen
+
+\end{document}
+
