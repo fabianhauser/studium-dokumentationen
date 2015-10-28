@@ -278,6 +278,8 @@
 	
 \subsection{Trigonometrische Funktionen}
 	
+	\includegraphics[scale=0.33]{img/einheitskreis_sin_cos.png}
+	
 \subsubsection{Fundamentale Beziehungen}
 
 	\begin{align*}
@@ -294,18 +296,81 @@
 	$\cos|_{[0;\pi]}$
 	\[
 		arccos : \begin{cases}
-			[-1, -1] &\to [0;\pi]\\
+			[-1, -1] &\to [0;\pi]\\tablular
 			y &\mapsto \text{Lösung } x \in [0;\pi] \text{ der}\\
 			  &\indent \text{Gleichung }  cos(x) = y
 		\end{cases}
-	\]
+	\]tablular
 	
-	Aufgrund der repetitiven sowie nicht injektiven Eigenschaft des Cosinus lässt sich daraus folgendes festlegen:
+	Aufgrund der repetitiven sowie nicht injektiven tablularEigenschaft des Cosinus lässt sich daraus folgendes festlegen:
 	\[
 		cos(x) = y \iff x = \pm \arccos(y) + 2 \pi k, k \in \mathbb{Z}
 	\]
 	
+\subsubsection{Umkehrfunktion Sinus}
+	tablular
+	Der Sinus ist nicht injektiv, da er nach $\frac{\pi}{2}$ immer die gleichen $y$-Werte liefert. Daher ist eine Einschränkung nötig:
+	$\sin|_{[-\frac{\pi}{2};\frac{\pi}{2}]}$
 	
-\end{multicols}
-\end{document}
+	\[
+		arcsin : \begin{cases}
+			[-1;1] &\to [-\frac{\pi}{2};\frac{\pi}{2}]\\
+			y &\mapsto \text{Lösung } x \in [-\frac{\pi}{2};\frac{\pi}{2}]\\
+			  &\indent \text{ der Gleichung } sin(x)=y
+		\end{cases}
+	\]
+	
+	
+	Daraus lässt sich folgende konkrete Anwendung herleiten:
+	
+	\[
+		y = sin(x) \iff x = \begin{cases}
+			\arcsin(y) + 2 \pi k, k \in \mathbb{Z}\\
+			\pi - \arcsin(y) + 2 \pi k, k \in \mathbb{Z}
+		\end{cases}
+	\]
+	
+\subsubsection{Umkehrfunktion Tangens}
+	
+	Der Tangens ist nicht injektiv, deshalb: $\tan|_{(\frac{\pi}{2}; \frac{\pi}{2})}$
+	
+	Daraus lässt sich folgern:
+	
+	\[
+		y = tan(x) \iff x = \arctan(y) + \pi k, k \in \mathbb{Z}
+	\]
+	
+%TODO: Seite 74|1.5.4 und 75|1.6 ergänzen
 
+\subsection{Ungleichungen}
+
+\begin{tabular}{l l}
+	Monoton wachsend & $x_1 < x_2 \iff f(x_1) < f(x_2)$ \\
+	Monoton fallend & $x_1 < x_2 \iff f(x_1) > f(x_2)$
+\end{tabular}
+
+\end{multicols}
+
+\section{Differenzialrechnung}
+
+\subsection{Splines}
+
+	Splines werden durch Polynome zwischen zwei Punkten abgebildet.	Splines bilden alle diese Punkte exakt ab.
+	
+	Ein Spline im Intervall $[a,b]$ ist eine Funktion $s: [a,b] \to \mathbb{R}$, wofür es $k+1$ Knoten (typischerweise x-Achse) gibt:
+	\[
+	a = x_0 < x_1 < x_2 < ... < x_k = b
+	\]
+	
+	$s|_{[x_i;x_{i+1}]}$ ist stets ein Polynom $n$ter Ordnung, daher gilt: $s|_{[x_i;x_{i+1}]}(x) = P_k(x)$
+	
+	Ein Spline vom Grad $n$ heisst: Alle Polynome sind $\leq n$ter Ordnung
+	
+	\subsubsection{Beispiel Spline 1. Grad}
+	
+	\begin{align*}
+		P_k(x) = mx_k \cdot b_k \\
+		m \cdot x_k + b_k &= s \\
+		m \cdot x_{k+1} + b &= s_{k + 1}
+	\end{align*}
+\end{document}
