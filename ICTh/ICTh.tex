@@ -272,11 +272,85 @@ Je kürzer die Dauer im Zeitbereich, desto grösser die Bandbreite:
 	
 	Vor jeder Abtastung braucht es die Beschränkung des Frequenzspektrums auf die Hälfte der Abtastfrequenz (sonst gibt es Überlagerungen des Spektrums.)
 
+
+\section{Informationstheorie}
+
+
+\subsection{Grundlagen}
+
+\subsubsection{Informationen}
+	Information hat mit der Wahrscheinlichkeit des Auftretens zu tun. Sie ist \emph{nicht redundant} und  \emph{relevant}.
+	
+	Informationsgehalt eines Zeichens
+	
+	\[
+		l(x_k) = lb\left(\frac{1}{p(x_k)}\right) [bit]
+	\]
+
+\subsubsection{Wahrscheinlichkeit}
+	Im Voraus steht fest, was die möglichen Ausgäng da sind, der tatsächliche Ausgang ist jedoch unbekannt.
+
+	Ergebnismenge: $\Omega = \{1,2,3,4,5,6\}$
+	
+	Ergebnis: $ \in \Omega$
+	
+	Wahrscheinlichkeit: 	$P = \frac{\text{Gutfälle}}{\text{Alle}}$ aus $[0;1]$
+	
+	Beispiel: Würfeln:
+	$P\{1\} = \frac{1}{6}$
+	
+	$P\{2,4\} = \frac{2}{6}$
+	
+	$P\{5,4,3,2,1\} = P_5 + P_4 + P_3 + P_2 + P_1 = 1 - P_6$
+	
+	$P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+	
+	\paragraph{Kombinatorik} Möglichkeiten aus einer Menge auszuwählen: $\left(\frac{k}{n} \right) = \left(\frac{\text{Anzahl der Elemente}}{\text{Anzahl der Proben}} \right)$
+	
+	Beispiel: $\left(\frac{100 \text{ Studenten}}{2 \text{ Anstoss-Paare}} \right)$
+	
+	
+	\paragraph{Enscheidungsgehalt $H_0$}
+	
+	$lb(x) = log_2(x)$
+	
+	$H_0 = lbN Bit$
+	
+	Entscheidungsfluss: $H_0^* = \frac{lbN}{\tau} Bit/s$
+	
+	
+	\subsubsection{Informationsgehalt und Entropie}
+	
+	\[
+		I(x_k) = lb \left(\frac{1}{p(x_k)}\right) [bit]
+	\]
+	
+	\paragraph{Entropie}
+	
+	\begin{align*}
+		H(X) &= \sum_{k=1}^{N}{p(x_k) \cdot I(x_k)} [bit/Zeichen] \\
+		&= \sum_{k=1}^{N}{p(x_k) \cdot lb \left(\frac{1}{p(x_k)}\right)} [bit/Zeichen]
+	\end{align*}
+
+	\subsection{Kanalmatrix}
+	Durch eine Kanalmatrix wird die Wahrscheinlichkeit für die Fehlinterpretation pro Kanal angegeben.
+	
+	\[
+		p(Y|X) = \begin{bmatrix}
+			p & 1-p \\
+			1-q & q
+		\end{bmatrix}
+		\mapsto  \begin{bmatrix}
+			\sum = 1 \\
+			\sum = 1
+		\end{bmatrix}
+	\]
+	
 	
 
 \end{multicols}
 
-	\emph{Das Spektrum müssen Sie sich vorstellen, wie wenn ich am Big Bang am Zeiger hänge und den versuche zurückzudrehen. \--- So zumindest stelle ich mir das in meinen Träumen vor.}
+	\emph{Das Spektrum müssen Sie sich vorstellen, wie wenn ich am Big Bang am Zeiger hänge und den versuche zurückzudrehen. \--- So zumindest stelle ich mir das in meinen Träumen vor. -- Steffen}
 
 \end{document}
 

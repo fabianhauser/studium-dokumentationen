@@ -364,7 +364,19 @@
 	
 	$s|_{[x_i;x_{i+1}]}$ ist stets ein Polynom $n$ter Ordnung, daher gilt: $s|_{[x_i;x_{i+1}]}(x) = P_k(x)$
 	
-	Ein Spline vom Grad $n$ heisst: Alle Polynome sind $\leq n$ter Ordnung
+	Ein Spline vom Grad $n$ heisst: Alle Polynome sind $\leq n$ter Ordnung.
+	
+	\paragraph{Der Freiheitsgrad} wird aus dem Grad des Splines  $n$ und der Anzahl der Polynome $k$ berechnet: $k(n+1)$. Sie geben einen Hinweis auf die Lösbarkeit des Problems.
+	
+	\paragraph{Constraints (Randbedingungen)} sollen helfen, ''gute'' von ''schlechten'' Lösungen zu unterscheiden. 
+	Für Splines wollen wir, dass $Pi(x)$ an den Stellen $i$ und $(i+1)$ mit der Wertetabelle kompatibel ist, d.h. wir fordern:
+	
+	\begin{align*}
+		Pi(x_i) = s_i && \text{total: $2k$ Constraints} \\
+		Pi(x_i + 1) = s_i + 1 && \text{vorher: $k(n+1)$ Freiheitsgrade}
+	\end{align*}
+	
+	Wir erwarten, dass $2k$ Constraints $2k$ Freiheitsgrade eliminieren, das heisst, das wir mit $k(n+1) -2k$ Freiheitsgrade haben und $2k$ Parameter davon Freiheitsgrade sind.
 	
 	\subsubsection{Beispiel Spline 1. Grad}
 	

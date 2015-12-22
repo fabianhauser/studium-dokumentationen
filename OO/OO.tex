@@ -106,12 +106,328 @@
 			return regNumber - other.regNumber
 		}
 	}
+	
+	\paragraph{Comparator-Object}
+	
+	Collections.sort(List<T> list, Comparator<T> comparator);
+	
+	interface Comparator<T> \{
+		int compare(T first, T second);
+	\}
+	
+\subsubsection{Wrapping von Primitive Datatypes}
+	z.B. int in Integer-Objekt. Dies wird als \emph{Boxing} bzw. im umgekehrten Weg als \emph{Unboxing} bezeichnet.
 \end{multicols}
 
+\subsubsection{Array-Lists}
+
+	ArrayList<String> stringList = new ArrayList<String>();
+	.add("OO");
+	.add(0, "Quark");
+	.get(0);
+	.remove(0); // new indexes!
+	.remove("CN1"); // equals
+	.contains("CN1"); // equals
+	.set(0,"ICTh");
+	.size();
+
+	// Is Iterable:
+	for (Strings s : stringList) {
+		// s = String an pos x
+	}
+	
+	ArrayLists werden immer mit Faktor 1.5 vergrössert.
+	
+\subsubsection{Linked-Lists}
+	
+	Pro Objekt wird ein Hilfsobjekt eingefügt, welches vor- und nachgänger kennt.
+	LinkedLists sind schnell beim Einfügen, ansonsten eher langsam (ausser an enden).
+
+\subsubsection{Set}
+
+TreeSet
+	Elemente müssen Comparable und equals() implementieren
+HashSet
+	Elemente müssen hashCode() und equals() implementieren
+
+\subsubsection{Maps}
+
+	Einseitige Assoziation z.B. Matrikelnummer -> Student
 
 \section{Quotes}
 	...manchmal werden wir von den C-Leuten ein wenig gebrainwashed!
 	- zur Diskussion des Unterschieds zwischen Pointern und Referenzen
 
+\subsubsection{Hashing / Hashmaps}
+	
+
+
+
+\subsubsection{Generics}
+
+	class Node<t> {
+		
+		private T object;
+		setObject(T obj) {
+			object = obj;
+		}
+	
+	
+	class Node<T extends Number \& Integer> { ... }
+	
+	\paragraph{Wildcard-Type}
+	
+	Node<?> undefinedNode;
+	undefinedNode = new Node(Integer)(4);
+	
+	
+
+\subsection{Lambdas}
+
+\subsubsection{Mathodenreferenzen}
+	people.sort(this::compareByAge);
+	
+	Reference zu Methode und das beinhlatende Objekt.
+	
+	Sind kompatibel zu Schnittstellen:
+	
+	@FunctionalInterface
+	interface Comparator<T> \{
+		int compare(T first, T second);
+	\}
+
+\subsubsection{Implementation Lambdas}
+
+	people.sort((Person p1, Person p2) -> {
+		return p1.getAge() - p2.getAge();
+	});
+	
+	
+	Lambdas können auch Variablen zugewiesen werden. Z.B.:
+	
+	Comparator<Person> comp = (Person p1, Person p2) -> {
+		return p1.getAge() - p2.getAge();
+	};
+	
+	
+	Typendeklaration ist optional. Der CodeBlock ist auch optional, wenn der Code eine Single Statement ist.
+	
+	Bei Lambdas können Umgebungensvariablen (Lokale Variablen aus der Aufrufumgebung herum) zugreifen. Wenn eine Variable in einem Lambda verwendet wird, wird die Übergebene Variable automatisch(!) $final$, d.h. darf im übergeordneten Programm nicht verändert werden nach der Zuweisung.
+
+\subsubsection{Geschachtelte Klassen}
+	class Polygon {
+		private class Point {
+			int x, y; // Nur innerhalb Polygon sichtbar
+			
+			public Point(int x, int y) {
+				this.x = x; this.y = y;
+				points.add(this); // Zugriff auf das "this" der äusseren Klasse erfolgt mit "Polygon.this"
+			}
+		}
+		
+		private List<Point> points = ...;
+	}
+	
+	
+	
+	
+	Polygon polygon1 = new Polygon();
+	Polygon.Point point1 = polygon1.new Point(1,2);
+	
+\subsubsection{Anonyme innere Klasse}
+ (relikt von der zeit vor lambdas)
+
+	people.sort(
+		new Comparator<Person>() {
+			@Override
+			public int compare(Person pi1, Person p2) {
+				return p1.getAge() - p2.getAge();
+			}
+		}
+	);
+	
+	------
+	new Person("Hans", "Meier", 45, "Zürich) {
+		@Override
+		public String toString() {
+			return "Hans Meier (30) ";
+		}
+	}
+	
+\section{Streams}
+
+	(hat nichts mit IO-Streams zu tun)
+	
+	Machen Lazy Evaluation, d.h., die werte werden von der Terminalen Funktion abgerufen.
+	
+	Als Konsequenz: Gabelungen \emph{nicht} gestattet (nur linearer Stream).
+
+	people.stream().filter(p -> p.getAge() >=18)
+		.map(p -> p.getLastName())
+		.sorted()
+		.forEach(System.out::println);
+		
+		\subsection{Häufige Stream.Methoden:}
+		filter(Predicate)
+		map(Function)
+		mapToInt(Function)
+		mapToDouble(Function)
+		sorted()
+		distinct()
+		limit(long n)
+		skip(long n)
+		reduce()
+		
+		\subsubsection{Terminaloperationen}
+		forEach(Consumer)
+		forEachOrdered(Consumer)
+		count()
+		min()
+		max()
+		average()
+		sum()
+		findAny()
+		findFirst()
+		reduce()
+		
+		
+		\subsubsection{OptionalDouble}
+		.empty()
+		.of(double value)
+		.ifPresent(Consumer)
+		.orElse(double other)
+		
+		\subsubsection{True/False Queries}
+		allMatch()
+		anyMatch()
+		noneMatch()
+	
+		\subsubsection{Unendliche Quellen}
+		generate()
+		iterate()
+			
+		
+		\subsubsection{Parallelisierung}	
+		stream.paralellStream().forEachOrdered()
+	\subsection{Performance}
+	
+	Möglichst früh verkleinern z.B. mit filter()
+
+\section{Streams}
+	\begin{description}
+	\item[Byte Streams] \hfill
+		8-Bit, InputStream, OutputStream
+	
+	\item[Character Stream] \hfill
+		16-Bit (UTF-16), Reader, Writer
+	\end{description}
+	
+	\subsection{File-Input-Stream}
+	
+		fis.read() gibt einen byte-wert zurück, EOF = -1.
+		
+	\subsection{FileReader}
+	
+	(char / int)-wert
+	
+	Kodierung wählbar, sollte explizit angegeben werden.
+	
+	InputStream byteStream = new FileInoutStream("quotes.txt");
+	Reader reader = new InputStreamReader(byteStream, "UTF-8");
+	
+	\subsection{Stream Processing}
+	
+	\subsubsection{BufferedReader}
+	BufferedReader bufferedReader = new Bufferedreader(fileReader);
+	bufferedReader.readLine();
+	
+\section{Serialisierung}
+
+	class Person implements Serializable { ... }
+	[...]
+	
+	ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("serial.bin"));
+	stream.writeObject(person);
+	
+	[...]
+	Person p = (person)	stream.readObject();
+	
+\subsection{Regexp}
+	import java.util.regex.*;
+	bool matches = Pattern.matches("regex", input);
+	
+	
+	\subsubsection{Group Matching}
+	Pattern pattern = Pattern.compile("(asdf)(?:matching|ohne|group)(?<secondname>querz)");
+	
+	Matcher matcher = pattern.matcher(text);
+	if(matcher.matches(){
+		String firstPart = matcher.group(1);
+		String secondPart = matcher.group("secondname");
+	}
+	
+	\subsubsection{Reluctant Capturing}
+		([0-9_]*?)_([0-9]*)
+		
+		
+\subsection{Annotations}
+	public @interface Temporary {
+		String reason() default "unknown";
+		// value: implizit default wenn nur 1 wert.
+	}
+	
+	
+	z.B.: @Temporary(raeson="Testing class") class TestLogger { }
+	
+	
+	Mit Annotations kann auch der Java-Compiler erweitert werden.
+	\subsubsection{Targets}
+	@Traget(ElementType.TYPE) // kann nur für klassen verwendet werden
+	public @interface Temporary { [...] }
+	
+
+	\subsubsection{Retention}
+	Wie lange lebt die Annotation?
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface Temporary {
+	}
+	
+	
+	SOURCE // wird nur im Sourcecode angegeben
+	CLASS // Wird in class-file geschrieben
+	RUNTIME // JVM lädt Annotation
+
+\subsection{Garbage Collection}
+
+	Wenn neues Objekt, wird dies auf dem Heap in freien Platz eingefügt wird.
+	Es kann zu externer (ausserhalb eines Objektes) Fragmentierung kommen. Die Garbage Collection der JVM kann den Heap kompaktifizieren. Die Speicheradresse kann sich dadurch ändern.
+	D.h., die Adresse muss Abstrahiert werden.
+	
+	Es gibt in Java keine Delete-Möglichkeit, da ein Risiko auf Memory Leaks oder Dangling Pointers vorhanden ist.
+	
+	\subsubsection{Garbage Detection}
+	
+	1) Programm anhalten
+	2) Mark: Objekte, welche vom Root-Set (Heap) her nicht mehr Verknüpft sind, dann werden diese als Garbage markiert.
+	3) Sweep: Freigabe aller nicht markierten Projekte.
+
+
+	Generationen: Young Generation wird häufiger geprüft.	
+	
+	\subsubsection{finalizer}
+	
+	@Override
+	protected void finalize() {
+		[...] some final actions before garbage collection
+	}
+	
+	Risiken:
+	- Resurrection
+	- Keine Reihenfolge \& Ausführungsgarantie
+	- Concurrency-Probleme, finalizer läuft in einem anderen Thread ab
+
+
+\section{Good Design}
+	
 \end{document}
 

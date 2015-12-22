@@ -78,21 +78,139 @@ FTTH nutzt diesen Standard, nutzt nur eine Singlemode Faser, bis 10 KM, Wellenl�
  \subsection{AS}
 
  \subsubsection{As Typen}
- \begin{itemize}
-	 Stub-AS
-	 (Verbindung zu einzelnem AS)
-	 
-	 Multihomed AS (Verbindung zu mehreren anderen AS)
-	 
-	 
-	 Transit AS (Verbindung zu mehreren AS und leitet Verkehr anderer AS weiter.	
- \end{itemize}
+ \begin{description}
+	 \item[Stub-AS] \hfill \\
+	 	 (Verbindung zu einzelnem AS)
+	 \item[Multihomed AS] \hfill \\
+		 (Verbindung zu mehreren anderen AS)
+	 \item[Transit AS] \hfill \\
+		 (Verbindung zu mehreren AS und leitet Verkehr anderer AS weiter.	
+ \end{description}
  
  \subsubsection{Network Levels}
  Tier-1-ISP Anschluss Zielserver
  Tier2-ISP Vermittlung
  TIER-3 ISP Endkundennetz
  
+ 
+\subsection{WLAN}
+	
+	BSSID -> Mac Adresse des SSID Accesspoint
+	
+	\begin{description}
+		\item[Basic Service Set (BSS)] \hfill \\
+		 Access Point und Wireless Station.
+		 
+		\item[Independent Basic Service Set (IBSS)] \hfill \\
+		 Ad-Hoc Netzwerk mit P2P Verbindungen.
+		 
+		\item[Extended Service Set (ESS)] \hfill \\
+		 Verknüpfung mehrere BSS mit einem Distribution System (DS)
+		 
+		\item[Mesh Basic Service Set (MBSS)] \hfill \\
+		 Transparente Multihop Übertragung ist transparent. (mit 802.11s standardisiert) -> Wird aufgrund von Energiebedarf selten verwendet.
+		 
+	\end{description}
+	
+	\subsubsection{Datenrate / Übertragungsdistanz}
+		Die Datenrate ist Abhängig von der Kanalbandbreite, der Signalleistung zu Geräuschleistung sowie der parallel nutzbare Ausbreitungswege (MIMO).
+		
+		Die Signalleistung hängt von der Sendeleistung dem "Verdünnen" mit zunehmender Distanz($~D^2$) und der Dämpfung ab.
+		
+	\subsubsection{Prozeduren}
+	
+		\begin{description}
+			\item[Passiv Scanning] \hfill \\
+				AP sender Beacons, STA hört Kanäle ab um APs zu finden.
+			
+			\item[Aktiv Scanning] \hfill \\
+				STA sendet Probe Request um AP zu finden; AP antwortet mit Probe Response.
+		\end{description}
+		
+		\paragraph{Authentifizierung}
+			Security Authentifizierung findet nicht mehr mit WEP statt, sondern erst bei der Datenübertragung mit WPA/WPA2.
+		
+		\paragraph{Association}
+			Stellt die eigentliche Verbindung her. Eine STA muss vor der Datenübertragung Assoziiert sein.
+			
+	\subsubsection{Kanalzugriff}
+		Half Duplex Shared Medium: Benötigt Carrier Sense Multiple Access und Collision Avoidance
+		
+		Die Priorisierung beeinflusst die Wartezeiten pro Kanal.
+		
+		\begin{description}
+			\item[SIFS Short Interframe Space] \hfill \\
+				ACKs
+			\item[PFS Point Coordination Interframe Space] \hfill \\
+				 Multimedia VoIP
+			\item[DIFS Distributed Interframe Space] \hfill \\
+				Data
+			\item[EIFS Extended Interfrace Space] \hfill \\
+				Nach nicht erfolgreichem Empfang des Vorhergehenden Frames wird um die Dauer von SIFS + DIFS + $t_{\text{ACK}}$ gewartet.
+		\end{description}
+		
+		Bei Kollisionen wird die zufällige Wartezeit vor jedem Frame immer verdoppelt.
+	
+		\paragraph{RTS/CTS}
+		
+		
+	\subsubsection{Frame-Typen}
+		\begin{itemize}
+			\item Management Frames \begin{itemize}
+				\item Beacon
+				\item Probe request and response
+				\item Authentication \& Deauthentication
+				\item Association \& Disassociation
+				\item Reassociation request and response
+				\end{itemize}
+			\item Control Frames \begin{itemize}
+				\item Request to Send
+				\item Clear to Send
+				\item Acknowledge
+				\item Power Save Poll
+				\end{itemize}
+			\item Daten Frames \begin{itemize}
+				\item Data
+				\item Null function
+				\end{itemize}
+		\end{itemize}
+		
+		Adressierungsstruktur unterscheidet sich je nach dem, von wo nach wo das Paket kommt / geht.
+		
+		\subsection{IPv6}
+			Adressverage von IPs: RIPE / IANA. IPv6 hat \emph{128 Bit} Adressen
+
+			8 Blöcke zu 4 HEX-Zeichen mit der Struktur:
+			\begin{itemize}
+				\item[12bit] Registry (RIR)
+				\item[20bit] Provider (ISP)
+				\item[16bit] Subscriber (Site)
+				\item[16bit] Subnet (LAN)
+				\item[24bit] MAC OUI
+				\item[16bit] fffe
+				\item[24bit] MAC
+			\end{itemize}
+			
+			Loopback: $::1/128$, Link-Local-Address: $fe80::/64$
+			
+			\subsubsection{Auto-Discovery}
+			
+			Neighbor Solicitation an Link-Layer-Multicast-Adresse
+			
+			Neighbor Advertisement: Antwort auf Solocitation
+			
+			Router Solicitation an die Router-Multicast-adresse
+			
+			Router Advertisement periodische oder angefragte Adresse des Routers.
+			
+\subsection{TCP}
+	- Ordered by TCP-Number.
+	- tcp receive window size mit sliding window flow control (nach ack wird der anfang der vom empfänger festgelegten window size auf die acknummer gesetzt)
+	\subsubsection{Congestion control}
+		Slow start: zuerst 1, dann inkrementell mehr pakete bis zur window size
+		
+		
+
 \end{multicols}
 \end{document}
 

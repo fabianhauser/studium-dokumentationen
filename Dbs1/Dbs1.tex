@@ -123,17 +123,109 @@
 
 
 \section{PGSQL}
+	
+	Text anhängen 
+	
+%TODO:	\begin{sql}
+		select distinct(wohnort) || ' (Schweiz)' as "wohnort" from angestelter;
+%TODO:	\end{sql}
+	
+	COAELESCE(vorname, '') (Nullwert ersetzten)
+	
+	
+	GROUP BY wohnort HAVING AVG( Salaer) >= 7000
+	
 
-Text anhängen 
+\subsubsection{WITH}
 
-\begin{sql}
-	select distinct(wohnort) || ' (Schweiz)' as "wohnort" from angestelter;
-\end{sql}
+	WITH RECURSIVE untergebene (persnr, name, chef) AS
+	(
+	SELECT ...
+	)
+	SELECT * FROM untergebene order by chef, persnr;
 
-COAELESCE(vorname, '') (Nullwert ersetzten)
+\subsubsection{window functions}
+	SELECT depname, empno, salary, avg(salary) OVER (PARTITION BY depname) FROM empsalary;
+	
+	WITH RECURSIVE untergebene (name, persnr, chef) AS
+	(
+		SELECT A.name, A.persnr, A.chef FROM angestellter A
+			WHERE A.chef = 1010
+		UNION ALL
+		SELECT A.name, A.persnr, A.chef FROM angestellter A
+			INNTER JOIN untergebene B ON B.persnr = A.chef
+	)
+	SELECT * FROM untergebene by chef, name
 
 
-GROUP BY wohnort HAVING AVG( Salaer) >= 7000
+\subsection{Views}
+	CREATE VIEW anz\_ang(anz, persnr) AS 
+	  SELECT COUNT(*) as anz, persnr FROM angestellter;
+
+\subsubsection{Materialized views}
+	Der CREATE MATERIALIZED VIEW wird als Virtuelle Tabelle gespeichert. Daher muss sie auch mit REFRESH MATERIALIZED VIEW aktualisiert werden.
+
+\subsection{Transactions}
+
+	Keine sichtbare Parallelität, Integritätsbedingungen.
+	
+	Pro Connection nur eine Transaktion
+	
+	\subsubsection{ACID}
+	\emph{A}tomicity, \emph{C}onsistency, \emph{I}solation and \emph{D}urability
+
+	\subsubsection{SQL}
+		BEGIN TRANSACTION;
+		
+		-- rhabarberrhabarber
+		
+		-- ROLLBACK TRANSACTON;
+		
+		COMMMIT TRANSACTION;
+	\subsubsection{Serialisierbarkeit}
+	Operationen werden auf lese- und schreibekonflikte (Zyklen) überprüft, und entsprechend ausgeführt.
+	
+	
+	\subsection{Locking}
+	
+	- Exclusive lock: no other access possible (xlock)
+	- non-exclusive lock: can be read by others. (slock)
+	
+	Nachdem Locks freigegeben werden, kann eine Serialisierung nicht neue Locks beantragen.
+	
+	
+	\subsubsection{Read errors}
+		READ UNCOMMITED: Alle Fehlerfälle möglich.
+		
+		\begin{description}
+			\item[Dirty Read] \hfill \\
+				Es werden Daten einer anderen Transaktion, welche Daten geändert hat, und diese gleich darauf ROLLBACKED.
+				Lösung: READ COMMITTED
+			\item[Fuzzy Read] \hfill \\
+				In der gleichen Transaktion gibt ein SELECT-Statment verschiedene Werte aufgrund einer anderen Connection.
+				Lösung: REPEATEABLE READ
+			\item[Phantom Read] \hfill \\
+				In der gleichen Transaktion gibt es eine andere Anzahl Tupel aus einer Tabelle.
+				Lösung: SERIALIZABLE
+		\end{description}
+	
+\section{Indexe}
+
+B-Tree
+Hash
+BRIN (Block Range)
+ISAM
+Bitmap
+GiST, GIS
+
+Heap, 8K Speicherblöcke 
+
+\subsection{Indextypen}
+Clustered Index
+Primär Index / Sekundär index (unique)
+- Zusammengesetzter Index
+Partitionierter Index: CREATE INDEX mytable_col_part_idx ON mytable(col) WHERE processed = 'N';
+Funktionaler Index
 
 \end{multicols}
 
