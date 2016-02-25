@@ -1,0 +1,1768 @@
+#LyX file created by tex2lyx 2.1
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+% This is a default-selection of plugins that are used widely in this repo.
+
+
+
+% deutsche Trennmuster etc.
+\usepackage[ngerman]{babel}
+
+
+% mathematical simbols and fonts
+\usepackage{ntheorem}
+\usepackage{polynom}
+\renewcommand*{\bmod}{\mathbin{\%}}
+\everymath{\displaystyle}
+
+\usepackage{multicol}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.25pt}
+\def\columnseprulecolor{\color{gray}}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+
+% make lists more compact:
+\newlength{\wideitemsep}
+\setlength{\wideitemsep}{.5\itemsep}
+\addtolength{\wideitemsep}{-5pt}
+\let\olditem\item
+\renewcommand{\item}{\setlength{\itemsep}{\wideitemsep}\olditem}
+\renewcommand{\arraystretch}{1.25}
+\end_preamble
+\options fleqn
+\use_default_options false
+\maintain_unincluded_children false
+\language ngerman
+\language_package default
+\inputencoding utf8
+\fontencoding T1
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 2
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language german
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\begin_inset CommandInset include
+LatexCommand input
+preview false
+filename "../template.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Zusammenfassung An1I - Analysis 1 fÃ¼r Informatiker
+\end_layout
+
+\begin_layout Author
+Fabian Hauser
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{document}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{multicols}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ [ 
+\end_layout
+
+\begin_layout Section
+Grundlagen
+\end_layout
+
+\begin_layout Standard
+]
+\end_layout
+
+\begin_layout Subsection
+Mitternachtsformel
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		x_{1,2} = \frac{-b \pm\sqrt{b^2-4ac}}{2a}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Mengen
+\end_layout
+
+\begin_layout Standard
+Eine Menge ist eine Zusammenfassung verschiedener, voneinander unterscheidbarer Objekte zu einem Ganzen. Die Objekte nennen wir in diesem Zusammenhang auch die Elemente der Menge.
+\end_layout
+
+\begin_layout Subsubsection
+Grundmengen
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="4" columns="3">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="left" valignment="top">
+<column alignment="none" valignment="top" special=" ">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Reelen Zahlen 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $\mathbb{R}=``\text{alle Zahlen}``$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Ganzen Zahlen 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $\mathbb{Z}=\{\dots ,-1,0,1,2,\dots\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+NatÃ¼rliche Zahlen 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $\mathbb{N}=\{0,1,2,\dots\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Leere Menge 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $\emptyset = \{\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Elementbeziehungen
+\end_layout
+
+\begin_layout Standard
+Die Elementbeziehungen dÃ¼rfen Spiegelverkehrt verwendet werden.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="5" columns="3">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="left" valignment="top">
+<column alignment="none" valignment="top" special=" ">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Element von 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $a \in M$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+kein Element von 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $b \in M$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Teilmenge 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $N \subset M$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+keine Teilmenge 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $K \not\subset M$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Gleichheit 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $N = M$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Mengendarstellung
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="4" columns="3">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="left" valignment="top">
+<column alignment="none" valignment="top" special=" ">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+AufzÃ¤hlend 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $M = \{1,2,3\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Beschreibend 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $M = \{x \in M|0<x<4\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Negative Teilmenge 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $M^-= \{\dots\ ,-2,-1,0\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Positive Teilmenge 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $M^+= \{0,1,2,\dots\}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die beschreibende Menge wird folgendermassen gelesen: 
+\emph on
+Die Menge aller 
+\begin_inset Formula $x$
+\end_inset
+
+ aus 
+\begin_inset Formula $M$
+\end_inset
+
+ fÃ¼r die gilt: 
+\begin_inset Formula $0<x<4$
+\end_inset
+
+
+\emph default
+
+\end_layout
+
+\begin_layout Standard
+Ein Filter darf als Prosa genannt werden, und muss auf alle Elemente anwendbar sein.
+\end_layout
+
+\begin_layout Subsubsection
+Intervalle
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \begin{align*}
+		(1;200] = \{x \in\mathbb{R}|1<x \leq 200\} \\
+		[1;200] = \{x\in\mathbb{R}|1\leq x \leq 200\}
+	\end{align*}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+begin{multicols}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+[ 
+\end_layout
+
+\begin_layout Section
+Funktionen
+\end_layout
+
+\begin_layout Standard
+] Eine Funktion hat immer einen oder mehrere Eingabe- und einen Ausgabewert. FÃ¼r diese mÃ¼ssen Eingabe- und Ausgabemenge definiert werden, welche immer zutreffen.
+\end_layout
+
+\begin_layout Standard
+FÃ¼r Elemente daraus ist die Funktion zwingend 
+\emph on
+wohldefiniert
+\emph default
+, d.h. vollstÃ¤ndig Anwendbar auf alle Elemente der Eingabemenge. Die Zielmenge darf Werte enthalten, welche im Resultat nicht vorkommen (dies schrÃ¤nkt die Weiterverarbeitung ein.)
+\end_layout
+
+\begin_layout Standard
+Eine Funktion kennt 
+\emph on
+keinen Zustand
+\emph default
+ (d.h. gleiche Eingabe 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ gleiche Ausgabe).
+\end_layout
+
+\begin_layout Standard
+Funktionen kÃ¶nnen auch auf Mengen angewendet werden.
+\end_layout
+
+\begin_layout Standard
+Nur wenn alle obigen Bedingungen zutreffen, handelt es sich um eine Funktion. Um dies bei einer impliziten, d.h. in Prosa definierten Funktion festzustellen, muss diese in eine explizite Funktion umgewandelt werden.
+\end_layout
+
+\begin_layout Subsubsection
+Definition
+\end_layout
+
+\begin_layout Standard
+Gegeben seien zwei Mengen D und Z. Eine Zuordnungsvorschrift 
+\begin_inset Formula $f$
+\end_inset
+
+, die jedem Element aus 
+\begin_inset Formula $D$
+\end_inset
+
+ genau ein Element aus 
+\begin_inset Formula $Z$
+\end_inset
+
+ zuordnet, nennen wir eine Funktion und schreiben dafÃ¼r: 
+\begin_inset Formula \[
+		\underbracket{
+			\overbracket{f}^\text{Name} : \left\{
+			\underbracket{
+				\begin{array}{ll}
+					\overbracket{
+						\mathbb{R}^{\vphantom{+}} % vphantom just to adjust height, no mathematical meaning. ugly workaround.
+					}^{
+						\mathclap{
+							\text{Definitionsmenge}
+						}
+					}
+					& \to \overbracket{
+						\mathbb{R}^+
+					}^{
+						\mathrlap{\!\text{Zielmenge}}
+					} \\
+					\underbracket{x}_{
+						\mathclap{\!\text{Input}}
+					}
+					& \mapsto \underbracket{x^2}_{
+						\mathclap{\!\text{Output}}
+					}
+				\end{array}
+			}_\text{Transformationsvorschrift}
+			\right.
+		}_\text{Zuordnungsvorschrift}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Um die Funktion anzuwenden, wird folgende Syntax verwendet: 
+\begin_inset Formula \[\overbracket{
+		f(\underbracket{4}_{\mathrlap{\text{Funktionsargument}}})
+	}^{\mathrlap{\text{Funktionswert (Zahl)}}}
+	= 4^2 = 16
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+LÃ¶sungsvorgehen
+\end_layout
+
+\begin_layout Enumerate
+Liegt 4 in Definitionsmenge 
+\end_layout
+
+\begin_layout Enumerate
+Wenden Sie die Funktionsvorschrift auf Argument 4 an. 
+\end_layout
+
+\begin_layout Subsubsection
+Bild einer Funktion
+\end_layout
+
+\begin_layout Standard
+Als das Bild einer Funktion wird die Menge aller mÃ¶glichen Ergebnisse bezeichnet. Diese Menge lÃ¤sst sich auf einem Graphen von der Y-Achse auslesen.
+\end_layout
+
+\begin_layout Standard
+Beispiel: 
+\begin_inset Formula $f(\mathbb{R}) = \mathbb{R}^+$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Graph einer Funktion
+\end_layout
+
+\begin_layout Standard
+Als Graph von 
+\begin_inset Formula $f$
+\end_inset
+
+ bezeichnet man die mÃ¶glichen Wertepaare, fÃ¼r die es ein y = f(x) gibt: 
+\begin_inset Formula \[
+		Graph(f) = \{(x,y) \in D \times Z | y=f(x)\}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+fÃ¼r die Funktion: 
+\begin_inset Formula \[
+		f:
+		\begin{cases}
+			D &\to Z \\
+			x &\mapsto f(x)
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Elementare Funktionen ohne Trigonometrie
+\end_layout
+
+\begin_layout Subsubsection
+Potenzen
+\end_layout
+
+\begin_layout Standard
+Sei 
+\begin_inset Formula $n \in \mathbb{N}\setminus\{0\}$
+\end_inset
+
+: 
+\begin_inset Formula \[
+		\cdot^n : \begin{cases}
+			\mathbb{R} &\to \mathbb{R} \\
+			x &\mapsto \underbrace{x \cdot x \cdot \ldots \cdot x}_\text{n Faktoren}
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Daraus folgt: 
+\begin_inset Formula \begin{align}
+		a^n \cdot a^m &= a ^{n+m} \\
+		\frac{a^n}{a^m} &= a^{n-m} \\
+		a^{n \cdot m} &= (a^n)^m \\
+		a^n \cdot b^n &= (a \cdot b)^n \\
+		\frac{a^n}{b^n} &= (\frac{a}{b})^n \\
+		a^{-n} &= \frac{1}{a^n} \\
+		a^0 &= 1 \\
+		a^1 &= a
+	\end{align}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definitionen: 
+\begin_inset Newline newline
+\end_inset
+
+(7) insbesondere gilt 
+\begin_inset Formula $0^0=1$
+\end_inset
+
+, aber (8) 
+\begin_inset Formula $0^n=0$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+(6) fÃ¼r 
+\begin_inset Formula $f\tilde{w} a \not= 0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Wurzeln
+\end_layout
+
+\begin_layout Standard
+Sei 
+\begin_inset Formula $a>0$
+\end_inset
+
+ und 
+\begin_inset Formula $m,n \in \mathbb{R}$
+\end_inset
+
+: 
+\begin_inset Formula \[
+		a^\frac{m}{n} = \sqrt[n]{a^m}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Exponentialfunktion
+\end_layout
+
+\begin_layout Standard
+FÃ¼r 
+\begin_inset Formula $a>0$
+\end_inset
+
+ gilt die folgende Definition: 
+\begin_inset Formula \[
+		\exp_a : \begin{cases}
+			\mathbb{R} &\to \mathbb{R^+}\setminus \{0\} \\
+			x &\mapsto a^x
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Exponentialfunktion ist eine gerade Funktion: 
+\begin_inset Formula $\sqrt{a^2} = \sqrt{\left|a\right|^2} = \left|a\right|$
+\end_inset
+
+ fÃ¼r 
+\begin_inset Formula $a > 0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Wichtige Rechenregeln
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \begin{align*}
+			\exp_a{(x+y)} &= \exp_a{x} \cdot \exp_a{y} \\
+			\exp_a{(x-y)} &= \frac{\exp_a{x}}{\exp_a{y}} \\
+			(\exp_a{x})^y &= \exp_a{(x \cdot y)} \\
+			\exp_a{-x} &= \frac{1}{\exp_a{x}}
+		\end{align*}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Wurzelfunktion
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		\sqrt{\cdot} : \begin{cases}
+			\mathbb{R}^+ &\to \mathbb{R}^+ \\
+			x & \mapsto \text{positive LÃ¶sung der Gleichung: $y^2=x$}
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Logarithmus
+\end_layout
+
+\begin_layout Standard
+Sei 
+\begin_inset Formula $a,b > 0$
+\end_inset
+
+: 
+\begin_inset Formula $a^x = b  \iff x = \log_a{b}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		\log_a \cdot : \begin{cases}
+			\mathbb{R}^+ \setminus \{0\} &\to \mathbb{R} \\
+			y &\mapsto \text{LÃ¶sung der Gleichung } a^x = y
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Wichtige Rechenregeln
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \begin{align*}
+			\log_a{(x \cdot y)} &= \log_a{x} + log_a{y} \\
+			\log_a{\frac{x}{y}} &= \log_a{x} - log_a{y} \\
+			\log_a{(x^y)} &= y \cdot \log_a{x} \\ \\
+			x=\log_a{y} &\Leftrightarrow a^{\log_a{y}} = y
+		\end{align*}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+NatÃ¼rlicher Logarithmus
+\end_layout
+
+\begin_layout Standard
+Als NatÃ¼rlicher Logarithmus wird die Funktion 
+\begin_inset Formula $\ln$
+\end_inset
+
+ bezeichnet: 
+\begin_inset Formula \[
+		\ln{x} = log_e{x}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Umkehrfunktionen
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		f: \begin{cases}
+			D &\to Z \\
+			x &\mapsto f(x)
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+Surjektive Funktionen
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $\text{Bild}(f) = Z$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+Die Zielwerte sing gleich der Zielmenge. 
+\end_layout
+
+\begin_layout Description
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+Injektive Funktionen
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $\text{aus } x \neq y \text{ stehts } f(x) \neq f(y)$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+Es gibt fÃ¼r keinen Parameter die gleiche RÃ¼ckgabe wie fÃ¼r einen anderen. 
+\end_layout
+
+\begin_layout Description
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+Bijektive Funktionen
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space \hfill{}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Sind sowohl surjektiv als auch injektiv. 
+\end_layout
+
+\begin_layout Standard
+Wenn 
+\begin_inset Formula $f$
+\end_inset
+
+ bijektiv ist, heisst die
+\begin_inset Newline newline
+\end_inset
+
+Umkehrfunktion von 
+\begin_inset Formula $f$
+\end_inset
+
+: 
+\begin_inset Formula \[
+		\underbracket{f^{-1}}_{\mathclap{\text{Funktionsname\space\space\space\space\space\space}}} : \begin{cases}
+			Z &\to D \\
+			y &\mapsto \text{LÃ¶sung der Gleichung } f(x) = y
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Restriktion einer Funktion
+\end_layout
+
+\begin_layout Standard
+Sei 
+\begin_inset Formula $f: D \to Z$
+\end_inset
+
+ irgendeine Funktion, dann heisst die Restriktion von 
+\begin_inset Formula $f$
+\end_inset
+
+ auf 
+\begin_inset Formula $M$
+\end_inset
+
+ 
+\begin_inset Formula \[
+		f\mid_M : \begin{cases}
+			M &\to Z \\
+			x &\mapsto f(x)
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Gleichungen ohne Trigonometrie
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%TODO: Ãbertragen von "1.3.5. Regeln zum Umformen von Gleichungen. Die in Abschnitt 1.3.3 beschriebenen", s. 57
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ãquivalenzumformungen
+\end_layout
+
+\begin_layout Standard
+Ãnderungen welche am Wahrheitsgehalt nichts Ã¤ndern. Dies wird ausgedrÃ¼ckt durch: 
+\begin_inset Formula $\Leftrightarrow$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wenn einer Umwandlung eine EinschrÃ¤nkung oder Bedingung auferlegt wird, so wird dies durch eine Bezeichnung auf dem 
+\begin_inset Formula $\Leftrightarrow$
+\end_inset
+
+ dargestellt: 
+\begin_inset Formula $\xLeftrightarrow{x \neq 0 \text{, sonst unlÃ¶sbar}}$
+\end_inset
+
+ Resultate mÃ¼ssen immer gegen diese Bedingung(en) geprÃ¼ft werden. Bei Bedingungen ergibt sich immer ein Sondergfall, welcher explizit abgehandelt werden muss (Text nach Bedingung).
+\end_layout
+
+\begin_layout Standard
+Es dÃ¼rfen nur injektive Funktionen auf beide Seiten angewendet werden, wenn beide Werte im Definitionsbereich sind. Dies muss allerdings dargestellt werden: 
+\begin_inset Formula $\xLeftrightarrow{\text{T}_1(x), \text{T}_2(x) \in \text{DB}_f \mathrlap{\text{, sonst unlÃ¶sbar}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bei nicht-injektive Funktionen kann nur einseitig gefolgert werden (
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+). Oft kÃ¶nnen Funktionen (z.B. 
+\begin_inset Formula $\cdot^2$
+\end_inset
+
+) injektiv gemacht werden, indem sie eingeschrÃ¤nkt definiert werden (z.B. 
+\begin_inset Formula $\cdot^2_{|\mathbb{R}^+}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsection
+Trigonometrische Funktionen
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Graphics 
+	filename img/einheitskreis_sin_cos.png
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Fundamentale Beziehungen
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \begin{align*}
+		\tan(\alpha) &= \frac{\sin \alpha}{\cos \alpha} & \text{fÃ¼r } \cos(\alpha) \neq 0 \\
+		\cos(x) &= \tan(x) \cdot \sin(x) \\ %TODO: ?
+		 1 &=  \sin^2(\alpha) + \cos^2(\alpha) \\
+		 -\cos(\alpha) &= \cos(\pi - \alpha) \\
+		 \sin(\alpha) &= \sin(\pi - \alpha)
+	\end{align*}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Umkehrfunktion Cosinus
+\end_layout
+
+\begin_layout Standard
+Der Cosinus ist nicht injektiv, da er nach 
+\begin_inset Formula $\frac{\pi}{2}$
+\end_inset
+
+ immer die gleichen 
+\begin_inset Formula $y$
+\end_inset
+
+-Werte liefert. Daher ist eine EinschrÃ¤nkung nÃ¶tig: 
+\begin_inset Formula $\cos|_{[0;\pi]}$
+\end_inset
+
+ 
+\begin_inset Formula \[
+		arccos : \begin{cases}
+			[-1, -1] &\to [0;\pi]\\tablular
+			y &\mapsto \text{LÃ¶sung } x \in [0;\pi] \text{ der}\\
+			  &\indent \text{Gleichung }  cos(x) = y
+		\end{cases}
+	\]
+\end_inset
+
+tablular
+\end_layout
+
+\begin_layout Standard
+Aufgrund der repetitiven sowie nicht injektiven tablularEigenschaft des Cosinus lÃ¤sst sich daraus folgendes festlegen: 
+\begin_inset Formula \[
+		cos(x) = y \iff x = \pm \arccos(y) + 2 \pi k, k \in \mathbb{Z}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Umkehrfunktion Sinus
+\end_layout
+
+\begin_layout Standard
+tablular Der Sinus ist nicht injektiv, da er nach 
+\begin_inset Formula $\frac{\pi}{2}$
+\end_inset
+
+ immer die gleichen 
+\begin_inset Formula $y$
+\end_inset
+
+-Werte liefert. Daher ist eine EinschrÃ¤nkung nÃ¶tig: 
+\begin_inset Formula $\sin|_{[-\frac{\pi}{2};\frac{\pi}{2}]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		arcsin : \begin{cases}
+			[-1;1] &\to [-\frac{\pi}{2};\frac{\pi}{2}]\\
+			y &\mapsto \text{LÃ¶sung } x \in [-\frac{\pi}{2};\frac{\pi}{2}]\\
+			  &\indent \text{ der Gleichung } sin(x)=y
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Daraus lÃ¤sst sich folgende konkrete Anwendung herleiten:
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		y = sin(x) \iff x = \begin{cases}
+			\arcsin(y) + 2 \pi k, k \in \mathbb{Z}\\
+			\pi - \arcsin(y) + 2 \pi k, k \in \mathbb{Z}
+		\end{cases}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Umkehrfunktion Tangens
+\end_layout
+
+\begin_layout Standard
+Der Tangens ist nicht injektiv, deshalb: 
+\begin_inset Formula $\tan|_{(\frac{\pi}{2}; \frac{\pi}{2})}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Daraus lÃ¤sst sich folgern:
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[
+		y = tan(x) \iff x = \arctan(y) + \pi k, k \in \mathbb{Z}
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%TODO: Seite 74|1.5.4 und 75|1.6 ergÃ¤nzen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ungleichungen
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="2" columns="3">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="left" valignment="top">
+<column alignment="none" valignment="top" special=" ">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Monoton wachsend 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $x_1 < x_2 \iff f(x_1) < f(x_2)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Monoton fallend 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset Formula $x_1 < x_2 \iff f(x_1) > f(x_2)$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Differenzialrechnung
+\end_layout
+
+\begin_layout Subsection
+Splines
+\end_layout
+
+\begin_layout Standard
+Splines werden durch Polynome zwischen zwei Punkten abgebildet. Splines bilden alle diese Punkte exakt ab.
+\end_layout
+
+\begin_layout Standard
+Ein Spline im Intervall 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ ist eine Funktion 
+\begin_inset Formula $s: [a,b] \to \mathbb{R}$
+\end_inset
+
+, wofÃ¼r es 
+\begin_inset Formula $k+1$
+\end_inset
+
+ Knoten (typischerweise x-Achse) gibt: 
+\begin_inset Formula \[
+	a = x_0 < x_1 < x_2 < ... < x_k = b
+	\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula $s|_{[x_i;x_{i+1}]}$
+\end_inset
+
+ ist stets ein Polynom 
+\begin_inset Formula $n$
+\end_inset
+
+ter Ordnung, daher gilt: 
+\begin_inset Formula $s|_{[x_i;x_{i+1}]}(x) = P_k(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein Spline vom Grad 
+\begin_inset Formula $n$
+\end_inset
+
+ heisst: Alle Polynome sind 
+\begin_inset Formula $\leq n$
+\end_inset
+
+ter Ordnung.
+\end_layout
+
+\begin_layout Paragraph
+Der Freiheitsgrad
+\end_layout
+
+\begin_layout Standard
+wird aus dem Grad des Splines 
+\begin_inset Formula $n$
+\end_inset
+
+ und der Anzahl der Polynome 
+\begin_inset Formula $k$
+\end_inset
+
+ berechnet: 
+\begin_inset Formula $k(n+1)$
+\end_inset
+
+. Sie geben einen Hinweis auf die LÃ¶sbarkeit des Problems.
+\end_layout
+
+\begin_layout Paragraph
+Constraints (Randbedingungen)
+\end_layout
+
+\begin_layout Standard
+sollen helfen, 
+\begin_inset Quotes erd
+\end_inset
+
+gute
+\begin_inset Quotes erd
+\end_inset
+
+ von 
+\begin_inset Quotes erd
+\end_inset
+
+schlechten
+\begin_inset Quotes erd
+\end_inset
+
+ LÃ¶sungen zu unterscheiden. FÃ¼r Splines wollen wir, dass 
+\begin_inset Formula $Pi(x)$
+\end_inset
+
+ an den Stellen 
+\begin_inset Formula $i$
+\end_inset
+
+ und 
+\begin_inset Formula $(i+1)$
+\end_inset
+
+ mit der Wertetabelle kompatibel ist, d.h. wir fordern:
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \begin{align*}
+		Pi(x_i) = s_i && \text{total: $2k$ Constraints} \\
+		Pi(x_i + 1) = s_i + 1 && \text{vorher: $k(n+1)$ Freiheitsgrade}
+	\end{align*}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wir erwarten, dass 
+\begin_inset Formula $2k$
+\end_inset
+
+ Constraints 
+\begin_inset Formula $2k$
+\end_inset
+
+ Freiheitsgrade eliminieren, das heisst, das wir mit 
+\begin_inset Formula $k(n+1) -2k$
+\end_inset
+
+ Freiheitsgrade haben und 
+\begin_inset Formula $2k$
+\end_inset
+
+ Parameter davon Freiheitsgrade sind.
+\end_layout
+
+\begin_layout Subsubsection
+Beispiel Spline 1. Grad
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \begin{align*}
+		P_k(x) = mx_k \cdot b_k \\
+		m \cdot x_k + b_k &= s \\
+		m \cdot x_{k+1} + b &= s_{k + 1}
+	\end{align*}
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+end{document}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

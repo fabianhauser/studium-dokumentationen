@@ -1,0 +1,35 @@
+\input{../template.tex}
+
+\title{Zusammenfassung Bsys2}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+%\begin{multicols}{2}
+%[
+\section{Bsys2}
+%]
+
+\subsection{Windows GUIs}
+
+
+
+\subsubsection{Messages}
+
+\begin{description}
+	\item[Message-Loop] \hfill \\
+		GetMessage()-Schlaufe, durch Events schleifen
+	\item[PostMessage()] \hfill \\
+		Message via Umgehung der Queue an den Window Thread senden
+	\item[SendMessage()] \hfill \\
+		Message via Umgehung der Queue an den Window Thread senden (blocking des versender-Threads (Deadlock möglich)
+\end{description}
+
+\subsubsection{Window}
+
+Jede Window-Class hat einen Handler
+Alle Events werden dem jeweilig Betroffenen Handler gemeldet.
+
+
+%\end{multicols}
+\end{document}

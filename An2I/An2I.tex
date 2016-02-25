@@ -1,0 +1,111 @@
+\input{../template.tex}
+
+\title{Zusammenfassung An2I}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+
+\section{Taylorreihen}
+Jede ableitbare Funktion lässt sich durch Polynome approximieren.
+
+
+\paragraph{Beispiel eines Polynoms 3. Ordnung}
+\begin{align*}
+	p(x_0) & = a(x_0-x_0)^3 + b(x_0-x_0)^2 + c(x_0-x_0) + 0 &= d = 0!d = 1d \\
+	p'(x_0) &= 3a \cdot (x_0-x_0)^2 + 2b * (x_0-x_0) + c + 0 &= 1 \cdot c = 1!c = 1c \\
+	p''(x_0) &= 2 \cdot 3a (x_0-x_0) + 2b + 0 + 0 &= 1 \cdot 2b = 2!b = 2b \\
+	p^{(3)}(x_0) &= 2 \cdot 3a + 0 + 0 + 0 &= 1 \cdot 2 \cdot 3a = 3!a = 6a \\
+	p^{(4)}(x_0) &= 0 + 0 + 0 + 0 &= 0
+\end{align*}
+was bedeutet:
+\begin{align*}
+	d &= \dfrac{p(x_0)}{0!} \\
+	c &= \dfrac{p'(x_0)}{1!} \\
+	b &= \dfrac{p''(x_0)}{2!} \\
+	a &= \dfrac{p^{(3)}(x_0)}{3!}
+\end{align*}
+
+Wenn wir folgendes Polynom vervollständigen möchten:
+\begin{align*}
+	p(x) &= 2x^3 - 5x + 7 = [\frac{12}{3!}](x-1)^3 + [\frac{12}{2!}](x-1)^2 + [\frac{12}{1!}](x-1) + [\frac{4}{0!}] \\
+	p'(x) &= 6x^2 - 5 => p'(1) = 6 * 1^2 -5 ) =1 \\
+	p''(x) = 12x => p''(1) = 12 \\
+	p^{(3)}(x) = 12 => p^{(3)}(1) = 12
+\end{align*}
+(es wird jeweils das Polynom an der Position 1 entwickelt)
+
+\paragraph{Beispiel II}
+
+Ausgangslage: Funktion $f(x)$, Entwicklungspunkt $x_0$, Ordnung $\mathbb{N}$ \\
+
+Taylorpolynom der Ordnung $\mathbb{N}$ : 
+%TODO: Cleanup next equation
+\begin{align*}
+P_N(x) &= f(x_0)/0! + f'(x_0)/1! * (x - x_0) = f''(x_x0) / 2! * x(-x_0)^2 + ... + f^(n)(x_0)/n! (x-x_0)^n \\
+&= \sum^N_{k=0}{\frac{k^{(k)}(x_0)}{k!} (x-x_0)^k}
+\end{align*}
+
+Übrigens: Ein Taylorpolynom der 1. Ordnung ist die Linearisierung:
+\begin{align*}
+	f(x_0) + f'(x_0)(x-x_0)
+\end{align*}
+
+Feststellung: für $x \approx x_0$ gilt $f(x) \approx P_N(x)$, je grösser N, umso besser.
+
+
+\paragraph{Beispiel III}
+
+\begin{align*}
+	f(x) &= e^x & \text{Entwicklungspunkt: } x_0=0 \\
+	f'(x) &= e^x &= f(0) = 1\\
+	f^{(n)}(x) &= e^x &= f^{(n)}(0) = 1
+\end{align*}
+was im Taylorplynom resultiert:
+\begin{align*}
+e^x \approx \frac{1}{0!} + \frac{1}{1!}(x-0)^1 + \frac{1}{2!}(x-0)^2 + \frac{1}{3!}(x-0)^3 + ...
+\end{align*}
+
+Eine Taylorreihe ist ein Taylerpolynom der $\infty$ Ordnung, und genau gleich wie die Ursprungsfunktion.
+
+\emph{Konvergenzradius}: Distanz vom entwicklungspnukt, bis den das Taylorpolynom gilt. Im Fall von $e^x$ ist dieser $\infty$ gross.
+
+\subsection{Fehlerabschätzung}
+
+Gesucht: $f(x)$, Entwicklungspunkt $x_0$, Ordnung N des Taylorpolynoms:
+
+\[
+	P_N(x) = \sum^{N}_{k=0}{\frac{f^{(k)}(x_0)}{k!} (x-x_0)^k}
+\]
+
+Rechenfehler: $\left| f(x) - P_N(x) \right| \leq \frac{m}{N+1)} \left| x-x_0 \right|^{N+1}$ mit $m \geq \left| f^{(N+1)}(t) \right|$
+
+$t$: Punkt zwischen $x$ und $x_0$, an dem $\left| f^{(N+1)}(t) \right|$ genau der Differenz entspricht.
+
+Ziel: $f(x)$ im Interfavv $[a,b]$ mit maximalem fehler $\Delta$ zu bestimmen.
+Suche Zahl $m \leq$ max $f^{(N+1)}(x)$ für $x \in [a,b]$
+%TODO: Siehe Script, vervollständigen
+
+\paragraph{Beispiel}
+
+Ziel: Sinus im Intervall $[0, \pi]$ mit Genauigkeit $\Delta = \frac{1}{100}$
+
+\begin{align*}
+	f(x) &= sin(x) \\
+	f'(x) &= cos(x) \\
+	f^{(2)} &= -sin(x) \\
+	f^{(3)} &= -cos(x) \\
+	f^{(4)} &= sin(x) \\
+\end{align*}
+
+Beim Sinus gilt:
+\[
+	\left| f^{(N+1)}(x) \right| \leq m = 1
+\]
+
+\[
+	\left| sin(x) - P_N(x) \right| \leq \frac{1}{(N+1)^1} \left(\frac{\pi-0}{2}\right)^{N+1} < \frac{1}{100}
+\]
+
+
+\end{document}

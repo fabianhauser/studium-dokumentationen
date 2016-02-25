@@ -1,0 +1,38 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-02-22T10:14:14+01:00
+
+====== 1 Grundbegriff Sicherheit ======
+Created Monday 22 February 2016
+
+===== Sicherheit: Confidentiality, Integrity, Availability ("CIA") =====
+Datensicherheit:	Schutz vor Missbrauch der Daten durch organisatorische und technische Massnahmen
+(Datenschutz:		Schutz vor dem Missbrauch ihrer personenbezogenen Daten)
+
+===== Management =====
+* **Threads:**	Wahrscheinlichkeit eines Zwischenfalls * Schaden = Bedrohung * Verletzlichkeit * Schaden
+* **Vulnerabilities**
+* **Control** (measures, protection)
+* **Information** (asset, value)
+* **Gefährdung** (Hazard, Applied thread): Bedrohung + Schwachstelle
+{{../../informationssicherheitsmanagement.png?height=200}}
+
+
+**Massnahmenkataloge:**
+**M1:**	Infrastruktur
+**M2:**	Organisation
+**M3:**	Personal
+**M4:**	Hardware/Software
+**M5:**	Kommunikation
+**M6:**	Notfallvorsorge
+
+**Gefährdungskataloge (Applied Threat)**
+**G1:**	Höhere Gewalt
+**G2:**	Organisatorische Mängel
+**G3:**	Mengschliche Fehlhandlungen
+**G4:**	Technisches Versagen
+**G5:**	Vorsätzliche Handlungen
+
+==== Risikomanagement ====
+
+**NVD**/CVE nach CVSS:	http://www.security-database.com/cvss.php
