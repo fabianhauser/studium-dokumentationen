@@ -82,9 +82,13 @@ Rechenfehler: $\left| f(x) - P_N(x) \right| \leq \frac{m}{N+1)} \left| x-x_0 \ri
 
 $t$: Punkt zwischen $x$ und $x_0$, an dem $\left| f^{(N+1)}(t) \right|$ genau der Differenz entspricht.
 
-Ziel: $f(x)$ im Interfavv $[a,b]$ mit maximalem fehler $\Delta$ zu bestimmen.
-Suche Zahl $m \leq$ max $f^{(N+1)}(x)$ für $x \in [a,b]$
+Ziel: $f(x)$ im Intervall $[a,b]$ mit maximalem Fehler $\Delta$ zu bestimmen.
+Suche Zahl $m \leq$ max $f^{(N+1)}(x)$ für $x \in [a,b]$. $a$ und $b$ ist der mögliche Wertebereich der Funktion $f(x)$
 %TODO: Siehe Script, vervollständigen
+
+\subsubsection{Abschätzung}
+
+
 
 \paragraph{Beispiel}
 
@@ -106,6 +110,54 @@ Beim Sinus gilt:
 \[
 	\left| sin(x) - P_N(x) \right| \leq \frac{1}{(N+1)^1} \left(\frac{\pi-0}{2}\right)^{N+1} < \frac{1}{100}
 \]
+
+\subsection{Linearisieren / Taylorpolynom 1. Ordnung)}
+Gesucht: $f(x), x_0$: Ziel Linearisierung um $x_0$
+
+Antwort: $f(x) \approx f(x_0) + f'(x_0)(x-x_0) = P_1(x)$
+
+In welchem Intervall ist der Rechenfehler $< \Delta$?
+
+\[
+	\left|f(x) - p_1(x) \right| \leq \frac{m}{2!}(?)^2 < \Delta \\
+\]
+
+\[
+	|?| < \sqrt{\frac{2 \Delta}{m}}
+\]
+
+Antwort für $x \in \left[ x_0 - \sqrt{\frac{2 \Delta}{m}}; x_0 + \sqrt{\frac{2 \Delta}{m}} \right] = I_m$
+
+Was ist also $m$? Globales Maximum von $|f''(x)|$ im Intervall $I_m$
+Problem: es gibt eine Rückkopplung. \\
+Angenommen werden kann ein Wert von ca. $|f''(\text{ca. } 1.5 \cdot x_0)|$
+
+
+\subsubsection{Beispiel}
+	EP: $x_0 = 1$
+	
+\begin{align*}
+	f(x) &= sin(x^2) &\rightarrow f(1) = sin(1) \\
+	f'(x) &= cos(x^2) \cdot 2x &\rightarrow f'(1) = 2 cos(1) \\
+	f''(x) &= -sin(x^2) \cdot (2x)^2 + cos(x^2) \cdot 2 &\rightarrow f''(1) = 2 cos(1) - 4 sin(1)
+\end{align*}
+
+\[
+	f(x) \approx sin(1) + 2 cos(1) (x-1) = P_1(x) 
+\]
+
+Da $|f(x) - p_1(x)| < \Delta$, gilt das Intervall für $x \in \left[1-\sqrt{\frac{2 \Delta}{m}}; 1+\sqrt{\frac{2 \Delta}{m}} \right] = I$.
+
+\[
+	f''(1) \approx 2,29
+\]
+Hypothese: $m=3 \approx 1.5 \cdot 2.29$
+
+\[
+	I = \left[1-\sqrt{\frac{0.002 \Delta}{3}}; 1+\sqrt{\frac{0.002 \Delta}{3}} \right]
+\]
+
+Test: $|f''(x)| \leq 3$ für all $x \in I$ ?
 
 
 \end{document}
