@@ -67,4 +67,75 @@ G &= (V, E) &= (\{0,1,9,27\},\{\{0,1\},\{1,3\},\{1,27\},...\}) \\
 \end{align*}
 jeder Graph lässt sich so codieren: $g \subset \Sigma^\ast, g = \{w \in \Sigma^\ast \left| w \text{ ist eine Graph-Beschreibung} \right.\}$
 
+\section{Endliche Automaten und reguläre Sprachen}
+
+Bei einem endlichen Automat braucht es für den ganzen Gültigkeitsbereich gültige Zustände / Pfeile.
+
+\paragraph{Beispiel: Drehkreuz Skilift, ein deterministischer endlicher Automat}
+
+	Zwei Zustände: Verriegelt / Entriegelt
+	
+	Drehen und Fahrkarten ändern den Zustand.
+	
+	\includegraphics[scale=0.5]{img/skilift.png}
+
+Zutaten: 
+
+\begin{align*}
+	A	&= (Q, \Sigma, \delta, q_0, F)  \\
+	Q	&= \text{ Zustände} \\
+	\Sigma	&= \text{ Alphabet} \\
+	\delta	&= \text{ Übergangsfunktion (Pfeile)} \\
+	q_0	&\in Q \text{, Startzustand (Initialisierung)} \\
+	F	&\subset Q \text{, Akzeptierzustand}
+\end{align*}
+
+Zeichenbedeutungen:
+
+$\delta$: Zustand, Zeichen $\rightarrow$ neuer Zustand.
+
+$(q, a) \mapsto q'=\sigma(q,a)$
+
+%$Q \multiply \Sigma \rightarrow^{\sigma} Q$
+
+\subsection{Darstellung mittels Tabelle}
+
+\begin{tabular}{c c}
+ & $\Sigma$ \\
+$Q$	& $\delta$
+\end{tabular}
+
+\subsection{Systematische Rekonstruierung aus der Sprache}
+
+Zustände sind charakterisiert durch "was noch kommen darf"
+
+\begin{align*}
+	L(w) = \{v \in \Sigma^\ast | wv \in L \} \\
+	\text{Beispiel: } \Sigma = \{a, b \}, L=\{ w \in \Sigma^\ast | |w|_a \text{ gerade}\}
+\end{align*}
+
+
+%TODO: Myhill-Nerode Tabelle mit Zuständen
+
+\begin{align*}
+W & L(w) \text{ (was kann angehängt werden)}\\
+\epsilon & L(\epsilon) = \{v \in \Sigma^\ast | \epsilon v \in L \} &= L \\
+a & L(a) = \{v \in \Sigma^\ast | a v \in L \} &= \{ v \in \Sigma^\ast | |w|_a ungerade \}\\
+b & L(b) = \{v \in \Sigma^\ast | b v \in L \} &= L\\
+  & L(aa) &= L \\
+  & L(ab) &= L(a) \\
+  & L(ba) &= L(a) \\
+  & L(bb) &= L
+\end{align*}
+
+\begin{enumerate}
+	\item $L(w)$ ausrechnen: verschiedene $L(w)$ geben $Q$ 
+	\item $\sigma: L(w) \rightarrow^a L(wa)$
+	\item $q_0: L(\epsilon) = L$
+	\item $L(w)$ ist Akzeptierzustand wenn $\epsilon \in L(w)$
+\end{enumerate}
+\section{Stachoautomaten}
+
+\section{Turing-maschinen}
+
 \end{document}

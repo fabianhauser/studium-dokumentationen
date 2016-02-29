@@ -1,0 +1,92 @@
+\input{../template.tex}
+
+\title{Zusammenfassung InfSi1}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+
+\section{Grundbegriff Sicherheit}
+
+Sicherheit: Confidentiality, Integrity, Availability ("CIA")
+
+\begin{description}
+\item[Datensicherheit] \hfill \\
+	Schutz vor Missbrauch der Daten durch organisatorische und technische Massnahmen
+\item[Datenschutz] \hfill \\
+	Schutz vor dem Missbrauch ihrer personenbezogenen Daten
+\end{description}
+
+\subsection{Management}
+\includegraphics[scale=0.25]{img/informationssicherheitsmanagement.png}
+
+\begin{description}
+\item[Threads] \hfill \\
+	Wahrscheinlichkeit eines Zwischenfalls * Schaden = Bedrohung * Verletzlichkeit * Schaden
+\item[Vulnerabilities]
+\item[Control] \hfill \\
+	(measures, protection)
+\item[Information] \hfill \\
+	(asset, value)
+\item[Gefährdung] \hfill \\
+	(Hazard, Applied thread): Bedrohung + Schwachstelle
+\end{description}
+
+
+\subsection{Massnahmenkataloge}
+\begin{enumerate}
+\item	Infrastruktur
+\item	Organisation
+\item	Personal
+\item	Hardware/Software
+\item	Kommunikation
+\item	Notfallvorsorge
+\end{enumerate}
+
+\subsection{Gefährdungskataloge (Applied Threat)}
+\begin{enumerate}
+\item	Höhere Gewalt
+\item	Organisatorische Mängel
+\item	Mengschliche Fehlhandlungen
+\item	Technisches Versagen
+\item	Vorsätzliche Handlungen
+\end{enumerate}
+
+\subsection{Risikomanagement}
+
+NVD/CVE nach CVSS:	http://www.security-database.com/cvss.php
+
+
+\section{Standards}
+
+\begin{description}
+\item[Formale Standards] \hfill \\
+	offizielle Standards, z.B. von Internationalen Standards (ISO, IEC, ITU), Berufsverbänden(IEEE), Staatsstellen NIST
+\item[Public (open) Standards] \hfill \\
+	Open Source Standards (Internet RFCs)
+\item[De-Facto Standards] \hfill \\
+	Herzstellerspezifische Standards (z.B. MS Office, PDF, Industriestandards (DIX, ECMA)
+\item[Interne Standards] \hfill \\
+	(firmeninterne Standards)
+\end{description}
+	
+\subsection{Verbindlichkeiten in Standards}
+gemäss RFC 2119:
+
+\includegraphics[scale=0.5]{img/rfc2119.png}
+	
+\subsection{ISO 27000}
+
+\subsubsection{ISO 27001}
+	Gibt an, was zu tun ist.
+\subsubsection{ISO 27002}
+	Enthält Umsetzungshinweise.
+
+\subsection{ITIL}
+	Stark angelehnt an \emph{ISO 27001}, um Sicherheit im IT Bereich zu erreichen.
+
+
+\subsection{OWASP}	
+	Open Web Application Security Project.
+
+\end{document}

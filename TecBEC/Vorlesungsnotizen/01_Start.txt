@@ -6,9 +6,7 @@ Creation-Date: 2016-02-22T16:43:48+01:00
 Created Monday 22 February 2016
 
 ==== Prüfungsaufbau: ====
-1/3	Schriftlich Grammar
-1/3	Schriftlich Book
-1/3	Presentation
+{{./equation.png?type=equation}}	
 
-
-Anu
+===== Grammar =====
+**Gerundium:** -ing Formen

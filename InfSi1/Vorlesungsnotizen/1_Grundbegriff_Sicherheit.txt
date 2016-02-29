@@ -24,7 +24,7 @@ Datensicherheit:	Schutz vor Missbrauch der Daten durch organisatorische und tech
 **M3:**	Personal
 **M4:**	Hardware/Software
 **M5:**	Kommunikation
-**M6:**	Notfallvorsorge
+**M6:**	NotfallvorsorgeQ
 
 **Gefährdungskataloge (Applied Threat)**
 **G1:**	Höhere Gewalt

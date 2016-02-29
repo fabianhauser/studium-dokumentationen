@@ -1,0 +1,47 @@
+\input{../template.tex}
+
+\title{Zusammenfassung CN2}
+\author{Fabian Hauser}
+ 
+\begin{document}
+\maketitle
+
+\section{Varia}
+10 Seiten A4 Zusammenfassung
+
+\section{Telefonie}
+
+\begin{description}
+\item[Data Plane] \hfill \\
+	Forward IP-Packets. Z.B. STP, VLANs
+\item[Control Plane] \hfill \\
+	Routing Protocols, Overlay technologies (MPLS), z.B: Forwarding of Ethernet Frames
+\end{description}
+
+
+\subsection{G.711 / PCM}
+ 256 Audio-Steps using 8 Bits, Sample 8000/sec (nyquist frequency) = DS0, 64Kbps
+
+
+\subsection{ISDN}
+Braucht NT Wandler.
+
+\begin{description}
+\item[S-Bus] \hfill \\
+	 Digitaler Bus im Haus; Data Plane.
+\item[D-Kanal] \hfill \\
+	Synchronisierungs-Kanal zur Dorfzentrale
+\item[PBX] \hfill \\
+	Die Dorfzentrale; Übersetzt Rufnummer-Anfragen (Wählton) zu weiteren Zentralen
+
+\end{description}
+
+\subsection{SS7}
+
+Ähnlich BGP ist das SS7 Routing Protokoll die Verbindung zwischen allen Telefonzentralen.
+	
+\subsection{SIP}
+Läuft über Router; muss von Telefonnummer eine IP-Addresse "extrahieren".
+	
+
+\end{document}
