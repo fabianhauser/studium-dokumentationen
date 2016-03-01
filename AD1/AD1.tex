@@ -6,6 +6,7 @@
 \begin{document}
 \maketitle
 
+
 Software soll, \emph{Robust}, \emph{Adaptierbar} und \emph{Wiederverwendbar} sein, was via \emph{Abstraktion}, \emph{Kapselung} und \emph{Modularität} erreicht werden soll.
 
 \section{Datenstrukturen}
@@ -13,6 +14,59 @@ Software soll, \emph{Robust}, \emph{Adaptierbar} und \emph{Wiederverwendbar} sei
 
 Arrays sind Container-Objekte, und enthalten im Java immer nur Referenzen auf gleichartige Objekte.
 
+\paragraph{Vorteile}
+\begin{itemize}
+	\item Schneller Random Access (immer gleich lang)
+\end{itemize}
 
+\paragraph{Nachteile}
+\begin{itemize}
+	\item Kann nicht einfach vergrössert werden (umkopieren nötig)
+	\item Einfügen, Löschen \& Sortieren aufwändig.
+\end{itemize}
 
+\subsection{LinkedList}
+
+\includegraphics[scale=0.3]{img/linkedlist.png} \\
+Nutzt Rekursion (Referenz auf eigenen Typen) zum feststellen des jeweilig nächsten Elements
+
+\paragraph{Vorteile}
+\begin{itemize}
+	\item Entfernen eines Knotens immer gleich (einfach)
+	\item Einfügen eines Knotens immer gleich (einfach)
+\end{itemize}
+
+\paragraph{Nachteile}
+\begin{itemize}
+	\item Random Access braucht lange (iterieren durch alle Elemente)
+	\item Nicht Thread-sicher (\emph{Collections.synchronizedList(new LinkedList(...))})
+\end{itemize}
+
+\subsubsection{Doubly-Linked-List}
+
+Es wird jeweils auch das Previous-Element referenziert; Vorteil: es können Elemente von beiden Enden schnell abgeholt werden.
+
+\subsubsection{Circularly-Linked-Lists}
+
+Zirkuläre Listen, d.h., das letzte Element ist mit dem ersten verknüpft. es gibt jeweils einen Cursor auf das aktuelle Element.
+
+\subsection{Laufzeitverhalten}
+
+\subsubsection{Zeitliche Funktionen}
+\begin{itemize}
+	\item konstant $\approx 1$
+	\item logarithmisch $\approx \log n$
+	\item linear $\approx  n$
+	\item N-Log-N $\approx n \log n$
+	\item quadratisch $\approx n^2$
+	\item qubisch $\approx n^3$
+	\item exponentiell $\approx 2^n$
+\end{itemize}
+
+\subsubsection{Big-Oh Notation}
+ 
+	 
+
+\pagebreak
+\tableofcontents
 \end{document}
