@@ -134,6 +134,17 @@ b & L(b) = \{v \in \Sigma^\ast | b v \in L \} &= L\\
 	\item $q_0: L(\epsilon) = L$
 	\item $L(w)$ ist Akzeptierzustand wenn $\epsilon \in L(w)$
 \end{enumerate}
+
+\subsection{Gleichheit von Automatensprachen feststellen}
+	Reduktion auf Minimalautomat M$(A_1)$. Vereinfachung geht, indem zuerst die nicht-Equivalenten zuständige gemäss folgender Liste ausgeschlossen werden:
+
+\begin{enumerate}
+	\item Akzeptierzustand $\neq$ Nicht-Akzeptierzustand 
+	\item Führt am $m$ Zustände $m$ ein nicht äquivalentes Paar über.
+	\item Wiederholung des Algorithmus, bis keine Änderungen mehr auftreten.
+	\item Restliche Zustände sind äquivalent.üü
+\end{enumerate}
+
 \section{Stachoautomaten}
 
 \section{Turing-maschinen}

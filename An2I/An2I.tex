@@ -159,5 +159,67 @@ Hypothese: $m=3 \approx 1.5 \cdot 2.29$
 
 Test: $|f''(x)| \leq 3$ für all $x \in I$ ?
 
+\subsection{Konvergenzradius}
+
+Bereich um den Entwicklungspunkt, in dem die Taylorreihe den richtigen Wert der Ausgangsfunktion liefert.
+
+Üblicherweise ist der Konvergenzradius einer Taylorreihe gleich dem Abstand vom Entwicklungspunkt zur ersten Definitionslücke (in den Reelen oder Komplexen Zahlen).
+
+\section{Grenzwerte}
+
+\subsection{Eigentliche Endwerte im Unendlichen}
+Grenzwert ist gleich Null: $f(x) \xrightarrow{x \rightarrow \infty} 0$
+
+Limes: $\lim_{x \rightarrow \infty}{f(x)} = 0$
+
+Uneigentliche Grenzwerte sind $\infty$, was aber streng genommen keine Zahl ist.
+
+\paragraph{Beispiele:}
+
+\begin{align*}
+	\lim_{x \to \infty}{arctan(x)} &= \frac{\pi}{2} \\
+	\lim_{x \to -\infty}{arctan(x)} &= -\frac{\pi}{2}
+\end{align*}
+
+\subsubsection{Systematische Analyse}
+
+der Funktion $f(x): \frac{\sin{(x)}}{x}$. Behauptung: $ \lim_{x \to \infty}{f(x)} = 0$
+
+Streifen um den angenommenen Grenzwert 0. Der "Radius" wird als $\epsilon$ bezeichnet.
+
+\paragraph{Grenzzahl $X(\epsilon)$,} ab dem der Funktionswert innerhalb dieser Zahl liegt. Wenn es keine Rolle spielt, wie gross $\epsilon$ ist, um ein Resultat zu liefern, stimmt der angenommene Grenzwert.
+
+\paragraph{Beweis (Definition Grenzwert):} Für jede noch so kleine Zahl $\epsilon > 0$ liegt die Funktion ab einer Stelle $X$ (bzw. $X(\epsilon)$) vollständig in einem Streifen der vom Grenzwert $0$ um jeweils ein $\epsilon$ nach oben und unten weggeht.
+\[
+\text{D.h.:  alle } x > X(\epsilon) \text{ gilt: } |f(x)-0| < \epsilon
+\]
+Auf jeden Fall gilt, $X = \frac{1}{\epsilon}$
+
+Trick zur Grenzwertanalyse bei z.B. $x^2$: Umkehren zu $\frac{1}{x^2}$, was qualitativ gleich aussieht wie $\frac{1}{x}$
+
+\subsection{Eigentliche Grenzwerte im Endlichen}
+
+\paragraph{Beispiel:} von $\lim\limits_{x \to 2}{\frac{x^2 + x -6}{x-2}}$.
+
+Vorgehen: Stetige Fortsetzung suchen, Zahlenwert bei Definitionslücke  einsetzen.
+
+
+Wenn die Funktion an der gesuchten Stelle definiert ist, wird dieser wert daraus entfernt. So wird zum Beispiel aus $\lim\limits_{x \to 0}{sig^2(x)} = 1$ wird $\lim\limits_{x \to 0}{\text{sig}^2_{|\mathbb{R} \setminus \{0\}}(x)}$
+
+\subsection{Einseitige Grenzwerte}
+
+	Beachtet nur ein Teilbereich der Funktion; Beim rechtsseitige Grenzwert werden die kleineren Zahlen ignoriert:
+\[
+	\lim\limits_{x \to 0+}{\text{sig}(x)} = \lim\limits{x \to 0} \text{sig}|_{\mathbb{R} \setminus [0;\infty)}(x) = 1
+\]
+bzw. die grösseren Zahlen ignoriert:
+\[
+	\lim\limits_{x \to 0-}{\text{sig}(x)}
+\]
+
+\subsubsection{Rechentechniken}
+
+\paragraph{Subfunktionen}
+
 
 \end{document}

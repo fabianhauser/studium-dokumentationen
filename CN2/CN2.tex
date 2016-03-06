@@ -40,8 +40,72 @@ Braucht NT Wandler.
 
 Ähnlich BGP ist das SS7 Routing Protokoll die Verbindung zwischen allen Telefonzentralen.
 	
-\subsection{SIP}
+\subsection{Voip}
 Läuft über Router; muss von Telefonnummer eine IP-Addresse "extrahieren".
 	
+\subsubsection{The Connection / Bearer Plane}
+Switching Logic: Connection Negotiation, Transcoding
+
+Mittels z.B. SIP mit CCP Verbunden.
+
+\subsubsection{The Call Control Plane: SIP as a Example}
+Call Logic: Signalling \& Call control
+Logic / Services
+
+Mittels z.B. TAPI / INAPI mit Services Plane verbunden.
+
+Distributed call processing: (SIP, H.323), Centralized cal process (SCCP, MGCP, MEHACO, H.248)
+
+Inititation von Verbindungen
+
+\subsubsection{The Services Plane}
+Service Logic: IN Service Logic, AAA, Address Resolution
+
+
+\subsection{Session Description Protocol SDP}
+Manage the Lines respectivly connection properties
+
+\begin{description}
+\item INVITE \hfill \\
+	codecs support etc.
+\item REGISTER
+\item BYE
+\item ACK 
+\item CANCEL
+\item OPTIONS
+\end{description}
+
+Mediaübertragung über RTP.
+
+\subsection{SIP}
+
+\begin{itemize}
+	\item User location
+	\item User availability
+	\item User capabilies
+	\item Session setup
+	\item Session management
+\end{itemize}
+
+Makes use of:
+\begin{itemize}
+	\item HTTP
+	\item SDP
+	\item RTP / RTSP
+	\item URI / URL
+	\item DHCP / DNS
+	\item MIME
+	\item TLS / IPSec
+\end{itemize}
+
+\begin{description}
+	\item Registrar Server \hfill \\
+		Datase of IP / Numbers matching of the User Agent
+	\item Proxy \hfill \\
+		Routing of SIP signalling messages
+	\item Redirect Server \hfill \\
+		Redirects von Anrufen
+	
+\end{description}
 
 \end{document}
