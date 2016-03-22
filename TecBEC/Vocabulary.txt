@@ -22,6 +22,8 @@ Annual Leave
 | annual leave          | jährlicher Urlaub       |             |
 | concurrent            | Gleichzeitig / Paralell |             |
 | contingency (plan)    | notfall (plan)          |             |
+| invite trouble        |                         |             |
+| pay a premium         |                         |             |
 
 	
 

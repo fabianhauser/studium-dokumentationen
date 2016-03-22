@@ -40,12 +40,32 @@ Definition: Zeichenkette von Zeichen aus $\Sigma$: $w \in \Sigma^n = \Sigma \tim
 
 Im Zusammenhang mit der Sprache sind Zeichenketten bedeutungslos!
 
+
 \paragraph{Beispiele}
 
 \begin{align*}
-	\Sigma &= \{1\} & \Sigma^\ast &= \{\epsilon, 1,11,111,1111,...\} \\
-	L &\subset \Sigma^\ast  & L &=\{1,11,1111,11111111,....\} = \{w \in \Sigma^\ast| |w|=2^k, k \in \mathbb{N}\}
+\Sigma &= \{1\} & \Sigma^\ast &= \{\epsilon, 1,11,111,1111,...\} \\
+L &\subset \Sigma^\ast  & L &=\{1,11,1111,11111111,....\} = \{w \in \Sigma^\ast| |w|=2^k, k \in \mathbb{N}\}
 \end{align*}
+
+\subsection{Wortkombinationen}
+
+Verkettung: $L_1$, $L_2$ Sprachen
+
+\[
+	L_1 L_2 = \{w_1 w_2 | w_1 \in L_1 \land w_2 \in L_2 \}
+\]
+
+$LL = L^2$, $L^n = L^{n-1}L, L^0 = \{\epsilon\}$
+
+
+Für Wortkombinationen wird ein NEA benötigt, welcher die Automaten der einzelnen Sprachen mit $\epsilon$-Übergängen verknüpft.
+
+\[
+	L^\ast = L^0 \cup L^1 \cup ... = \bigcup^\infty_{k=0}{L^k}
+\]
+
+Für beliebige Wiederholung des gleichen Wortes, muss der Startzustand auch Endzustand sein, und die Endzustände auch auf den Startzustand verweisen.
 
 
 \subsection{Notationen}
@@ -142,10 +162,192 @@ b & L(b) = \{v \in \Sigma^\ast | b v \in L \} &= L\\
 	\item Akzeptierzustand $\neq$ Nicht-Akzeptierzustand 
 	\item Führt am $m$ Zustände $m$ ein nicht äquivalentes Paar über.
 	\item Wiederholung des Algorithmus, bis keine Änderungen mehr auftreten.
-	\item Restliche Zustände sind äquivalent.üü
+	\item Restliche Zustände sind äquivalent.
 \end{enumerate}
 
-\section{Stachoautomaten}
+$\{0^n 1^n | n \geq 0\}$ nicht regulär (Myhill, qualvoll)
+
+\subsubsection{Pumping Lemma}
+
+Alle regulären Sprachen haben die Pumpeigenschaft (aber nicht zwingend umgekehrt).
+
+$L$ regulär $\Rightarrow \exists N$ Punping Length, mit jedes Word $w \in L$ mit $|w| \geq N$ kann zerlegt werden $w=xyz$ mit 
+\begin{enumerate}
+	\item $|y| > 0$
+	\item $|xy| \leq N$
+	\item $xy^kz \in L, \forall k \in \mathbb{N}$
+\end{enumerate}
+
+\paragraph{Anwendung}
+
+$L=\{0^n1^n|n \geq 0 \}$ ist nicht regulär. Widerspruchsbeweis:
+
+\begin{enumerate}
+	\item	Annahme: $L$ ist regulär
+	\item	Pumping Lemma: $\exists N$
+	\item	Konstruiere $W = 0^N1^N$, $|w| = 2N \geq N$, $w \in L$
+	\item	Zerlegung: \\
+			\includegraphics[scale=0.5]{img/pumpinglemma.png}
+	\item	Pumpen: $k > 1 \Rightarrow xy^kz$ hat mehr $0$ als $1 \Rightarrow xy^kz \not\in L$ \Lightning $PL: xy^kz \in L$
+	\item	Widerspruch: $L$ nicht regulär!
+\end{enumerate}
+
+\paragraph{Beispiel}
+$\{w \in \epsilon^\ast | w \text{ ist ein Palindrom }\}$ nicht regulär, $\epsilon = \{0,1\}$
+
+\begin{enumerate}
+	\item	Annahme: $L$ regulär
+	\item	PL: $\exists N$
+	\item	Konstruiere ein Palindrom: $=0^N1^N1^N0^N$
+	\item	Zerlegung: |/x/y/ 0 | 1  |  1 | 0 |
+	\item	Pumpe: $k > 1, \Rightarrow xy^kz$ mehr $0$ links als rechts $\Rightarrow \not\in L$ \Lightning
+	\item	Widerspruch: $L$ ist nicht regulär
+\end{enumerate}
+
+\subsection{Nicht deterministische Automaten}
+
+\[
+ \lambda : Q \times (\Sigma \cup \{\epsilon\}) \rightarrow P(Q)
+\]
+
+$\cup \{\epsilon\}$ ermöglich Sprünge; es können "Pfeile" weggelassen werden und es können mehrere Pfeile für den gleichen Buchstaben geben.
+
+\paragraph{Beispiel} $L=\{ w \in \sigma^\ast | w \text{ beginnt und endet mit } 0\}$
+
+%TODO: Graphik: ->kreis -0->kreis(selbstverweis für 0,1) -0-> doppelkreis
+
+$w$ wird akzeptiert $\equiv \exists$  es gibt einen Weg, der auf einen Akzeptierzustand führt.
+
+Aus so einem Graphen lässt sich immer einen endlichen Automaten konstruieren.
+
+
+\subsection{$\text{NEA}_\epsilon \to \text{DEA}$}
+
+$\epsilon$-Übergänge sind "gratis", d.h. verbrauchen kein Zeichen.
+
+
+-> Alle Zustände / Kombinationen von Zuständen aufzeichnen
+-> Alle Übergänge durchprobieren
+
+
+\subsection{Mengenoperationen}
+\subsubsection{Komplement}
+
+Endzustände Streichen, alle anderen Zustände in Endzustände umwandeln.
+
+
+\subsection{Reguläre Ausdrücke}
+
+Ziel: Notation für reguläre Spraceh "reguläre Ausdrücke": $r$
+
+\[
+	L(r) = \{ w \in \Sigma^\ast | \text{ Wort } w \text{ passt auf den reg. Ausdruck } r\}
+\]
+
+Bausteine: primitiven reg. Ausrücke (Wörter mit höchstens 1 Zeichen)
+
+\begin{tabular}{ l l}
+	a & steht für $L(a) = \{ a \}$ \\
+	. & steht für $L(.) = \{a,b,c\} = \{ w \ in \Sigma ^ \ast | |w| = 1 \}$\\
+	$[0-9]$ & steht für $L([0-9])=\{w \in \{ 0, 1, ..., 9\}| |w| = 1 \}$\\
+	$\epsilon$ (leeres Wort) & steht für $L("") = \{ \epsilon \}$
+\end{tabular}
+
+\subsubsection{Reguläre Operationen}
+
+\begin{align*}
+\text{Verkettung: } & L(r_1), L(r_2) \Rightarrow L(r_1,r_2) = L(r_1)L(r_2) \\
+\text{Alternative: }& L(r_1),L(r_2) \Rightarrow L(r_1|r_2) = L(r_1) \cup L(r_2) \\
+\text{*-Operation: }& L(r) \Rightarrow L(r^\ast) = L(r)^\ast
+\end{align*}
+
+\paragraph{Beispiel}
+
+	\emph{(0 | (|-)[1-9][0-9]*)}  alternative Schreibweise \emph{-? r?} \\
+	\emph{[0-9]+\.[0-9]+\.[0-9]+\.[0-9]}
+
+
+\subsubsection{Umwandlung Automat / Ausdruck}
+Umwandlung in einen Automat mit Startzustand $S$, einem Übergang $r$ und einen Akzepttierzustand $A$
+
+Vorgehen, um einen Automaten in einen Ausdruck umzuwandeln:
+
+\begin{itemize}
+	\item Startzustand un Endzustand mittels $\epsilon$-Übergängen hinzufügen.
+	\item Zwischenzustände entfernen.
+\end{itemize}
+
+\section{Kontextfreie Grammatik}
+
+
+Kann im Gegensatz zu Regulärer Sprache z.B. $\{0^n1^n | n \geq 0 \}$ darstellen. Dazu gehören alle moderne Programmiersprachen.
+
+\paragraph{Beispiel Klammern $(()())$}
+
+Mit Klammern können wir:
+
+\begin{enumerate}
+	\item $\epsilon$ \hfill $A \to \epsilon$
+	\item Verketten \hfill $A \to AA$
+	\item «Einklammern» \hfill $A \to (A)$
+\end{enumerate}
+
+diese 3 Regeln produzieren einen Klammerausdruck:
+\[
+	A \to (A) \to (AA) \to ((A)A) \to ((A)(A)) \to (()(A)) \to (()())
+\]
+
+\subsection{Definitionen}
+
+\[
+	G = (V, \Sigma, R, S)
+\]
+
+\begin{description}
+	\item[$V$] \hfill \\
+		Variable, Platzhalter für (Teil-)Ausdrücke
+	\item[$\Sigma$] \hfill \\
+		Terminalsymbole (Alphabet)
+	\item[$R$] \hfill \\
+		Regeln: $A \to BCx$ Zeichenkette von Variablen und Terminalsymbolen
+	\item[$S$] \hfill \\
+		Startvariable $S \in V$
+\end{description}
+
+Wir arbeiten \emph{Kontextfrei}, d.h. auf der linken Seite steht nur eine Variable.
+
+Definition: $L$ kontextfrei $\Leftrightarrow L(G)  L$, $G$ kontextfreie Grammatik.
+
+
+\paragraph{Beispiel I} \hfill \\
+\[
+	(\{A\}, \{(,)\}, \{A \to \epsilon, A \to AA, A \to (A)\}, A)
+\]
+
+\paragraph{Beispiel: II}
+
+Natürliche Zahlen ohne führende Nullen
+\begin{align*}
+	\text{Zahl} &\to \text{ziffer} \\
+	\text{} &\to \text{ziffer} \\
+	\text{ziffernfolge} &\to \text{ziffer} \\
+	\text{} &\to \text{ziffernfolge ziffer}
+\end{align*}
+
+\begin{align*}
+	\text{nichtnullziffer} &\to 1 | 2 | ... | 9 \\
+	\text{ziffern} &\to 0 | \text{nichtnulziffer}
+\end{align*}
+
+
+\subsubsection{Notation}
+
+$A \xRightarrow{\ast} w$
+
+$w$ ensteht aus $A$ durch Regelanwendung. $w$ ist aus $A$ ableitbar.
+
+\subsection{Stachoautomaten}
+
 
 \section{Turing-maschinen}
 

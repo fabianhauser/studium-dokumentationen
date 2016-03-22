@@ -221,5 +221,127 @@ bzw. die grösseren Zahlen ignoriert:
 
 \paragraph{Subfunktionen}
 
+\paragraph{Unstetige Stellen}
+
+\[
+	\lim\limits_{x \to 0}(x \cdot \text{sig}(x)) = 0
+\]
+
+$x$ geht gegen Null; sig$(x)$ \emph{existiert nicht} an der Stelle 0. Ein möglicher Weg:
+\[
+	\lim\limits_{x \to 0+}(x \cdot \text{sig}(x)) = 0
+\]
+
+$x$ ist nach wie vor 0; Beim Signum können wir 1 annehmen (da positive Zahl). Beim umgekehrten Weg:
+\[
+	\lim\limits_{x \to 0-}(x \cdot \text{sig}(x)) = 0
+\]
+
+können wir $x$ als 0 annehmen; Beim Signum können wir $-1$ annehmen (da negative Zahl).
+
+Der beidseitige Grenzwert ist gleich; daraus können wir schliessen, dass der Grenzwert auch $0$ ist.
+
+In diesem Fall wäre auch die Analyse der eigentlichen Funktion; in diesem Fall steht nur ein komplizierter Betrag.
+
+\paragraph{Gegen unendlich}
+
+\[
+	\lim\limits{x \to \infty} \sin(\frac{\pi x^2 + 3x - 4}{4x^2-4})
+\]
+Zähler und Nenner bewegen sich gegen unendlich. Lösungsansatz: Schnellst anwachstende Komponente ausklammern:
+
+\[
+	\lim\limits_{x \to infty} \sin(\frac{x^2(\pi + \frac{3}{x} - \frac{4}{x^2})}{x^2(4 - \frac{4}{x^2})}) =
+	\lim\limits_{x \to infty} \sin(\frac{\pi + \frac{3}{x} - \frac{4}{x^2}}{4 - \frac{4}{x^2}}) = sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2}
+\]
+
+
+\subsection{Uneigentliche Grenzwerte}
+
+$\infty$ und $-\infty$ zerstören die üblichen Zahlenkörper; deshalb gelten damit die normalen Rechengesetze nicht mehr. Deshalb: Unendlich ist eher Sammelbegriff für "sehr viel", aber es ist nicht genau klar, "wie viel".
+
+
+\subsubsection{Beispiele}
+Sehr grosse Zahl in Exponentialfunktion einsetzten, ergibt eine sehr grosse Zahl.
+\[
+	\lim\limits_{x \to \infty} e^x = \infty
+\]
+
+Konstante $C$, über welcher die Funktion am Ort $X(C)$ ist.
+
+In diesem Fall: Für alle $x > \ln(x)$ gilt $x^x > e^{\ln(C)} = C$
+
+
+\subsubsection{$\infty$}
+
+Unklar: $\infty - \infty$
+B/L: $\infty \cdot (\pm 0)$; $\frac{\infty}{\infty}$; $\frac{0\pm}{0\pm}$
+
+\[
+	\lim\limits_{ x \to \infty} \frac{x^2-3x -7}{\sqrt{11x^4+3x+9}} \left(\approx \lim\limits_{ x \to \infty} \frac{(\infty - \infty) - 7}{\infty}\right) =
+	 \lim\limits_{ x \to \infty} \frac{x^2 (1 - \frac{3}{x} - \frac{7}{x^2}}{\sqrt{11x^4 + 3x + 9}} \left(\approx \lim\limits_{ x \to \infty} \frac{\infty}{\infty}\right) =
+	 \lim\limits_{x \to \infty} %TODO: Multiplikation mit 1/x^2
+	 = \frac{1}{\sqrt{11}}
+\]
+
+\subsection{Regel von Bernoulli / Lobital}
+
+\[
+	\lim\limits_{x \to q} \frac{f(x)}{g(x)} =^{\text{Typ } \frac{0}{0}} \lim\limits_{x \to q} \frac{f'(x)}{g'(x)} %TODO: =-text anpassen
+\]
+
+
+\subsection{Ableitung mit dem limes}
+
+\[
+	f'(x) = \frac{df}{dx}|_{x=x_0} = \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =^\frac{0}{0} = \lim\limits_{x \to x_0} \frac{\frac{d}{dx}(f(x) - f(x_0))}{\frac{d}{dx}(x - x_0} = \lim\limits{x \to x_0} \frac{f'(x) -0}{1 - 0} = f'(x_0)
+\]
+
+\section{Integral}
+
+\subsection{Stammfunktionen}
+
+Umkehrung der Ableitung.
+
+Gegeben: Funktion $f(x)$
+
+Gesucht: Funktion $F(x)$ (da Stammfunktion, stetige Funktion)
+
+Eigenschaft: $F'(x) = f(x)$ für all $x$ (aus dem Definitionsbereich von $x$ in $f(x)$)
+
+Dann heisst $F$ Stammfunktion von $f$.
+
+\paragraph{Beispiel} \hfill
+
+$f(x) = \sin(x)$
+
+$F(x) = -\cos(x) + c$
+
+Vergewissern: $F'(x) = \frac{\mathrm{d}}{\mathrm{d}x}(\cos(x) + c) = -\sin(x) = f(x)$
+
+Mögliches vorgehen: «dirty» Ableitung rückgängig machen, prüfen, ob sie beim Ableitung richtig rauskommen, nachkorrigieren.
+
+\subsection{Unbestimmtes Integral}
+
+Das Unbestimmte Integral dient immer der Suche nach der Stammfunktion.
+Sei $f(x)$ eine Funktion und $F(x)$ eine Stammfunktion von $f$.
+
+ \[
+ \int \underbracket{f(x)}_{\mathclap{\text{Integrand}}}\, \overbracket{\mathrm{d}x}^{\mathclap{\text{Integrationsvariable}}} = F(x) + \underbracket{\text{ const}}_{\mathclap{\text{Integrationskonstante}}}
+ \]
+ 
+ ist $\Leftrightarrow$ zu:
+ 
+ \[
+	 f(x) = \frac{\mathrm{d}}{\mathrm{d}x}(F(x + \text{ const}))
+ \]
+
+
+$+\text{const}$ bedeutet: Die Zahlen $a + const = b + const$ sind $a$ und $b$ in der gleichen Restklasse (d.h. es gibt einen Modulo-Konstante.)
+
+
+
+\subsection{Bestimmtes Integral}
+
 
 \end{document}

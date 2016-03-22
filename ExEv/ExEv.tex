@@ -8,6 +8,8 @@
 
 \section{Einführung Experimente}
 
+\emph{Grundsätzlich gilt: Bullshit in - Bullshit out.} - A. Rinkel
+
 \subsection{Wissenserwerb druch Experimente nach Shewhart}
 \begin{enumerate}
 	\item	Hypothese formulieren
@@ -52,9 +54,9 @@
 	\item[Relative Fehler] \hfill \\
 		Fehler in Prozent
 	\item[Zufälliger Fehler] \hfill \\
-		Fehler, welcher nicht reproduzierbar auftritt
+		Fehler, welcher nicht reproduzierbar auftritt (z.B. Rauschen)
 	\item[Systematische Fehler] \hfill \\
-		Fehler, welcher Systematisch auftritt (z.B. falsche Lineallänge)
+		Fehler, welcher Systematisch auftritt (z.B. falsche Lineallänge, Parallax Fehler)
 \end{description}
 
 \subsubsection{Fehlerpropagation}
@@ -98,7 +100,7 @@ Beispiel: bei $13.5 cm$ ist der Messfehler von $\pm 0.05 cm$ bis $\pm 0.4 cm$.
 		Der Skalenwert Null ist willkürlich gewählt, kann nicht verhältnismässig ausgewertet werden.
 	
 	\item[Verhältnisskala] \hfill \\
-		Der Skalenwret Null entspricht dem natürlichen absoluten Nullpunkt. Negative Werte sind nicht möglich, dafür kann der verhältnismässige Abstand gemessen werden.
+		Der Skalenwert Null entspricht dem natürlichen absoluten Nullpunkt. Negative Werte sind nicht möglich, dafür kann der verhältnismässige Abstand gemessen werden.
 \end{description}
 
 \subsection{Ablauf Statistische Untersuchung}
@@ -133,7 +135,146 @@ Zu erheben sind insbesondere:
 	\item welche statistischen Analyseverfahren
 \end{itemize}
 
-\subsubsection{Datenerhebung}
+\subsection{Lagemasse (Mittelwerte)}
+\begin{description}
+	\item[Modus] \hfill \\
+		Merkmal, welches am häufigsten beobachtet wird.  \\
+		\includegraphics[scale=0.3]{img/modus.png}
+	\item[Median] \hfill \\
+		Wert, welcher genau in der Mitte steht bzw. den Mittelwert der beiden mittleren Werten \\
+		\includegraphics[scale=0.3]{img/median.png}
+	\item[Quantile] \hfill \\
+		Unterteilung entlang des Medians in 2 Teile. (Berechnung des Medians)
+	\item[Quartil] \hfill \\
+		Unterteilung in 4 Teile. (Berechnung des Medians mit $\frac{}{4}$ statt $\frac{}{2}$)
+	\item[Arithmetisches Mittel] \hfill \\
+		\includegraphics[scale=0.3]{img/arithmetisches_mittel.png}
+	\item[Harmonisches Mittel] \hfill \\
+		Berechnung: Addieren der Verhältnisse der Teilbereiche \\
+		\includegraphics[scale=0.3]{img/harmonisches_mittel.png}
+	\item[Geometrisches Mittel] \hfill \\
+		\includegraphics[scale=0.3]{img/geometrisches_mittel.png}
+		
+\end{description}
+
+\subsection{Streuungsmasse}
+\begin{description}
+	\item[Spannweite R] \hfill \\
+		R = grösster Merkmalswert - kleinster Merkmalswert. Bzw: $R = x_v^0 - x_1^u$
+	\item[Zentraler Quartilsabstand] \hfill \\
+		$ZQA  = Q_3 - Q_1$
+	\item[Mittlere absolute Abweichung] \hfill \\
+		durchschnittliche Entfernung aller Merkmalswerte vom arithmetischen Mittel: \\
+		\includegraphics[scale=0.3]{img/mittlere_absolute_abweichung.png}
+	\item[Varianz] \hfill \\
+	Die Varianz ist die Summe der quadrierten Abweichung der Merkmalswerte vom arithmetsichen Mittel, dividiert durch die Anzahl der Merkmalsträger. \\
+		\includegraphics[scale=0.3]{img/varianz.png}
+	\item[Standardabweichung] \hfill \\
+		Quadratwurzel aus der Varianz
+	\item[Variationskoeffizient] \hfill \\
+		Quotient aus der Standardabweichung und arithmetischem Mittel, multipliziert mit 100 \\
+		$VK = \frac{\sigma}{x} \cdot 100$
+		
 	
+\end{description}
+
+\subsection{Boxplot}
+
+\includegraphics[scale=0.5]{img/boxplot.png}
+
+
+\subsection{Grössen}
+
+\begin{description}
+	\item[$n$]		Anzahl Messungen
+	\[
+		n = \sum^v_{i=1}{h_j}
+	\]
+	\item[$v$]		Verschiedene Merkmalswerte
+	\item[$h_j$] absolute Häufigkeit der Merkmalsträger mit Merkmalswert $x_i$ \hfill \\
+		% Aber wie kommt man drauf?
+		\[
+			\sum^{m}_{j=1}{h_j} = n
+		\]
+	\item[$H_j$]		Kommulierte absolute Häufigkeit
+		\[
+			H_j = \sum^i_{a=1}{h_a}
+		\]
+	\item{$x_i$}		Jeweiliger Messwert
+	\item[$\acute{x}_j$] Klassenmittelwert
+	\item[$\bar{x}$]	Mittelwert (Arithmetisches Mittel) des gesamten \hfill \\
+		Unklassifiziert:
+		\[
+			\bar{x} = \frac1n \sum^v_{i=1}{x_i \cdot h_i} = \sum^v_{i=1}{x_i \cdot f_i}
+		\]
+		Klassifiziert:
+		\[
+		\bar{x} = \frac1n \sum^v_{i=1}{\acute{x}_i \cdot h_i} = \sum^v_{i=1}{\acute{x}_i \cdot f_i}
+		\]
+		
+	\item[$\sigma$]		Standardabweichung
+	\item[$\delta$]		Mittlere absolute Abweichung (Entfernung aller Merkmalswerte vom arithmetischen Mittel)
+		\[
+			\delta = \frac1n \sum^v_{i=1}{\left|x_i - \bar{x}\right|h_i}
+		\]
+	\item[$f_j$]		relative Häufigkei von $x_j$ t (mit Vorbehalt, vorherige Folie) \hfill \\
+		\[
+			f_j = \frac{h_j}n
+		\]
+	\item[$F_j$]		Kommulierte relative Häufigkeit
+		\[
+			F_j = \sum^i_{a=1}{f_a} = \frac{H_j}n = 1
+		\]
+	\item[$Q_i$]		Ein bestimmter Abschnitt $i$ in einer Unterteilung
+	\item[$R$]			grösster Merkmalswert - kleinster Merkmalswert: $R = x_v^0 - x_1^u$
+\end{description}
+
+\subsection{Zeitreihe}
+
+\subsubsection{Regressionsanalyse / Lineare Regression}
+
+\begin{align*}
+y &= a_1 + b_1 x\\
+a_1 &= \bar{y} - b_1 \bar{x} \\
+b_1 &= \frac{\sum^{n}_{i=1}{x_iy_i-n\bar{x}\bar{y}}}{\sum^n_{i=1}{x^2_i - n\bar{x}^2}}
+\end{align*}
+
+\subsubsection{Abhängigkeiten}
+Formale Abhängigkeit: liegt eine zahlenmässig begründete Abhängigkeit zwischen den Merkmalen vor?
+
+Sachliche Abhängigkeit: ist der Wert des einen Merkmals ursächlich (kausal) fpr den Wert des anderen Merkmals? (Schwierig, braucht Fachkundige)
+
+\subsubsection{Kovarianz}
+Streuung von Merkmalsträger
+
+\section{Wahrscheinlichkeiten und Kombinatorik}
+
+\subsection{Zufallsexperiment}
+
+Für Experimente, deren Ergebnisse vom Zufall abhängen.
+
+\subsection{Rechnen mit Wahrscheinlichkeiten}
+
+\begin{align*}
+P &=  \frac{\text{Gutfälle}}{\text{Mögliche Fälle}} & \text{Wahrscheinlichkeit}\\
+A \cap B &= \\
+A \cup B &= \\
+A^c &= 1 - c & \text{Gegenereignis (komplementär)}
+\end{align*}
+
+\subsection{Symbole}
+
+\begin{description}
+	\item[$\Omega$] \hfill \\
+		Ergebnismenge, welche sicher zutrifft. Bzw: Mögliche Zielwerte eines Experiments
+	\item[$\emptyset$] \hfill \\
+		Menge der unmöglichen Ereignisse.
+	\item[Teilmengen] \hfill \\
+		Ereignisse, welche Einfluss auf die Ergebnismenge $\Omega$ haben.
+	\item[$\mathcal{A}$] \hfill \\
+		Ganzes System, dessen Elemente Teilmengen von $\Omega$ sind.
+	\item[P] \hfill \\
+		Wahrscheinlichkeitsmass; Ordner Ereignis A eine Wahrscheinlichkeit P(A) zu.
+\end{description}
 
 \end{document}

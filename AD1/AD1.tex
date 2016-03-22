@@ -51,6 +51,11 @@ Es wird jeweils auch das Previous-Element referenziert; Vorteil: es können Elem
 Zirkuläre Listen, d.h., das letzte Element ist mit dem ersten verknüpft. es gibt jeweils einen Cursor auf das aktuelle Element.
 
 for(int[] currencyUnit : currencyUnits)   
+
+
+\subsection{Pseudocode}
+\includegraphics[scale=0.3]{img/pseudocode.png}
+
 \subsection{Laufzeitverhalten}
 
 \subsubsection{Zeitliche Funktionen}
@@ -66,8 +71,48 @@ for(int[] currencyUnit : currencyUnits)
 
 \subsubsection{Big-Oh Notation}
  
-	 
+Berechnung der Präfixe: Herausfinden, wie oft eine Operation in einem Algorithmus durchläuft; dabei ist nur essentiell, ob $n$, $n^2$ etc. Durchläufe stattgefunden haben.
 
-\pagebreak
-\tableofcontents
+Beispiel: $O(n^2)$
+
+\subsubsection{Big-Omega, Big-Theta}
+
+\includegraphics[scale=0.3]{img/verwandte-big-oh.png}
+
+\subsubsection{Vergleich Big-Oh, Omega, Theta}
+
+\includegraphics[scale=0.3]{img/big-oh-vergleich.png}
+
+\subsection{Rekursion}
+
+Braucht:
+\begin{itemize}
+	\item Verankerung / base case(s): Ende des Rekursiven Aufrufes / Abbruchbedingung
+	\item Methode ruft sich selber auf, bringt den Zustand näher an die Verankerung.
+\end{itemize}
+
+\subsubsection{Lineare Rekursion}
+
+\subsubsection{Binäre Rekursion}
+
+\subsubsection{Andere Rekursion}
+
+
+
+\section{Patternator}
+
+\subsection{Adapter}
+\subsubsection{Objectadapter}
+
+Besser für Sicherheit
+
+Implementation via Klassenvariable
+
+\subsubsection{Classadapter}
+
+Einfacher/Flexibel
+
+Implementation Interface
+
+
 \end{document}

@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-03-08T13:47:03+01:00
+
+====== Speaking Exam ======
+Created Tuesday 08 March 2016
+
+1. Minute talk about one of 3 tasks
+

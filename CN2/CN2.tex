@@ -105,7 +105,20 @@ Makes use of:
 		Routing of SIP signalling messages
 	\item Redirect Server \hfill \\
 		Redirects von Anrufen
-	
 \end{description}
+
+\section{Routing}
+
+Layer 3, dynamisch oder statisch
+
+\subsection{Routing Hierarchy}
+
+Separiert in \emph{Autonomous Systems} (AS). Zwischen den AS wird mit \emph{Exterior Routing Protocols} (EGP) benutzt, üblicherweise BGP.
+
+Innerhalb der AS wird ein Interior routing Protocol (IGP) verwendet.
+
+\subsubsection{Split Horizon}:
+
+Der Router, welcher die Route mitgeteilt hat, wird nicht "wiederholt".
 
 \end{document}
