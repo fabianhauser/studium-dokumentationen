@@ -32,7 +32,7 @@ Zum Beispiel: $\Sigma = \{0, 1\}$, $\Sigma = \{1\}$, $\Delta = \{a,b,c,...,z\}$
 
 Definition: Zeichenkette von Zeichen aus $\Sigma$: $w \in \Sigma^n = \Sigma \times \Sigma \times ... \times \Sigma$. Länge: $|w| = n$
 \[
-	\Sigma^0 = \{\epsilon\}; \epsilon = \text{ leeres Wort}
+	\Sigma^0 = \{\varepsilon\}; \varepsilon = \text{ leeres Wort}
 \]
 \[
 	\Sigma^\ast = \Sigma^0 \cup \Sigma^1 \cup ... \cup \Sigma^n = \bigcup^{\infty}_{k=0}{\sum^k}
@@ -44,7 +44,7 @@ Im Zusammenhang mit der Sprache sind Zeichenketten bedeutungslos!
 \paragraph{Beispiele}
 
 \begin{align*}
-\Sigma &= \{1\} & \Sigma^\ast &= \{\epsilon, 1,11,111,1111,...\} \\
+\Sigma &= \{1\} & \Sigma^\ast &= \{\varepsilon, 1,11,111,1111,...\} \\
 L &\subset \Sigma^\ast  & L &=\{1,11,1111,11111111,....\} = \{w \in \Sigma^\ast| |w|=2^k, k \in \mathbb{N}\}
 \end{align*}
 
@@ -56,10 +56,10 @@ Verkettung: $L_1$, $L_2$ Sprachen
 	L_1 L_2 = \{w_1 w_2 | w_1 \in L_1 \land w_2 \in L_2 \}
 \]
 
-$LL = L^2$, $L^n = L^{n-1}L, L^0 = \{\epsilon\}$
+$LL = L^2$, $L^n = L^{n-1}L, L^0 = \{\varepsilon\}$
 
 
-Für Wortkombinationen wird ein NEA benötigt, welcher die Automaten der einzelnen Sprachen mit $\epsilon$-Übergängen verknüpft.
+Für Wortkombinationen wird ein NEA benötigt, welcher die Automaten der einzelnen Sprachen mit $\varepsilon$-Übergängen verknüpft.
 
 \[
 	L^\ast = L^0 \cup L^1 \cup ... = \bigcup^\infty_{k=0}{L^k}
@@ -139,7 +139,7 @@ Zustände sind charakterisiert durch "was noch kommen darf"
 
 \begin{align*}
 W & L(w) \text{ (was kann angehängt werden)}\\
-\epsilon & L(\epsilon) = \{v \in \Sigma^\ast | \epsilon v \in L \} &= L \\
+\varepsilon & L(\varepsilon) = \{v \in \Sigma^\ast | \varepsilon v \in L \} &= L \\
 a & L(a) = \{v \in \Sigma^\ast | a v \in L \} &= \{ v \in \Sigma^\ast | |w|_a ungerade \}\\
 b & L(b) = \{v \in \Sigma^\ast | b v \in L \} &= L\\
   & L(aa) &= L \\
@@ -151,8 +151,8 @@ b & L(b) = \{v \in \Sigma^\ast | b v \in L \} &= L\\
 \begin{enumerate}
 	\item $L(w)$ ausrechnen: verschiedene $L(w)$ geben $Q$ 
 	\item $\sigma: L(w) \rightarrow^a L(wa)$
-	\item $q_0: L(\epsilon) = L$
-	\item $L(w)$ ist Akzeptierzustand wenn $\epsilon \in L(w)$
+	\item $q_0: L(\varepsilon) = L$
+	\item $L(w)$ ist Akzeptierzustand wenn $\varepsilon \in L(w)$
 \end{enumerate}
 
 \subsection{Gleichheit von Automatensprachen feststellen}
@@ -193,7 +193,7 @@ $L=\{0^n1^n|n \geq 0 \}$ ist nicht regulär. Widerspruchsbeweis:
 \end{enumerate}
 
 \paragraph{Beispiel}
-$\{w \in \epsilon^\ast | w \text{ ist ein Palindrom }\}$ nicht regulär, $\epsilon = \{0,1\}$
+$\{w \in \varepsilon^\ast | w \text{ ist ein Palindrom }\}$ nicht regulär, $\varepsilon = \{0,1\}$
 
 \begin{enumerate}
 	\item	Annahme: $L$ regulär
@@ -207,10 +207,10 @@ $\{w \in \epsilon^\ast | w \text{ ist ein Palindrom }\}$ nicht regulär, $\epsil
 \subsection{Nicht deterministische Automaten}
 
 \[
- \lambda : Q \times (\Sigma \cup \{\epsilon\}) \rightarrow P(Q)
+ \lambda : Q \times (\Sigma \cup \{\varepsilon\}) \rightarrow P(Q)
 \]
 
-$\cup \{\epsilon\}$ ermöglich Sprünge; es können "Pfeile" weggelassen werden und es können mehrere Pfeile für den gleichen Buchstaben geben.
+$\cup \{\varepsilon\}$ ermöglich Sprünge; es können "Pfeile" weggelassen werden und es können mehrere Pfeile für den gleichen Buchstaben geben.
 
 \paragraph{Beispiel} $L=\{ w \in \sigma^\ast | w \text{ beginnt und endet mit } 0\}$
 
@@ -221,9 +221,9 @@ $w$ wird akzeptiert $\equiv \exists$  es gibt einen Weg, der auf einen Akzeptier
 Aus so einem Graphen lässt sich immer einen endlichen Automaten konstruieren.
 
 
-\subsection{$\text{NEA}_\epsilon \to \text{DEA}$}
+\subsection{$\text{NEA}_\varepsilon \to \text{DEA}$}
 
-$\epsilon$-Übergänge sind "gratis", d.h. verbrauchen kein Zeichen.
+$\varepsilon$-Übergänge sind "gratis", d.h. verbrauchen kein Zeichen.
 
 
 -> Alle Zustände / Kombinationen von Zuständen aufzeichnen
@@ -250,7 +250,7 @@ Bausteine: primitiven reg. Ausrücke (Wörter mit höchstens 1 Zeichen)
 	a & steht für $L(a) = \{ a \}$ \\
 	. & steht für $L(.) = \{a,b,c\} = \{ w \ in \Sigma ^ \ast | |w| = 1 \}$\\
 	$[0-9]$ & steht für $L([0-9])=\{w \in \{ 0, 1, ..., 9\}| |w| = 1 \}$\\
-	$\epsilon$ (leeres Wort) & steht für $L("") = \{ \epsilon \}$
+	$\varepsilon$ (leeres Wort) & steht für $L("") = \{ \varepsilon \}$
 \end{tabular}
 
 \subsubsection{Reguläre Operationen}
@@ -273,7 +273,7 @@ Umwandlung in einen Automat mit Startzustand $S$, einem Übergang $r$ und einen 
 Vorgehen, um einen Automaten in einen Ausdruck umzuwandeln:
 
 \begin{itemize}
-	\item Startzustand un Endzustand mittels $\epsilon$-Übergängen hinzufügen.
+	\item Startzustand un Endzustand mittels $\varepsilon$-Übergängen hinzufügen.
 	\item Zwischenzustände entfernen.
 \end{itemize}
 
@@ -287,7 +287,7 @@ Kann im Gegensatz zu Regulärer Sprache z.B. $\{0^n1^n | n \geq 0 \}$ darstellen
 Mit Klammern können wir:
 
 \begin{enumerate}
-	\item $\epsilon$ \hfill $A \to \epsilon$
+	\item $\varepsilon$ \hfill $A \to \varepsilon$
 	\item Verketten \hfill $A \to AA$
 	\item «Einklammern» \hfill $A \to (A)$
 \end{enumerate}
@@ -321,7 +321,7 @@ Definition: $L$ kontextfrei $\Leftrightarrow L(G)  L$, $G$ kontextfreie Grammati
 
 \paragraph{Beispiel I} \hfill \\
 \[
-	(\{A\}, \{(,)\}, \{A \to \epsilon, A \to AA, A \to (A)\}, A)
+	(\{A\}, \{(,)\}, \{A \to \varepsilon, A \to AA, A \to (A)\}, A)
 \]
 
 \paragraph{Beispiel: II}
@@ -346,8 +346,95 @@ $A \xRightarrow{\ast} w$
 
 $w$ ensteht aus $A$ durch Regelanwendung. $w$ ist aus $A$ ableitbar.
 
-\subsection{Stachoautomaten}
+\subsection{Voraussagbare Effizienz / Chomsky-Normalform}
+Schlechte Ansätze:
+\begin{itemize}
+	\item Start auf der rechten Seite: Beliebig oft Schachteln.
+	\item $\varepsilon$-Regeln: $A \to \varepsilon$ (Arbeit verrichten)
+	\item Unit Rules: $A \to B$ (Endlosschleifen)
+	\item $A \to u_1,u_2,...,u_n$ (Wortexplosionen)
+\end{itemize}
 
+Kochbuch guter Ansatz:
+
+\begin{itemize}
+	\item Startvariable nicht rechts
+	\item $S \to \varepsilon$ als einzige $\varepsilon$-Regel
+	\item Keine Unit Rules
+	\item Nur Regeln der Form $A \to BC$ und $A \to a$
+\end{itemize}
+
+Forderung: $G$ heisst $m$ Chomsky-Normalform (CNF). In der CNF Braucht die Konstruktion von Wörtern $2 \cdot |w| -1$ Schritte.
+
+ \subsection{Effizienter Parse-Algorithmus finden}
+ 
+%TODO: Pseudo Algorythmus aus Script übernehmen
+
+\subsection{Stackautomaten}
+
+\begin{align*}
+P &= (Q, \Sigma, \Gamma, \delta, q_0, F) \\
+\Gamma & \\
+\delta&: Q \times \Sigma_\varepsilon \times \Gamma_\varepsilon \to P(Q \times \Gamma) \\
+\Sigma_\varepsilon &= \Sigma \cup \{ \varepsilon \}
+\end{align*}
+
+\subsubsection{Grammatik $\rightarrow$ Stackautomat}
+
+\paragraph{Beispiel}
+
+\[
+L = \{ 0^n 1^n | n \geq 0 \}
+\]
+
+Grammatik:
+\begin{align*}
+S &\rightarrow 0S1 \\
+  &\rightarrow \varepsilon
+\end{align*}
+
+Idee: Zwischenresultate der Produktionsregeln auf den Stack. Dies führt zur Konstruktion eines Stackautomaten, welcher immer vorzu matched, ob der Input der Sprache entspricht.
+
+
+
+Am Anfang: $\varepsilon, \varepsilon \to \$; \varepsilon, \varepsilon \to S$
+
+
+Von und zum Zentralen Punkt: 
+\begin{align*}
+A \to BC & \varepsilon, A \to c, \varepsilon, \varepsilon \to B \\
+A \to a & \varepsilon, A \to a \\
+S \to \varepsilon & \varepsilon, S \to \varepsilon \\
+a, a \to \varepsilon & \text{(für jedes Terminalsymbol)} \\
+\text{Am Ende:} & \varepsilon, \$ \to \varepsilon 
+\end{align*}
+
+\subsubsection{Stackautomat $\to$ Grammatik}
+
+\begin{itemize}
+	 \item Nur 1 Akzeptierzustand
+	 \item Stack leer beim Akzeptieren (wegschmeissen von allem verbliebenem.
+	 \item Bei jedem Übergang genau 1 Zeichen auf den Stack oder 1 Zeichen vom Stack (ersetzen von Zeichen nur über Umweg $\varepsilon$ möglich)
+\end{itemize}
+
+$w$ akzeptiert: es gibt einen Pfad durch den Stackautomaten von $q_0$ zu $q'_a$, Stack leer.
+
+\begin{tabular}{l l l}
+	Startvariable: & $S$&$=A_{q_0 q'_a}$ \\
+	& $A_{pq}$&$= $ Wörter, die $p$ in $q$ überführen mit leerem Stack.
+\end{tabular}
+
+\paragraph{Spezialfälle}
+
+Stack kommt irgendwann zwischendurch bei $r$ auf 0 $\Rightarrow A_{pq} \to A_{pr} A_{rq}$
+
+Ein Wort vom Anfang des Stacks wird am Ende erst wieder abgebaut: $\Rightarrow A_{pq} \to a A_{rs} b$
+
+\subsection{Backup-Naur-Form}
+
+Standard für die Formulierung von Grammatiken.
+
+Extended BNF: Wiederholungen, Kommentare etc.
 
 \section{Turing-maschinen}
 

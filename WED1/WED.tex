@@ -79,4 +79,37 @@ Prüfungsunterlagen: 1A4 Einseitig Handgeschrieben
 	\item Size
 \end{itemize}
 
+\section{CSS}
+
+\subsection{Spezifizität}
+
+Je höher die Zahl, umso höher die Priorität;
+
+\begin{enumerate}
+	\item *
+	\item h1
+	\item ul li
+	\item a::after
+	\item p:first-child
+	\item a:not([href])
+	\item ul.nav [href]
+	\item \#author
+	\item \#editor p
+	\item \emph{style=''...''}
+	\item !important
+\end{enumerate}
+
+\subsection{Grösseneinheiten}
+
+\begin{description}
+	\item[px] \hfill \\
+		Basis-Einheit vom Browser, virtuelle Grösse
+	\item[em] \hfill \\
+		Relativ zur Parent-Schriftgrösse
+	\item[rem] \hfill \\
+		Relativ zum Root-Element
+	\item[vw / vh] \hfill \\
+		\%-Grösse vom Viewport
+\end{description}
+
 \end{document}

@@ -1,5 +1,9 @@
 \input{../template.tex}
 
+\usepackage{tikz}
+\usetikzlibrary{shapes,backgrounds}
+
+
 \title{Zusammenfassung ExEv}
 \author{Fabian Hauser}
  
@@ -242,7 +246,7 @@ b_1 &= \frac{\sum^{n}_{i=1}{x_iy_i-n\bar{x}\bar{y}}}{\sum^n_{i=1}{x^2_i - n\bar{
 \subsubsection{Abhängigkeiten}
 Formale Abhängigkeit: liegt eine zahlenmässig begründete Abhängigkeit zwischen den Merkmalen vor?
 
-Sachliche Abhängigkeit: ist der Wert des einen Merkmals ursächlich (kausal) fpr den Wert des anderen Merkmals? (Schwierig, braucht Fachkundige)
+Sachliche Abhängigkeit: ist der Wert des einen Merkmals ursächlich (kausal) für den Wert des anderen Merkmals? (Schwierig, braucht Fachkundige)
 
 \subsubsection{Kovarianz}
 Streuung von Merkmalsträger
@@ -259,7 +263,8 @@ Für Experimente, deren Ergebnisse vom Zufall abhängen.
 P &=  \frac{\text{Gutfälle}}{\text{Mögliche Fälle}} & \text{Wahrscheinlichkeit}\\
 A \cap B &= \\
 A \cup B &= \\
-A^c &= 1 - c & \text{Gegenereignis (komplementär)}
+A^c &= 1 - c & \text{Gegenereignis (komplementär)} \\
+P(A|B) &= \frac{P(A \cap B)}{P(B)}
 \end{align*}
 
 \subsection{Symbole}
@@ -269,12 +274,93 @@ A^c &= 1 - c & \text{Gegenereignis (komplementär)}
 		Ergebnismenge, welche sicher zutrifft. Bzw: Mögliche Zielwerte eines Experiments
 	\item[$\emptyset$] \hfill \\
 		Menge der unmöglichen Ereignisse.
+	\item{$\sigma$-Algebra}
+		Ereignisraum
 	\item[Teilmengen] \hfill \\
 		Ereignisse, welche Einfluss auf die Ergebnismenge $\Omega$ haben.
 	\item[$\mathcal{A}$] \hfill \\
 		Ganzes System, dessen Elemente Teilmengen von $\Omega$ sind.
 	\item[P] \hfill \\
-		Wahrscheinlichkeitsmass; Ordner Ereignis A eine Wahrscheinlichkeit P(A) zu.
+		Wahrscheinlichkeitsmass; Ordnet Ereignis A eine Wahrscheinlichkeit P(A) zu.
 \end{description}
+
+\subsubsection{Laplace-Experiment}
+
+Beim Laplace-Experiment sind alle möglichen ergenisse gleich wahrscheinlich, d.h. $\mathrm{P}(A) = \frac{1}{n}$
+
+
+
+\subsection{Kombinatorik}
+
+\[
+	\binom{n}{k} = \frac{n!}{k!(n-k)!}
+\]
+
+mit
+\begin{description}
+	\item[$n$] Anzahl aller Fälle
+	\item[$k$] Anzahl zutreffender Fälle
+\end{description}
+
+\subsubsection{Geordnete Proben}
+
+Permutation: Anordnung in einer Bestimmten Reihenfolge
+
+Zahl der Permutationen ohne Wiederholungen: $n!$ bzw. mit Wiederholungen: $n^k$
+
+\subsubsection{Ungeordnete Proben}
+
+Für $n$ Elemente und $k$ zu vergebene Sitze.
+\[
+	K_k(n) = \binom{n + k -1}{k}
+\]
+
+\subsection{Rechnen}
+
+\subsubsection{Bedingte Wahrscheinlichkeit}
+
+Schnittmenge von zwei Vorkommnissen (Wahrscheinlichkeit für B nach Eintritt von A)
+
+\[
+	P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]
+\[
+	P(B) \cdot P(A|B) = P(A \cap B)
+\]
+\[
+	P(B) \cdot P(A|B) = P(A) \cdot P(B|A)
+\]
+\[
+	P(B) = \frac{P(A) \cdot P(B | A)}{P(A|B)}
+\]
+
+Stochastisch unabhängig, wenn:
+\[
+	P(A \cap B) = P(A) \cdot P(B)
+\]
+
+
+\subsection{Zufallsvariable}
+
+Funktion zur Abbildung der Elemente der Ergebnismenge eines Zufallsexperiments auf reele Zahlen.
+
+\subsubsection{Diskrete Verteilungsdichtefunktion}
+
+$x_i$ Eintrittswahscheinlichkeit P eines Events $i$
+
+Wahrscheinlichkeit eines Events $x_i$ bis $x_n$
+
+\[
+P(x_i \leq X \leq x_n) = \sum^n_{j=i}{f(x_j)}
+\]
+
+\subsubsection{Kontinuierliche Verteilungsdichtefunktion}
+
+Fläche entspricht 1, Summe aller Wahrscheinlichkeiten
+
+\[
+P(a \leq X \leq b) = \int\limits^b_a{f(x)\mathrm{d}x}
+\]
+
 
 \end{document}

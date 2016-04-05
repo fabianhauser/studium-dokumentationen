@@ -117,8 +117,36 @@ Separiert in \emph{Autonomous Systems} (AS). Zwischen den AS wird mit \emph{Exte
 
 Innerhalb der AS wird ein Interior routing Protocol (IGP) verwendet.
 
-\subsubsection{Split Horizon}:
+\subsection{Distance Vector}
+
+Es wird jeweils die ganze Tabelle zurückgegeben.
+
+\subsubsection{Split Horizon}
 
 Der Router, welcher die Route mitgeteilt hat, wird nicht "wiederholt".
 
+\subsection{Link State Protocol}
+
+\begin{enumerate}
+	\item Ermittlung Nachbarn mit Hello Protocol
+	\item Kenntnisse Nachbarn weitergeben. (\emph{Link State Advertisments})
+	\item \emph{Shortest Path First} nach kenntniss von ganzer Datenbank
+\end{enumerate}
+
+Es wir jeweils nur ein Single Entry durchgegeben, mit dem Inhalt (RouterID, NeighborID, Cost)
+
+\subsubsection{Shortest Path Algorithm}
+
+\begin{enumerate}
+\item %TODO	
+\end{enumerate}
+
+
+\subsection{OSPF}
+
+\begin{itemize}
+	\item Secure (Signing)
+	\item Classless
+	\item Max 50 client per Area
+\end{itemize}
 \end{document}

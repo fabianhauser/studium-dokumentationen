@@ -131,12 +131,44 @@ gemäss RFC 2119:
 	\item Verbot mit Erlaubnisvorbehalt (Whitelist, opt in)
 	\item Vier-Augen-Prinzip
 \end{itemize}
-\end{document}
 
 
 \subsection{Kryptografie}
 
 %TODO: Formeln Wahrscheinlichkeit
 
+
+\subsection{Symmetric Encryption}
+
+\subsubsection{Stream Cipher Principle}
+Via PRNG wird Cipher Stream generiert und via XOR mit dem Plaintext verknüpft.
+
+\subsubsection{Block Cipher}
+Key und Plaintext wird mit einer Encipher-Funktion verarbeitet. Dies wird jeweils auf Blöcke angewendet.
+
+\paragraph{Counter Mode}
+Eine Block Cipher generiert für den gleichen Input immer den gleichen Output.
+z.T. wird auch ein Counter als Input genommen.
+
+\paragraph{Feedback Mode (CFB)}
+
+Aus dem Initialization Vector und dem Key wird ein BCE-Code generiert, und mit dem XOR kombiniert; dies wird danach wiederum als XOR eingesetzt.
+
+
+Block Ciphers können auch als generatoren für Bit-Streams verwendet werden, dann ist die Rede von:
+\begin{itemize}
+	\item Counter Mode
+	\item Feedback Mode
+\end{itemize}
+
+\subsubsection{PRNG}
+Linear Feedback Shift Register (LFSR)
+Oft werden mehrere Schieberegister kombiniert, theoretisch wiederholt sich so ein Code nach dem KGV von je $2^n-1$ der Grösse.
+
+\subsection{Informationsgehalt}
+
+\[
+	I(x) = \mathrm{ld} \left(Zeichenanzahl \right)
+\]
 
 \end{document}

@@ -1,4 +1,5 @@
-\input{../template.tex}
+%\input{../template.tex}
+\input{/home/fabian/studium/dokumentationen/template.tex}
 
 \title{Zusammenfassung An2I}
 \author{Fabian Hauser}
@@ -333,15 +334,77 @@ Sei $f(x)$ eine Funktion und $F(x)$ eine Stammfunktion von $f$.
  ist $\Leftrightarrow$ zu:
  
  \[
-	 f(x) = \frac{\mathrm{d}}{\mathrm{d}x}(F(x + \text{ const}))
+	 f(x) = \frac{\mathrm{d}}{\mathrm{d}x}(F(x))
  \]
 
 
-$+\text{const}$ bedeutet: Die Zahlen $a + const = b + const$ sind $a$ und $b$ in der gleichen Restklasse (d.h. es gibt einen Modulo-Konstante.)
+$+\text{const}$ bedeutet: Die Zahlen $a + \text{const} = b + \text{const}$ sind $a$ und $b$ in der gleichen Restklasse (d.h. es gibt einen Modulo-Konstante). Durch das $+\text{const}$ wird aus der Funktion eine Menge.
 
+\subsubsection{Hauptsatz}
 
+(Üblicherweise wird das Integral via dem $\lim$es und diesen beiden Hauptsätzen definiert.)
+
+\begin{align*}
+	f(x) = \frac{\mathrm{d}}{\mathrm{d}x} (F(x) + const) &= \frac{\mathrm{d}}{\mathrm{d}x} \int f(x)\mathrm{d}x \\
+	F(x) + const &= \int F'(x) \mathrm{d}x
+\end{align*}
+
+\subsubsection{Wichtige Integralregeln}
+
+\paragraph{$1/x$}
+\[
+	\int \frac{1}{x}\mathrm{d}x = \ln(|x|) + \mathrm{const}
+\]
+
+\paragraph{$f'(x) / f(x)$}
+\[
+	\int \frac{f'(x)}{f(x)}\mathrm{d}x = \ln(\left| f(x) \right|) + const
+\]
+
+\paragraph{$\ln(x)$}
+\[
+	\int \ln(u) \mathrm{ d}u = u \cdot \ln(u) - u + \text{const}
+\]
+
+\paragraph{$f'(ax+b)$}
+\[
+	\int f'(as + b) \mathrm{d}s = \frac{1}{a}f(as + b) + \mathrm{const}
+\]
+
+Siehe auch Seite 54 im Skript oben, sowie häufige Pattern auf Seite 57.
+
+\paragraph{Die Partielle Integration}
+hilft, wenn eines der beiden folgenden Integrale einfacher gelöst werden kann:
+
+\[
+	\int{f(x) g(x)} \mathrm{d}x = F(x) g(x) + \mathrm{const} - \int{F(x) g'(x) }\mathrm{d}x
+\]
+
+Wird oft verwendet, wenn $g(x)$ ein Polynom ist, da damit der Polynomgrad gesenkt werden kann.
 
 \subsection{Bestimmtes Integral}
 
+Ist eine Zahl, welche auch für eine andere Stammfunktion gleich bleib. Der Integrand muss zwingend im Intervall $[x_1; x_2]$ definiert sein, sonst existiert dafür (vermutlich) kein bestimmtes Integral.
+\[
+\int\limits^{x_1}_{x_2} = F(x_1) - F(x_2) = (F(x_1) + c) - (F(x_2) + c) = \hat{F}(x_1) - \hat{F}(x_2)
+\]
+Was in der Praxis folgendermassen aufgeschrieben wird:
+\[
+	\int\limits^2_1 x \mathrm{ d}x = \left[ \frac{1}{2} x^2 \right]^2_{x=1} = \frac{1}{2} 2^2 - \frac{1}{2} 1^2
+\]
+
+Das tauschen der Integrationsgrenzen, ändert das Vorzeichen des Terms. Wenn $x_1$ und $x_2$ gleich sind, ist die Integration gleich $0$. Es ist möglich, Integrale von Teilbereichen zu berechnen und die Ergebnisse aufsummieren.
+
+\paragraph{Definition über den Grenzwert}
+
+\[
+ \int\limits^1_0{f(t)\mathrm{d}t} = \lim_{n \to \infty} \sum^n_{i=1}{f(\frac{i}{n}) \cdot \frac{1}{n}}
+\]
+
+\subsubsection{Integralfunktion}
+
+\begin{align*}
+	\int\limits^{x}_{1} \frac{1}{t} \mathrm{d}t &= \left[ \ln(|t|) \right]^x_1 = \ln(x) - \ln(1) & \text{für } x > 0
+\end{align*}
 
 \end{document}
