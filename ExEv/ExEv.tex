@@ -195,7 +195,9 @@ Zu erheben sind insbesondere:
 		n = \sum^v_{i=1}{h_j}
 	\]
 	\item[$v$]		Verschiedene Merkmalswerte
-	\item[$h_j$] absolute Häufigkeit der Merkmalsträger mit Merkmalswert $x_i$ \hfill \\
+	\item[$h_j$] absolute Häufigkeit der Merkmalsträger mit Merkmalswert $x_i$
+	\item[$h_i$] Häufigkeit eines Merkmals in einer Klasse
+	\hfill \\
 		% Aber wie kommt man drauf?
 		\[
 			\sum^{m}_{j=1}{h_j} = n
@@ -342,7 +344,9 @@ Stochastisch unabhängig, wenn:
 
 \subsection{Zufallsvariable}
 
-Funktion zur Abbildung der Elemente der Ergebnismenge eines Zufallsexperiments auf reele Zahlen.
+Werte, die abhängig vom Zufall sind.
+
+Realisation einer Zufallsvariable: ''pattern''
 
 \subsubsection{Diskrete Verteilungsdichtefunktion}
 
@@ -362,5 +366,97 @@ Fläche entspricht 1, Summe aller Wahrscheinlichkeiten
 P(a \leq X \leq b) = \int\limits^b_a{f(x)\mathrm{d}x}
 \]
 
+\subsubsection{Wahscheinlichkeitsfunktion oder Verteilungs- / Summenfunktion}
+
+\paragraph{Wahrscheinlichkeitsfunktion} Wahrscheinlichkeit von den einzelnen Teilbereichen, total $1$.
+
+\paragraph{Verteilungs- oder Summenfunktion} Aufsummierung der Wahrscheinlichkeitsfunktion bis zum aktuellen Funktion.
+
+
+\subsection{Verteilungen}
+\subsubsection{Negativ exponentielle}
+$f(t) = \lambda e^{-\lambda t}$
+
+\subsubsection{Binominal}
+
+\[
+	f(x) = P(X=x) = \binom{n}{x}p^x(1-p)^{n-x}
+\]
+
+\subsubsection{Poisonverteilung I}
+
+Wie wahrscheinlich ist das Auftreten in einem Intervall?
+
+Wahrscheinlichkeitsfunktion:
+\[
+	f(x) = P(X=x) = \frac{\mu^x}{x!}e^{-\mu}
+\]
+
+Erwartungswert=Varianz
+\[
+	E(X) = Var(X) = \mu
+\]
+
+\subsubsection{Rechteckverteilung}
+
+\[
+	E(X) = Median = \frac{a+b}2
+\]
+
+Varianz:
+\[
+	Var(X) = \frac{1}{12}(b-a)^2
+\]
+
+
+\subsubsection{Dreieckverteilung I}
+
+Definition:
+
+%TODO: Picture img/dreieckverteilung
+
+\subsubsection{Weilbull-Verteilung I}
+
+
+%TODO: Picture img/weillbull
+
+\[
+	\Gamma(x) = \int^\infty_0 t^{x-1} e^{-1}
+\]
+\[
+\Gamma(n+1) = n!
+\]
+für jede natürliche Zahl $n$
+
+\subsubsection{Normalverteilung}
+
+%TODO: Picture img/normalverteilung.png
+
+\section{More}
+
+\subsubsection{Beispiel Wahrscheinlichkeit}
+	
+	Spiel, 1Fr. Einsatz, nach jedem Münzwurf 0.5 chance auf 1Fr.
+	\\
+	
+	\begin{tabular}{| c c c | c | r |}
+		\hline
+		1 & 1 & 1 & $1/8$ & $2 \cdot 1/8$ \\
+		\hline
+		1 & 1 & 0 & & \\
+		1 & 0 & 1 & $3/8$ & $1 \cdot 1/8$ \\
+		1 & 0 & 0 &  &  \\
+		\hline
+		0 & 1 & 1 &  & \\
+		0 & 1 & 0 & $3/8$ & $0 \cdot 3/8$ \\
+		0 & 0 & 1 &  &  \\
+		\hline
+		0 & 0 & 0 & $1/8$ & $-1 \cdot 1/8$ \\
+		\hline
+		
+	\end{tabular}
+	\\
+	
+	E(x) = 0.5 Fr.
 
 \end{document}

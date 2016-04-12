@@ -133,7 +133,7 @@ gemäss RFC 2119:
 \end{itemize}
 
 
-\subsection{Kryptografie}
+\section{Kryptografie}
 
 %TODO: Formeln Wahrscheinlichkeit
 
@@ -171,4 +171,24 @@ Oft werden mehrere Schieberegister kombiniert, theoretisch wiederholt sich so ei
 	I(x) = \mathrm{ld} \left(Zeichenanzahl \right)
 \]
 
+\subsection{RSA Algorithm}
+
+\begin{enumerate}
+\item Zwei Primzahlen wählen und Produkt bilden: $n = p \cdot q$
+\item $\phi(n) = (p - 1) \cdot (q - 1)$
+\item Beliebige Zahl $a$ zwischen 0 und $ \phi(n)$ wählen. Zahl a muss teilerfremd zu $\phi(n)$ sein. $(ggt(\phi(n), a) = 1)$ am besten eignen sich Primzahlen für a. (privater Schlüssel)
+\item Multiplikative Inverse b berechnen (öffentlicher Schlüssel)$(a \cdot b = 1 \mod \phi (n))$ Euklidischer Algorithmus
+a) Öffentlicher Schlüssel: $n$ und $b$
+b) Privater Schlüssel: $a$
+\end{enumerate}
+
+\paragraph{Verschlüsseln}
+\begin{enumerate}
+	\item $\text{Wert}_\text{verschlüsselt} = (\text{Wert}_\text{unverschlüsselt}) b \cdot \mod (n)$
+\end{enumerate}
+
+\paragraph{Entschlüsseln}
+\begin{enumerate}
+	\item $\text{Wert}_\text{unverschlüsselt} = (\text{Wert}_\text{verschlüsselt}) a \cdot \mod(n)$
+\end{enumerate}
 \end{document}

@@ -149,4 +149,84 @@ Es wir jeweils nur ein Single Entry durchgegeben, mit dem Inhalt (RouterID, Neig
 	\item Classless
 	\item Max 50 client per Area
 \end{itemize}
+
+
+\subsection{BGP}
+
+Border Gateway Protocoll
+
+\subsubsection{Autonomouse Systems}
+
+1-65535 unique
+private AS pool from 64512 to 65535 (similar to private IPs)
+RFC 6793 introduces 32 bit AS numbers
+(y.x), each x/y = 16bits
+BGP4, is used to interconnect AS
+
+\subsubsection{Connection}
+
+\paragraph{Home} \hfill \\
+
+Access to ISP; default route
+
+\paragraph{Multi-Homed} \hfill \\
+Connected with muliple AS Provider or multiple Links to the same Provider
+
+\begin{description}
+	\item[Transit AS] \hfill \\
+	Can be used for transit traffic by other providers
+	\item[Nontransit AS] \hfill \\
+	Advertises only its own routes to both providers
+\end{description}
+
+\subsubsection{Protocol}
+
+The less hops the better
+
+Communicates in which AS are which IP Ranges.
+
+BGP4 supports CIDR and route aggregation
+
+BGP is a Path vector protocol
+
+TCP Port 179
+
+\begin{enumerate}
+	\item OPEN MESSAGE: Exchange AS, router ID, holdtime, Capability negotiation
+	\item NOTIFICATION (Example: ''peer in wrong AS'')
+	\item KEEPALIVE when no updates
+	\item UPDATE (incremental)
+\end{enumerate}
+
+
+Netze werden explizit Withdrwan
+
+Attributes: Pfadlängen, Kosten etc.
+
+Prefixes: Neuer Weg etc.
+
+\subsubsection{Types}
+(\emph{Nicht} zum auswendig-lernen)
+\begin{description}
+	\item[1: ORIGIN]
+	\item[2: AS-PATH]
+	\item[3: NEXT-HOP]
+	\item[4: MED] Multi Exit Discriminator (Reccomandations Traffic ports)
+	\item[5: LOCAL\_PREF] Local preferences
+\end{description}
+
+\includegraphics[width=0.5\linewidth]{img/bgp_process_model.png}
+
+\subsubsection{Peering vs. Transit}
+
+Transit: Kostet, quasi default gateway wo via peering nicht abgedeckt.
+Peering: Lokale Provider verknüpfen. (üblicherweise Gratis).
+
+\paragraph{Peering}
+Multi-lateral Peering: Zentrale Einheit welche das Peering organisiert (Zentraler Swtich)
+
+Bi-lateral Peering: Direktes Peering mit anderem Provider.
+
+
+
 \end{document}

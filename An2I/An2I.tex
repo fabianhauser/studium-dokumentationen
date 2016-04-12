@@ -395,16 +395,60 @@ Was in der Praxis folgendermassen aufgeschrieben wird:
 
 Das tauschen der Integrationsgrenzen, ändert das Vorzeichen des Terms. Wenn $x_1$ und $x_2$ gleich sind, ist die Integration gleich $0$. Es ist möglich, Integrale von Teilbereichen zu berechnen und die Ergebnisse aufsummieren.
 
-\paragraph{Definition über den Grenzwert}
+\subsubsection{Definition über den Grenzwert}
 
 \[
  \int\limits^1_0{f(t)\mathrm{d}t} = \lim_{n \to \infty} \sum^n_{i=1}{f(\frac{i}{n}) \cdot \frac{1}{n}}
 \]
+
+\subsubsection{Definition über den Flächeninhalt}
+
+Fläche unter einem Graphen vom zwischen $[a;b] \in x$-Achse berechnen.
+
+Das Vorgehen der Näherung: Unterteilung der Fläche in kleine Rechtecke $A_1$ bis $A_n$, was zu einer ähnlichen Funktion $f^\ast(x)$ führt.
+
+
+\[
+A_K = \text{Länge} \cdot \text{Höhe} = \frac{b-a}{n} \cdot f\left(a + k \cdot \frac{b-a}{n}\right)
+\]
+
+\[
+A^\ast = \sum^n_{k=1}{A_k} = \frac{b-a}{n} \cdot \sum^n_{k=1}{ f\left(a + k \cdot \frac{b-a}{n}\right)}
+\]
+
+Natürlich wird immer genauer, je kleiner die Rechtecke $A_k$ bzw. grösser das $n$ gewählt wird; am besten unendlich klein.
+
+\[
+A = \int\limits^b_a{f(x) \mathrm{d}x} = \lim_{n \to \infty} \left( \frac{b-a}{n} \cdot \sum^n_{k=1}{ f\left(a + k \cdot \frac{b-a}{n}\right)} \right)
+\]
+
+Dies funktioniert auch bei einigen unstetigen Funktionen, es sind allerdings auch Funktionen möglich, welche nicht funktionieren.
+
+Wichtig: Negative Flächen werden von positiven Flächen abgezogen.
 
 \subsubsection{Integralfunktion}
 
 \begin{align*}
 	\int\limits^{x}_{1} \frac{1}{t} \mathrm{d}t &= \left[ \ln(|t|) \right]^x_1 = \ln(x) - \ln(1) & \text{für } x > 0
 \end{align*}
+
+\subsubsection{Geschwindigkeiten}
+
+\begin{description}
+	\item[$v(t)$] Momentangeschwindigkeit 
+	\[
+		\overline{v} = \frac{s}{T_2- T_1} = \frac{\int\limits^{T_2}_{T_1}{v(t)\mathrm{d}t}}{T_2 - T_1}
+	\]
+	\item[$\overline{v}$] Durchschnittsgeschwindigkeit
+\end{description}
+
+Gesucht: Mittlerer Funktionswert im Intervall $[a;b]$, $f(t)$
+\[
+	\overline{f} = \frac{1}{b-a} \underbrace{\int\limits^b_a{f(x)\mathrm{d}x}}_I
+\]
+
+Rechteck mit gleicher Fläche $I = (b-a) \cdot \overline{f}$
+
+
 
 \end{document}

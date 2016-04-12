@@ -6,6 +6,8 @@
 \begin{document}
 \maketitle
 
+$asdf^{HSR}$
+
 \section{Varia}
 Unterrichtszeiten: 12:00-12:30, 13:45-14:15, 14:20-14:50
 
@@ -176,6 +178,13 @@ $L$ regulär $\Rightarrow \exists N$ Punping Length, mit jedes Word $w \in L$ mi
 	\item $|y| > 0$
 	\item $|xy| \leq N$
 	\item $xy^kz \in L, \forall k \in \mathbb{N}$
+\end{enumerate}
+
+\paragraph{Beispiel}
+
+\begin{enumerate}
+	\item Annahme: $L = \{ 1^P | p \text{ prim}\}$ ist regulär
+	\item ...
 \end{enumerate}
 
 \paragraph{Anwendung}
@@ -419,8 +428,8 @@ a, a \to \varepsilon & \text{(für jedes Terminalsymbol)} \\
 
 $w$ akzeptiert: es gibt einen Pfad durch den Stackautomaten von $q_0$ zu $q'_a$, Stack leer.
 
-\begin{tabular}{l l l}
-	Startvariable: & $S$&$=A_{q_0 q'_a}$ \\
+\begin{tabular}{l l l r}
+	Startvariable: & $S$&$=A_{q_0 q'_a}$ &Startzustand zu Endzustand \\
 	& $A_{pq}$&$= $ Wörter, die $p$ in $q$ überführen mit leerem Stack.
 \end{tabular}
 
@@ -430,12 +439,148 @@ Stack kommt irgendwann zwischendurch bei $r$ auf 0 $\Rightarrow A_{pq} \to A_{pr
 
 Ein Wort vom Anfang des Stacks wird am Ende erst wieder abgebaut: $\Rightarrow A_{pq} \to a A_{rs} b$
 
-\subsection{Backup-Naur-Form}
+\subsection{Backus-Naur-Form}
 
 Standard für die Formulierung von Grammatiken.
 
 Extended BNF: Wiederholungen, Kommentare etc.
 
+
+\subsection{Pumping Lemma für kontextfreie Sprachen}
+
+$L$ kontextfrei $\Rightarrow \exists N \text{ pumping length }$
+
+N muss genug gross sein, damit eine Variable zweimal verwendet wird.
+
+\[
+	w \ in L \text{ mit } |w| \geq N \Rightarrow w = uvxyz
+\]
+mit:
+\begin{itemize}
+	\item $|vy| > 0$
+	\item $|vxy | \leq N$
+	\item $uv^ky^kz \in L$, $\forall k$
+\end{itemize}
+
+Warum? $L$ kontextfrei: $\Rightarrow$ $G$ Grammatik von $L$, in CNF.
+
+%TODO: GRAFIK 1
+
+
+
+\paragraph{Beispiel}
+
+\[
+	\{a^n b^n c^n | n \geq 0 \} \text{ nicht kontextfrei?}
+\]
+
+\begin{enumerate}
+	\item Annahme: $L$ kontextfrei
+	\item $\exists N$
+	\item $w = a^N b^N c^N$, mit $|w| = 3N$
+	\item Unterteilung: %TODO: GRAFIK 2
+	\item Anzahl von 2 Buchstaben wird erhöht, aber nicht vom dritten!
+		$\rightarrow$ Pumpen führt aus L hinaus! Darum:
+	\item $\Rightarrow L$ ist nicht kontextfrei
+\end{enumerate}
+
 \section{Turing-maschinen}
+
+Speicher: Beidseitig unendlich langes Band aus Speicherzellen
+
+Universelle Turing Maschine: Programm + Daten auf einem Band.
+
+Endlicher Automat der ''entscheidet'' was mit dem Inhalt an der Speicherzelle geschehen soll und Bewegung um 1 Feld Links oder 1 Feld Rechts.
+
+%TODO: Insert G1
+
+Läuft selbständig!
+
+\paragraph{Definition}
+\begin{description}
+	\item[Q] Zustände Endlicher Automat
+	\item[$\Sigma$]alphabet
+	\item [$\Gamma$] Initialisierung des Bandes mit speziellem Blank ␣
+	\item[$\delta$] Zustandsübergänge
+	\item[$q_0$] Startzustand
+	\item[$q_{accept}$] Alles Bestens, finito
+	\item[$q_{reject}$] Nicht gut, finito
+\end{description}
+
+\[
+	M=(Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})
+\]
+\[
+	\delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{L, R\}
+\]
+
+%TODO: Insert G2
+
+\begin{enumerate}
+	\item $w$ auf das Band schreiben
+	\item Lesekopf auf erstes Zeichen
+	\item $\rightarrow q_{accept} \Rightarrow w$ wird akzeptiert
+\end{enumerate}
+
+Sprache: $L(M) = \{w \in \Sigma^\ast | M \text{ endet in } q_{accept} \}$
+von M \emph{erkannte Sprache}.
+
+\paragraph{Beispiel} eines Automaten mit ungerader Länge.
+
+\[
+	L = \left\{w \in \Sigma^\ast \left| \left|w\right| ungerade \right.\right\}
+\]
+
+%TODO: Insert G3
+
+Diese Turing-Maschine hält auf jeden Input an; dies wird als Entscheider bezeichnet.
+
+\paragraph{Beispiel 2} Korrekte Klammerausdrücke
+
+\[
+	\Sigma = \{(,)\}, L = \{w \in \Sigma^\ast | w \text{ korrekte Klammerausdrücke } \}
+\]
+
+z.B: (()())
+
+
+\subsection{Varianten von Turing-Maschinen}
+
+\subsubsection{Mehrspurige TM}
+
+Maschine liest immer mehrere Spuren von $\Gamma$-Werten aus; eigentlich also eine gewöhnliche TM mit Bandalphabet $\Gamma^3$, einfach etwas Schneller da sie 3 Wörter pro Durchlauf verarbeitet.
+
+\subsection{Mehrere Bänder}
+
+Schneller, da zwei unabhängige ''Leseköpfe''. Das lässt sich mit zwei zusätzliche Bändern, welche den aktuellen Ort markiert, auf einer klassischen Turing-Maschine realisieren.
+
+\subsection{Es reicht: $\Gamma = \{ 0, 1, \text{␣}\}$ für jeden Computer}
+
+Wie: längere Zeichen werden durch Binärstrings codiert. Mit (endlich) vielen Zuständen kann so ein beliebiger Computer Simuliert werden.
+
+
+\subsection{Begriffe}
+
+\begin{description}
+	\item[Turing erkennbar] \hfill \\
+		$L$ heisst Turing erkennbar $\equiv \exists TM$ M mit $L(M)=L$
+	\item[Turing entscheidbar] \hfill \\
+		$L$ heisst Turing entscheidbar $\equiv \exists TM$ M, Enscheider $L(M)=L$ zum Enscheiden, ob es eine Endlosschleife hat oder nicht.
+	\item[Aufzähler] \hfill \\
+		TM mit Drucker, schreibt alle Wörter der Sprache auf den Drucker. \\
+		eine Sprache $L$ ist aufzählbar $\equiv$ $L$ ist Turing erkennbar.
+\end{description}
+
+%TODO: Insert G5
+
+\subsection{Berechnung}
+
+TM $M$
+
+\begin{enumerate}
+	\item Input auf Band
+	\item TM laufen lassen
+	\item Resultat ist auf Band
+\end{enumearte}
 
 \end{document}
