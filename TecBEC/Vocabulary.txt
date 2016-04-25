@@ -16,7 +16,7 @@ Annual Leave
 |                       |                         |             |
 |                       |                         |             |
 |                       |                         |             |
-|                       |                         |             |
+| Emerging economies    |                         |             |
 | Aspiration            |                         |             |
 | Brief / Specification | Kurze / Beschreibung    |             |
 | annual leave          | jährlicher Urlaub       |             |

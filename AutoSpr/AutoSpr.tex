@@ -6,8 +6,6 @@
 \begin{document}
 \maketitle
 
-$asdf^{HSR}$
-
 \section{Varia}
 Unterrichtszeiten: 12:00-12:30, 13:45-14:15, 14:20-14:50
 
@@ -486,7 +484,7 @@ Warum? $L$ kontextfrei: $\Rightarrow$ $G$ Grammatik von $L$, in CNF.
 
 \section{Turing-maschinen}
 
-Speicher: Beidseitig unendlich langes Band aus Speicherzellen
+Speicher: Beidseitig unendlich langes Band aus Speicherzellen. Prefilled with Blanks: ␣.
 
 Universelle Turing Maschine: Programm + Daten auf einem Band.
 
@@ -581,6 +579,351 @@ TM $M$
 	\item Input auf Band
 	\item TM laufen lassen
 	\item Resultat ist auf Band
-\end{enumearte}
+\end{enumerate}
+
+\subsubsection{Die Mächtigkeit von Mengen}
+
+kann mit einer bijektiven Abbildung von Menge $A$ auf $B$ gezählt werden $\Rightarrow |A| =  |B|$
+
+Beispiel: Hotel unendlich hat Zimmernummern $\mathbb{N}$
+
+
+$\mathbb{N}$ ist abzählbar unendlich. D.h.: Die Objekte können ''durchnummeriert'' werden. 
+
+Vereinigungen mit abzählbar unendlichen Mengen sind abzählbar unendlich ($A \cup B =$ abzählbar unendlich), $A \times B$ auch.
+
+\begin{description}
+	\item[$\mathbb{N}$] abz. unendlich
+	\item[$\mathbb{Z}$] abz. unendlich.
+	
+	\item[$\mathbb{Q}$] abz. unendlich
+	\item[$\mathbb{R}$] überabzählbar.
+\end{description}
+
+
+\subsubsection{Beweis, $\mathbb{R}$ überabzählbar}
+
+Annahme: $\mathbb{R}$ ist abz. $\infty \Rightarrow$ List der reelen Zahlen, kann also mit Zahlen aus $\mathbb{N}$ in Verbindung gebracht werden:
+
+\begin{tabular}{l l}
+	0 & 0.|1|11111111.... \\
+	1 & 0.3|1|415926535... \\
+	2 & 0.23|4|56721234... \\
+	3 & 0.1414|2|135... \\
+	... & ...
+\end{tabular}
+
+Es gibt eine Zahl, die in der Liste nicht vorkommt: $0.22253...$ immer was anderes als bei den Zahlen oben an der jeweiligen steht.
+
+Widerspruch: es gibt eine Zahl, welche nicht in der Liste steht.
+
+
+\subsubsection{Was kann man berechnen?}
+
+Berechenbar sind alle Sprachen, welche Turing-erkennbar sind.
+
+Antwort durch zählen: leider gibt es unendlich viele. 
+
+$\Sigma^\ast$ abzählbar, genau wie Turing Maschinen, Programme etc, da diese abgezählt werden können.
+
+Die Sprachen $P(\Sigma^\ast)$ ist überabzählbar. Es gibt viel mehr Sprachen als es Programme gibt.
+
+\subsection{Entscheidbarkeit}
+
+Sprache $L$ heisst entscheidbar, wenn: $\exists$ Turing Maschine $M$ mit $L(M) = L$; $M$ ist Entscheidbar: $M$ hält auf jeden Input.
+
+Sprache $L$ heisst Turing erkennbar, wenn: $\exists$ TM $M$ mit $L(M)=L$
+
+\[
+	\text{Entscheidbar} \subset \text{Turing erkennbar} \subset P(\Sigma^\ast)
+\]
+
+
+\subsubsection{Beispiele}
+	
+	
+\paragraph{Hilbertsches Problem}
+\[
+	x^n + y^n = z^n
+\]
+
+ist nicht für alle $n$ eindeutig entscheidbar.
+
+Die Gleichheit von zwei Ausdrücke sind ein nicht entscheidbares Problem.
+
+ \paragraph{Beispiel 2}
+ 
+ $L$ regulär $\Rightarrow$ $L$ entscheidbar
+ 
+ $L$ entscheidbar $\Leftrightarrow \exists$ Entscheider $M$, $L(M) = L$
+ 
+ $L$ regulär $\Leftrightarrow \exists$ DEA $A$ mit $L(A) = L$
+ 
+ Entscheider für $L$: Simuliere DEA $A$ auf Input-Wort mit TM $M$.
+ 
+ Falls $A$ akzeptiert $\rightarrow q_\text{accept}$, falls $A$ nicht akzeptiert $\rightarrow q_\text{reject}$
+ 
+ $\Rightarrow L$ ist daher entscheidbar!
+ 
+ \paragraph{Beispiel 3}
+ 
+ $L$ kontextfrei $\xRightarrow ? L$ entscheidbar
+ 
+ $L$ kontextfrei $\Rightarrow \exists G$ Grammatik $L(G)=L$
+ 
+ Entscheider für $L$: CYK-Algorithmus implementieren, entscheidet in $O(|w|^3)$, ob $w \in L = K(G)$
+ 
+\subsubsection{Übersetzung in Sprachproblem}
+ \paragraph{Entscheidungsprobleme für Reguläre Sprachen}
+ 
+ <$B,w$> (Codierung von $B$ und $w$)
+ 
+ \begin{tabular}{l l}
+ Frage: &Kann man mit einem Programm entscheiden, ob ein DEA $B$ ein Wort $w$ akzeptiert. \\
+ Input: &$B$, $w$ \\ 
+ Output: &ja|nein: $w \in L(B)$ \\
+Sprachproblem: & $ A_\text{DEA} = \{ <B,w> | B \text{ ein DEA, } w \in \Sigma^\ast, w \in L(B) \} $ \\
+& Dieses Problem nennt man Akzeptanzproblem für DEAs. \\
+Antwort: &Programm mit Input $<B,w>$, \\
+&1. $B$ als regulärer Ausruck codieren \\
+&2. verwende regex-Engine, die enscheidet, ob $w \in L(B)$
+\end{tabular}
+
+\paragraph{DEA II} \hfill \\
+
+
+\begin{tabular}{l l}
+Frage: &Kann man mit einem Programm entscheiden, ob für einen beliebigen DEA $B$ gilt: \\
+& $L(B) = \emptyset$? \\
+Input:&$B$, ein DEA \\
+Putput: &ja|nein \\
+Sprachproblem: & Ist $E_\text{DEA} = \{<B>|B \text{ ein DEA, } L(B) = \emptyset$ entscheidbar? \\
+Antwort: & 1. Startzustand Markieren \\
+		&2. von markierten Zuständen aus erreichbare Zustände markieren. \\
+		&   (wiederhole, solange neue Markierungen) \\
+		& Akzeptier-Zustand markiert? ja $\rightarrow q_\text{reject}$, $\rightarrow q_\text{accept}$ \\
+Antwort 2:	&1. Minimalautomaten herstellen: $B =^? \rightarrow O\leftrightarrow$ \\
+			& ja $\rightarrow q_\text{accept}$, nein $\rightarrow q_\text{reject}$
+\end{tabular}
+
+\paragraph{Zwei Reguläre Sprachen gleich?} \hfill \\
+
+\begin{tabular}{l l}
+	Frage: &Kann man mit einem Programm entscheiden, ob zwei reguläre Sprachen gleich sind? \\
+	Input: &$B_1, B_2$ DEAs \\
+	Output: &ja|nein: $L(B_1) = L(B_2)$ \\
+	Sprachenproblem: &ist $EQ_\text{DEA} = \{<B_1, B_2> | B_i \text{ sind DEAs}, L(B_1) = L(B_2)\}$ \\
+		& entscheidbar? Geichheitsproblem für DEAs. \\
+	Antwort: &1. Minimalautomat($B_1$) $=^?$ Minimalautomat($B_2$): \\
+			 &   ja $\rightarrow q_\text{accept}$, nein $\rightarrow q_\text{reject}$ \\
+	Antwort 2: & $(L(B_1) \cup L(B_2)) \setminus (L(B_1) \cap L(B_2)) = L(B_1) \bigtriangleup L(B_2) =^? \emptyset$ \\
+	&1.	Endlicher Automat für: $L(B_1) \bigtriangleup L(B_2)$ mit Mengenoperationen \\
+	&2.	Entscheider für $E_\text{DEA}$ darauf anwenden.	
+\end{tabular} 
+ 
+$\bigtriangleup$ = Symmetrische Differenz
+
+\subsubsection{Entscheidungsprobleme für CFLs}
+
+%Siehe script 6.1.3
+
+Antwort: 1. $G$ in CNF $\rightarrow G'$ \\
+		 2. CYK-Alg. auf $G'$ und $w$ anwenden $\rightarrow$ ja|nein
+
+
+
+\subsubsection{Bisher untersuchte Probleme entscheidbar?}
+
+\begin{tabu}{l X}
+	Frage: &Kann man mit einem Programm entscheiden, ob eine TM $M$ ein Wort $w$ akzeptiert \\
+	Input: &$M, w$\\
+	Output: &ja / nein\\
+	Sprachproblem: & $A_\text{TM}=\{\left<M,w\right>  M \text{ eine TM, } w \in \Sigma^\ast, w \in L(M) \}$ entscheidbar?\\
+	Antwort: &nein!
+\end{tabu}
+
+Beweis: (Widerspruchsbeweis)
+
+\begin{enumerate}
+	\item	Annahme: Es gibt ein Enscheider $H$ für $A_\text{TM}$
+	\item	$H(M,w) = \begin{cases}
+			q_\text{accept}\\
+			q_\text{reject}
+		\end{cases}$
+		m akzeptiert w / m verwirtf w \\
+	\item	Neue TM D: auf Input $<M>$ \begin{enumerate}
+			\item $H$ auf $\left<M,\left<M\right>\right>$ laufen lassen
+			\item $q_\text{accept} : \rightarrow q_\text{reject}$
+			\item $q_\text{reject} : \rightarrow q_\text{accept}$
+		\end{enumerate}
+		Analyse von D: \[
+			D(\left<M\right>) \begin{cases}
+			q_\text{accept} & M \text{ verwirft } <M>\\
+			q_\text{reject} & M \text{ akzeptiert } <M>\\
+			\end{cases}
+		\]
+	\item Wähle: $M=D$: \[
+			\begin{cases}
+			q_\text{accept}, D \text{ akzeptiert } <D> & D \text{ verwirft } <D>\\
+			q_\text{reject}, D \text{ verwirft } <D> & D \text{ akzeptiert } <D>\\
+			\end{cases}
+		\]
+	\item	$\Rightarrow$ Annahme falsch $\Rightarrow \nexists H \Rightarrow A_\text{TM}$ nicht entscheidbar!
+\end{enumerate}
+
+
+\subsubsection{Spezielles Halteproblem: nicht entscheidbar.}
+
+\begin{tabu}{l X}
+	Frage: &... ob eine TM $M$ auf $\varepsilon$ anhält?\\
+	Input: & $M$\\
+	Output: & ja|nein\\
+	Sprachproblem: &$ \{\left<M\right>|M \text{ TM, } M \text{ hält auf Input } \varepsilon$\\
+	Antwort: &Ist dies entscheidbar? Nein!
+\end{tabu}
+
+\begin{enumerate}
+	\item Annahme: es gibt einen Entscheider $H$ für Halte TM. \[
+		H(M) \begin{cases}
+			q_\text{accept} & M \text{ hält.}\\
+			q_\text{reject} & M \text{ hält nicht.}
+		\end{cases}
+	\]
+	\item	Input: $\left<M,w\right> \longrightarrow$ neues Programm $M'$: \begin{enumerate}
+			\item lasse $M$ auf $N$ laufen
+			\item $q_\text{accept}: \rightarrow q_\text{accept}$
+			\item $q_\text{reject}:$ Endlosschleife
+		\end{enumerate}
+		$M'$ hält, wenn $H(M') = q_\text{accept}$
+	
+\end{enumerate}
+
+$\Rightarrow \left<M,w\right> \longrightarrow M' \xrightarrow{ H } \begin{cases}
+	q_\text{accept} & \text{ entscheidet } A_\text{TM}\\
+	q_\text{reject} & \text{ entscheidet } A_\text{TM}\\
+\end{cases}$ \Lightning
+
+Widerspruch!
+
+
+\subsubsection{Satz von Rice}
+
+Beispiel: $HALT_{TM} = \{ \left<M,w\right> | M \text{ eine TM, } M \text{ hält auf Input } w \}$
+
+nicht entscheidbar.
+
+Beweis:
+
+\begin{tabu}{l X}
+	$A_{TM}$ &$\xrightarrow{f} HALT_{TM}$ \\
+	$\left<M,w\right>$ &$\rightarrow \left<S,w\right>$ \\
+	$M$ akzeptiert $w$ & $\rightarrow$ $S$ hält auf Input $w$: \begin{enumerate}
+		\item $M$ auf Input $w$ laufen lassen
+		\item $q_\text{accept} \rightarrow q_\text{accept}$
+		\item $q_\text{reject} \rightarrow$ Endlosschleife
+		\end{enumerate}
+\end{tabu}
+
+Abbildung $A_{TM} \leq HALT_{TM}$ (''leichter zu entscheiden als'')
+
+$w \in A \Rightarrow f(w) \in B$. $f$ ist berechenbar: $\Rightarrow f: A \leq B$
+
+\begin{tabu}{l l X}
+Folgerung: &$B$ entscheidbar&$\Rightarrow A$ entscheidbar \\
+	&$A$ nicht entscheidbar &$\Rightarrow B$ nicht enscheidbar
+\end{tabu}
+
+Somit wurde der Schwierigkeitsgrad des Problems ermittelt.
+
+\subsubsection{Beispiel 2}
+
+Das Komplementär (Gegenteil) eines Problems ist auch nicht entscheidbar, wenn das Problem nicht entscheidbar ist.
+
+Beweis durch Reduktion $A_{TM} \leq \overline{E}_{TM}$:
+
+\begin{tabu}{l X}
+	$\left<M,w\right> $ &$\rightarrow \left<S\right>$ \\
+	$M$ akzeptiert $w$ &$\rightarrow L(S) $ nicht leer. \\
+	& Konkret: $L(S) = \{w\}$ \\
+	& $S$ auf Input $u$ abbilden: \begin{enumerate}
+		\item $u \neq w \rightarrow q_\text{reject}$
+		\item $M$ auf $w$ laufen lassen
+		\item $q_\text{accept} \rightarrow q_\text{accept}$
+		\item sonst $ \rightarrow q_\text{reject}$
+		\end{enumerate}
+\end{tabu}
+
+$P$ eine Eigenschaft von Turing erkennbarer Sprache.
+\[
+P_{TM} = \{\left<M\right> | L(M) \text{ hat eigenschaft } P \}
+\]
+\[
+\overline{P}_{TM} = \{\left<M\right> | L(M) \text{ hat eigenschaft } P \text{ nicht.}\}
+\]
+
+\begin{tabu}{l X}
+	Reduktion: &$A_{TM} \leq \overline{P}_{TM}$; Annahme: $\emptyset$ hat Eigenschaft.\\
+	& $\left<M,w\right> \rightarrow \left<S\right>$ \\
+	& $M$ akzeptiert $w$ $\rightarrow$ $L(S)$ hat Eigenschaft $P$ nicht. Konkret: $L(S) = L_1$ (hat $P$ nicht).\\
+	& $S$ auf Input $u$ \begin{enumerate}
+		\item $M_1$ auf $u$ laufen lassen: $q_\text{reject} \rightarrow q_\text{reject}$
+		\item $M$ auf $w$ laufen lassen
+		\item $q_\text{accept} \rightarrow q_\text{accept}$
+		\item sonst $\rightarrow q_\text{reject}$
+	\end{enumerate}
+	Was heisst: $L(S) = L_1$ hat $P$ nicht; $L(S) = \emptyset$ hat $P$.
+\end{tabu}
+
+
+\subsubsection{Beispiel 3: Regulär?}
+
+
+\begin{tabu}{l X}
+
+Problem: &$REGULAR_{TM} = \{ \left<M\right> | \text{ Meine TM, } L(M) \text{ regulär }\}$ nicht entscheidbar. \\
+& $\overline{REGULAR}_{TM} = \{\left<M\right> | \text{ Meine TM, } L(M) \text{ nicht regulär} \}$ nicht entscheidbar.	\\
+Reduktion: & $A_{TM} \leq \overline{REUGLAR}_{TM}$ \\
+	&$\left<M,w\right> \rightarrow \left<S\right>$ \\
+	$M$ akzeptiert w &$\rightarrow L(S)$ nicht regulär, konkret: $L(S) = \{0^n1^n | n \geq 0 \}$ \\
+$w \not\in L(M)$ &$\rightarrow$, konkret: $L(S) = \emptyset$ \\
+& $S$ auf Input $u$: \begin{enumerate}
+		\item $u$ nicht $0^n1^n \rightarrow q_\text{reject}$
+		\item $M$ auf $w$ laufen lassen
+		\item $q_\text{accept} \rightarrow q_\text{accept}$
+		\item sonst $\rightarrow q_\text{reject}$
+	\end{enumerate}
+\end{tabu}
+
+\subsection{Satz von Rice?}
+
+$P$ Eigenschaft, zwei Beispiele: $L_0 \rightarrow$ hat $P$, $L_1 \rightarrow$ hat $P$ nicht. Dies nennt man nicht triviale Eigenschaften (nicht offensichtlich).
+
+Dann ist $P_{TM}$ nicht entscheidbar!
+
+\paragraph{Beispiel:}
+
+\begin{enumerate}
+	\item $P=E$; ''Sprache ist leer''\\
+		$L_0 = \emptyset$ \\
+		$L_1 = \{w\}$ \\
+		Weil Turing erkennbar $\Rightarrow E_{TM}$ nicht entscheidbar (Rice)
+	\item $P = CFL$ ''Sprache ist kontextfrei'' \\
+		$L_0 = \emptyset$ \\
+		$L_1 = \{0^n1^n2^n | n \geq 0\}$ \\
+		Turing erkennbar $\xRightarrow{\text{Rice}} CFL_{TM}$ nicht entscheidbar.
+	\item $P = ALL$; ''Sprache ist $\Sigma^\ast$'' \\
+		$L_0 = \emptyset$ \\
+		$L_1 = \Sigma^\ast$ \\
+		Turing erkennbar $\xRightarrow{\text{Rice}} ALL_{TM}$ nicht erkennbar.
+	\item $P = PRIMES$; ''Sprache besteht genau aus den Primzahlen'' \\
+		$L_0 = \{ 42 \}$ \\
+		$L_1 = \{Primzahlen\} = \mathbb{P}$ \\
+		Turing erkennbar $\xRightarrow{\text{Rice}} PRIMES_{TM}$ nicht entscheidbar.
+	\item $P = SPEZ$; ''Sprache erfüllt eine Spezifikation'' \\
+		$L_0 = \emptyset$ \\
+		$L_1 = \{...\text{korrekte Sourcecodes}...\}$ \\
+		Turing erkennbar $xRightarrow{\text{Rice}} SPEZ_{TM}$ nicht entscheidbar (kann Compiler nicht automatisch auf Validität testen.
+\end{enumerate}
+
 
 \end{document}

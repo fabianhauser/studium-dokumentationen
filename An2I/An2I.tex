@@ -449,6 +449,88 @@ Gesucht: Mittlerer Funktionswert im Intervall $[a;b]$, $f(t)$
 
 Rechteck mit gleicher Fläche $I = (b-a) \cdot \overline{f}$
 
+\section{Fourierreihe}
+
+Fourierreihen approximieren eine Funktion im Gesamtbild, nicht um einen einzelnen Punkt wie bei der Taylorriehe.
+
+\subsubsection{Vergleich Taylor- und Fourrierreihe}
+
+\begin{tabu} to \linewidth {l | X X }
+& \textbf{Taylor} & \textbf{Fourier} \hfill \\
+\hline
+
+\textbf{Input} & Funktion (oft ableitbar), Entwicklungspunkt $x_0$ & Periodische Funktionen \\
+\hline
+
+\textbf{Approxim.} & Polynome $a_0  + a_1 (x-x_0) + a_2(x-x_0)^2 + ...$ & Sin- und cos-Terme $a_0+a_1 \cos(x)+b_1 \sin(X) + a_2 \cos(2x) + b_2 \sin(2x) + ...$ \\
+\hline
+
+\textbf{Bausteine} &$(x-x_0)^k; k \in \mathbb{N}$ &$\sin(kx), \cos(kx), k \in \mathbb{N}$ \\
+\hline
+
+\textbf{Approximations-verhalten} & vom Entwicklungspunkt (''innen'') weg (nach ''aussen''); wird immer besser & global (von groben zu feinen Strukturen). keine exakte Berechnung einzelner Punkte \\
+\hline
+
+\textbf{Berechnung der Koef.} & durch Ableiten am Entwicklungspunkt. & versuch, die Fehlerfläche zu minimieren \\ % Lüge! Ziel: Quadratische Fsläch minimieren.
+\lasthline
+\end{tabu}
+
+\paragraph{Vorgehen:}
+Integrieren von $|s_\text{ourier-approx-funktion}(x)-f_\text{approx}(x)|$, wobei $f_\text{approx}$ so gewählt wird, dass die Fläche möglichst klein wird.% Lüge! siehe Tabelle
+
+Um u.a. den Betrag weg zu kriegen, wird 
+\[
+	\int\limits^1_{-1}(s(x)-f(x))^2 \mathrm{d}x
+\]
 
 
+\subsubsection{Beispiel annäherung Rechtechsignal}
+
+%TODO: Bild aus Script Seite 11
+
+Der Sinus und die Rechtechfunktion haben eine kompatible Periode, was das Berechnen vereinfacht.
+
+Ziel: Finden einer $f(t) = A \cdot \sin(\underbracket{\omega}_{\mathclap{\text{Grundkreisfequenz}}} t)$, so das sie $s(t)$ möglichst gut approximieren.
+
+\begin{enumerate}
+	\item Bestimme $\omega$ so, dass $f(t)$ diesselbe primitive Periode wie $s(t)$ hat.
+	\item Bestimme $A$ so, dass die quadratische Fehlerfläche möglichst klein wird:
+		\[
+			\int\limits^1_{-1}(s(t) - f(t))^2 \mathrm{d}t
+		\]
+		Ziel: Die mittlere Abweichung von $s(t)-f(t)= $ Mittelwert des Integrals $= \frac{\text{Integral}}{2}$ soll möglichst klein werden 
+\end{enumerate}
+
+\paragraph{Umestzung}
+
+\begin{enumerate}
+	\item	$f(t) = A \cdot \sin(\pi t)$ daraus folgt:
+	\[
+		Q = \int^1_{-1}\left(s\left(t\right) - A \cdot \sin\left(\pi t\right)\right)^2 \mathrm{d}t
+	\]
+	\item	Bestimme $Q$ in Abhängigkeit von $A$:
+	\[
+		Q = \int\limits{1}{-1} s^2(t) \mathrm{d}t -2A \int\limits{1}{-1} \cdot s(t) \sin(\pi t) \mathrm{d}t + A^2 \int\limits{1}{-1} \sin^2(\pi t) \mathrm{d}t = \text{Zahl} - 2A \cdot \text{Zahl} + A^2 \cdot 1 
+	\]
+	\[
+		Q = 2 - 2A\left( \int\limits^0_{-1} -1 \sin(\pi t) \mathrm{d}t + \int\limits^1_0 1 \sin(\pi t) \mathrm{d}t\right) + A^2 = 2 -2A \frac{1 + 1 - (-1 -1)}{\pi} + A^2 = A^2 - \frac{8}{\pi} A + 2
+	\]
+	\item Minimum von Q finden. 
+	\[
+		\frac{\mathrm{d}Q}{\mathrm{d}A} = 2A - \frac{8}\pi = 0 \Leftrightarrow A = \frac{4}\pi
+	\]
+\end{enumerate}
+\----
+%TODO: Nächste Liste noch nötig
+\begin{enumerate}
+	\item	$a_0$ Fourierriehe der Ordnung 0: $\int\limits^0_{-1}(-1-a_0)^2 \mathrm{d}t + \int\limits^1_0(1-a_0)^2 \mathrm{d}t = (-1-a_0)^2 + (1-a_0)^2$
+	
+	
+\end{enumerate}
+
+
+\subsubsection{Periodizität}
+
+Primitive Periode: Nächste Wiederholung bei $2\pi$ Abstand
+Periode: Wiederholung bei $2x\pi$ Abstand
 \end{document}

@@ -191,4 +191,67 @@ b) Privater Schlüssel: $a$
 \begin{enumerate}
 	\item $\text{Wert}_\text{unverschlüsselt} = (\text{Wert}_\text{verschlüsselt}) a \cdot \mod(n)$
 \end{enumerate}
+
+\subsection{Hashes}
+
+Werden zur Integritätsprüfung (Modification Detection Code, MDC) und Authentizitätsprüfung (Message Authentication Code (MAC) und Digitale Signatur)
+
+Da der Hash üblicherweise kleiner Als die gehashte Nachricht ist, muss es zwangsläufig Doppelbelegungen geben.
+
+Hashes sind Einwegfunktionen.
+
+\subsubsection{Anforderung an crypto-hashfunctions}
+
+One Way (easy, other way hard)
+Collision-resistant (hard to find two arbitrary hashes)
+Preimage resistant 
+
+\subsubsection{SHA / MD Verfahren}
+
+%TODO: Insert screenshots of presentation 18.04.2016 / page ~20
+
+
+MD4- und MD5 gelten als gebrochen. SHA-1 nicht mehr empfohlen.
+
+Requirement:
+\begin{itemize}
+	\item Fast, but not too fast
+	\item Avalanche effect (Small change in input, bit change in hash)
+	\item Collisions (two files with same hash may not be forged artificially)
+\end{itemize}
+
+\subsection{PKI}
+
+Eine Drittperson verifiziert die Echtheit eines Schlüssels.
+
+\subsubsection{TLS Extensions}
+
+\paragraph{Root CA}
+\begin{itemize}
+	\item	Root CA
+	\item	certificateSign
+	\item	crlSign
+\end{itemize}
+
+\paragraph{Intermediate CA}
+\begin{itemize}
+	\item	Intermediate CA
+	\item	certificateSign
+	\item	crlSign
+\end{itemize}
+
+\paragraph{End Certificate}
+\begin{itemize}
+	\item	End Entity Certificates
+	\item	digitalSignature
+	\item	nonRepudiation
+	\item	keyEncipherment
+	\item	dataEncipherment
+	\item	keyAgreement
+\end{itemize}
+
+\subsubsection{Web of Trust}
+
+Freunde unterschreiben sich Schlüssel gegenseitig.
+
 \end{document}

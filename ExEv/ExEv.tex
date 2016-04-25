@@ -344,13 +344,15 @@ Stochastisch unabhängig, wenn:
 
 \subsection{Zufallsvariable}
 
+Funktion, welche einen Zufälligen wert innerhalb eines bestimmten Intervalls zuweisst.
+
 Werte, die abhängig vom Zufall sind.
 
 Realisation einer Zufallsvariable: ''pattern''
 
 \subsubsection{Diskrete Verteilungsdichtefunktion}
 
-$x_i$ Eintrittswahscheinlichkeit P eines Events $i$
+$x_i$ Eintrittswahrscheinlichkeit P eines Events $i$
 
 Wahrscheinlichkeit eines Events $x_i$ bis $x_n$
 
@@ -366,7 +368,7 @@ Fläche entspricht 1, Summe aller Wahrscheinlichkeiten
 P(a \leq X \leq b) = \int\limits^b_a{f(x)\mathrm{d}x}
 \]
 
-\subsubsection{Wahscheinlichkeitsfunktion oder Verteilungs- / Summenfunktion}
+\subsubsection{Wahrscheinlichkeitsfunktion oder Verteilungs- / Summenfunktion}
 
 \paragraph{Wahrscheinlichkeitsfunktion} Wahrscheinlichkeit von den einzelnen Teilbereichen, total $1$.
 
@@ -379,6 +381,8 @@ $f(t) = \lambda e^{-\lambda t}$
 
 \subsubsection{Binominal}
 
+Wenn ein gewisses Ereignis mit Wahrscheinlichkeit $p$ auftritt, ist die Wahrscheinlichkeit von bis und mit $x$ von total $n$ Fällen:
+
 \[
 	f(x) = P(X=x) = \binom{n}{x}p^x(1-p)^{n-x}
 \]
@@ -386,6 +390,8 @@ $f(t) = \lambda e^{-\lambda t}$
 \subsubsection{Poisonverteilung I}
 
 Wie wahrscheinlich ist das Auftreten in einem Intervall?
+
+(Diese Fragestellung erlaubt auch eine unendliche Anzahl Ereignisse.)
 
 Wahrscheinlichkeitsfunktion:
 \[
@@ -396,6 +402,8 @@ Erwartungswert=Varianz
 \[
 	E(X) = Var(X) = \mu
 \]
+
+$\mu$ ist in diesem Zusammenhang der Durchschnitt der eingetretenen Fälle.
 
 \subsubsection{Rechteckverteilung}
 
@@ -431,6 +439,38 @@ für jede natürliche Zahl $n$
 \subsubsection{Normalverteilung}
 
 %TODO: Picture img/normalverteilung.png
+
+
+\[
+	z = \frac{x - \mu}{\sigma}
+\]
+
+
+\subsection{Erzeugen von Zufallszahlen}
+
+Zufallszahlen sind nur statistisch gesehen Zufällig (wirklicher Zufall spielt keine Rolle). Es muss also reproduzierbar sein.
+
+Also eigentlich nur Pseudo-Zufallszahlen.
+
+\paragraph{Beispiel RNG: Linear Congruential generators:}
+\[
+	x_i = (a x_{i-1} + c) \mod m
+\]
+mit dem Ausgabewert $u_i = \frac{x_i}{m}$
+
+\section{Theorie vs. Praxis}
+
+\subsubsection{Stichproben}
+
+Zwei Probleme: Genauigkeit Stichproben/Datenerhebung und Auswertung/Analyse der erhobenen Daten.
+
+\begin{itemize}
+	\item	Einfache Zufallsstichprobe
+	\item	Geschichtete Stichprobe
+	\item	Klumpen Stichprobe
+	\item	Systematische Stichprobe
+	\item	Mehrstufige Stichprobe
+\end{itemize}
 
 \section{More}
 

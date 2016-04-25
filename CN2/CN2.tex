@@ -228,5 +228,102 @@ Multi-lateral Peering: Zentrale Einheit welche das Peering organisiert (Zentrale
 Bi-lateral Peering: Direktes Peering mit anderem Provider.
 
 
+\section{IP}
+
+\subsection{Multicast}
+
+Single Sender, Multiple Receivers. Darum UDP mit entsprechenden Nachteilen.
+
+
+Multicast Adressen sind zwischen 224.0.0.0 bis 239.255.255.255 bei IPv4.
+
+Link Local Adrdres: 224.0.0.0 - 224.0.0.255
+Global Address Range: 224.0.1.0-238.255.255.255
+Administratively Scoped Address Range (Privately used addresses within private multicast domain): 239.0.0.0 - 239.255.255.255
+
+\subsubsection{MAC Layer 2}
+	Es gibt auch Multicast-Mac-Adressen 00-00-00 bis 01-00-5e-7f-ff-ff.
+	Es werden jeweils die letzten 23-Bit der IP an 01-00-5e- angegängt.
+
+\subsubsection{IGMP}
+
+Internet Group Management Protocol
+
+Local LAN to Router, wished group memberships.
+
+IGMPv3: Join / Leave to/from explicit sources and broadcast addresses.
+
+\subsubsection{Wide Area}
+üblicherweise PIM
+
+\subsubsection{Multicast Distribution Trees}
+
+Zur verhinderung von Loops.
+
+Shortest Path oder Source Tree bei einfachen Trees
+-> More memory n(S x G) but optimal paths,
+
+
+Shared Tree (PIM-Sparse Mode): PIM Rendezvous Point 
+-> Less memory n(G) but no optimal paths. The client can afterwards directly connect tothe source
+
+\emph{(source,dest)}
+Z.B: \emph{(*, 224.20.10.1)}
+
+\subsubsection{RPF}
+
+Reverse Path Forwarding
+
+Es wird von der Destionation zur Source einen Weg aufgebaut.
+
+Jeweils zum nächsten Weg zur Source (im Zweifelsfall der ''letzte'' hop richting root.
+
+Dense Mode: ''Push'' model: traffic floded through net. Can be unsubscribed with ''Prune''
+
+Sprase-mode: ''Pull'' model: traffic on subscription. Client connects to Randevouz Point, The Source also Informed the RP.
+
+\subsubsection{IGMPv1-v2 Snooping}
+
+Nur Geräte, welche sich per IGMP subscriben, kriegen vom Switch die entsprechenden Daten.
+
+
+
+\section{Wide Area Networks WAN}
+
+Vernetzung von Standorten.
+
+\subsection{Leased line}
+
+Private line between endpoints.
+
+N x 64kbps
+
+Provider does usually Multiplexing.
+
+\paragraph{E1 Framing I.}
+
+32 Slots * 8bits
+
+Möglich, mehre Kanäle per Multiplexing zusammenzuhängen.
+
+\subsection{Synchronous Digital Hierarchy (SDH)}
+
+''Container'' gehen immer im Ring herum. Es gibt eine Spur in jeweils jede Richtung.
+
+Ein Add/Drop Multiplexer Fügt/Entfernt Pakete aus dem Container.
+
+\subsection{PPP}
+
+Point to Point Protocoll
+
+(Sehr ähnlich Ethernet)
+
+Regelt IP Vergabe, Link Configuration, Quality, Error Detection
+
+Authentication, Callback, compression, Multilink
+
+
+
+
 
 \end{document}
