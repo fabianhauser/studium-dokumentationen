@@ -117,4 +117,52 @@ Je höher die Zahl, umso höher die Priorität;
 \subsection{Primitive Types}
 It's shit.
 
+
+\subsection{DOM}
+
+Kommentare etc. sind auch im DOM-Tree.
+
+
+\subsubsection{jQuery equivalences}
+
+\begin{minted}{javascript}
+document.querySelectorAll-> NodeList
+document.querySelector(selector) - fetches the first matching node only -> Node
+document.getElementById(idname) - fetches a single node by its ID name -> Node
+document.getElementsByClassName(class) - fetches nodes with a specific class name-> NodeList
+
+.createElement(tagName)-> Node
+.createAttribute(attributeName) -> Node
+.addEventListener("click", func(element));
+window.addEventListener("load",  function (event){
+	event.stopPropagation();
+	event.target // This is leaf-node element, that the user klicked on.
+	this // Aktuelles Element des Event Hanlers
+})
+
+\end{minted}
+
+\paragraph{addClass}
+
+\begin{minted}{javascript}
+document.getElementById("MyElement").className = document.getElementById("MyElement").className.replace ( /(?:^|\s)MyClass(?!\S)/g , '' )
+
+
+var liElement =  document.createElement("li");
+[....]
+df.appendChild(liElement);
+\end{minted}
+
+Links:
+\begin{itemize}
+	\item \url{https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener}
+	\item \url{https://developer.mozilla.org/en-US/docs/Web/API/Event}
+\end{itemize}
+
+\subsection{Testat}
+
+node.js 6.0.0
+
+
+
 \end{document}

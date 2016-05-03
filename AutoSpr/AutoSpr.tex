@@ -222,6 +222,24 @@ $\cup \{\varepsilon\}$ ermöglich Sprünge; es können "Pfeile" weggelassen werd
 \paragraph{Beispiel} $L=\{ w \in \sigma^\ast | w \text{ beginnt und endet mit } 0\}$
 
 %TODO: Graphik: ->kreis -0->kreis(selbstverweis für 0,1) -0-> doppelkreis
+%\begin{tikzpicture}[>=stealth',auto,node distance=2cm]
+%TODO!!!
+%\node[initial,state] (q0) {$q_0$};
+%\node[state] (q1) [right of=q0] {$q_1$};
+%\node[state] (q2) [right of=q1] {$q_2$};
+%\node[state] (q3) [right of=q2] {$q_3$};
+%\node[state, accepting] (q4) [right of=q3] {$q_4$};
+%
+%\path[->]
+%(q0)	edge [bend left]	node {a} (q1)
+%(q1)	edge [bend left]	node {a} (q2)
+%(q2)	edge [loop above]	node {a} (q2)
+%edge [bend left]	node {b} (q3)
+%(q3)	edge [bend left]	node {b} (q4)
+%edge [bend left]	node {a} (q2)
+%(q4)	edge [loop below]	node {b} (q4)
+%edge [bend left]	node {a} (q2);     
+%\end{tikzpicture}
 
 $w$ wird akzeptiert $\equiv \exists$  es gibt einen Weg, der auf einen Akzeptierzustand führt.
 
@@ -774,6 +792,8 @@ Beweis: (Widerspruchsbeweis)
 
 \subsubsection{Spezielles Halteproblem: nicht entscheidbar.}
 
+Wichtig: Das Haltetheorem zeigt, dass etwas nicht entscheidbar ist.
+
 \begin{tabu}{l X}
 	Frage: &... ob eine TM $M$ auf $\varepsilon$ anhält?\\
 	Input: & $M$\\
@@ -922,8 +942,209 @@ Dann ist $P_{TM}$ nicht entscheidbar!
 	\item $P = SPEZ$; ''Sprache erfüllt eine Spezifikation'' \\
 		$L_0 = \emptyset$ \\
 		$L_1 = \{...\text{korrekte Sourcecodes}...\}$ \\
-		Turing erkennbar $xRightarrow{\text{Rice}} SPEZ_{TM}$ nicht entscheidbar (kann Compiler nicht automatisch auf Validität testen.
+		Turing erkennbar $\xRightarrow{\text{Rice}} SPEZ_{TM}$ nicht entscheidbar (kann Compiler nicht automatisch auf Validität testen.
 \end{enumerate}
 
+\subsubsection{Noch ein Beispiel Reduktion}
+
+
+Beispiel für Reduktion: $EQ_{TM} = \{\left<M_1,M_2\right> | M_i TMs, L(M_1) = L(M_2) \}$
+
+$E_{TM} \rightarrow$ maschine ohne akzeptiertes Wort; nicht entscheidbar.
+
+$M_\emptyset$ Maschine, die nichts akzeptiert.
+
+$E_{TM} \longrightarrow EQ_{TM} $
+
+$ \left<M\right> \longrightarrow \left<M, M_\emptyset\right>$
+
+$\Rightarrow E_M \leq EQ_{TM} \Rightarrow EQ_{TM} $ nicht entscheidbar.
+
+$L(M) \text{ leer } \Leftrightarrow L(M) = L(\underbracket{TM \text{, die nichts akzeptiert }}_{M_\emptyset})$
+
+\section{Komplexitätstheorie}
+
+\emph{Erweitern entscheidbar oder nicht entscheidbar (''vernünftiger Zeit'')}
+
+Probleme die in ''vernünftiger Zeit'' lösbar sind.
+
+\begin{tabu}{l X}
+	Ziel: & Unterscheiden zwischen in ''vernünftiger Zeit'' lösbarer Probleme und ''langsamer'' Probleme \\
+	vernünftig &$\rightarrow$ Klasse P \\
+	''unvernünftig'' &$\rightarrow$ Klasse NP \\
+	Mass für laufzeit: & \begin{enumerate}
+			\item	unabhängig von Hardware
+			\item	abhängig von der Problemgrösse: $n = $ Länge des Inputwortes.
+			\item	Worst case
+			\item	''bester Algorithmus''
+		\end{enumerate}
+\end{tabu}
+
+
+\subsection{Hardwareabhängigkeit}
+
+\paragraph{Simulation einer mehrspurigen TM} auf einer Standard-TM.
+
+
+$1$ Schritt $\longrightarrow c$ Schritte. \\
+\begin{tabu}{l l l l}
+Laufzeit auf Input $w$ & $t(w)$ &$\longrightarrow c \cdot t(w)$ & $O(t(w))$ ändert nicht \\
+Mass für laufzeit: &$t(n) = \max t(w)$; $|w| = n$ & $\longrightarrow O(T(n))$ 
+\end{tabu}
+
+\paragraph{Simulation einer Mehrband-TM} auf einer Standard-TM
+
+1 Schritt $\longrightarrow$ Anzahl beschriebenen Zellen $\leq t(n) \approx O(t(n))$
+
+$t(n)$ Schritte: $\longrightarrow$ $O(T(n)^2)$
+
+Laufzeitmass muss unabhängig sein von Exponenten ($^2$).
+
+\paragraph{Conclusion:} \hfill \\
+Laufzeit ist Polynomiell, wenn $t(n) = O(n^k)$ ist.
+
+Klasse P: Sprachen, die in polynommieller Laufzeit entschieden werden können.
+
+
+
+Die Abgrenzung zwischen Polynomiell und exponentiell ist ''schwierig''
+$\underbracket{1 + n + \frac{n^2}{2!} + \frac{n^3}{3!} ... }_{\text{polynomiell}}= \underbracket{e^n}_{\mathrlap{\text{exponentiell}}}$
+
+$\Rightarrow$ Unterscheidung muss Feature er TM verwenden: Nicht-deterministische TM.
+
+\subsection{Laufzeit}
+
+\begin{tabu}{l X}
+	Ziel: &Vergleich von Problemstellungen nach Laufzeit \\
+		  & \begin{itemize}
+			  	\item Hardwareunabhängig
+			  	\item Worst Case
+			  	\item In Abhängigkeit von Input-Länge: $n=|w|$
+		  	\end{itemize}
+		  	Wegen der Worst-Case-Forderung: $t(n) = max(t(w))$
+
+			Polynomielle laufzeit: $\Rightarrow t(n) = O(n^k)$
+			
+			Klasse $P$: Sprachen die in polynomieller Zeit enschieden werden können.
+\end{tabu}
+
+
+\subsubsection{Beispiel}
+
+Ist $L$ in $P$? Was tun? $\longrightarrow$ Algo mit polynomieller Laufzeit.
+
+\paragraph{Beispiel 1} $\text{PATH} = \{ \left< G, s, t \right> | G \text{ ein gerichtetter Graph, } \exists \text{ Pfad von } s \text{ nach } t\} \in P$
+
+Vorgehen: immer erreichbare Knoten markieren, um herauszufinden, ob ein Weg existiert: Laufzeit: Anzahl Iterationen $\leq$ Anzahl Knoten $\leq n$  
+mit (Anzahl Knoten)$^2$ Tests $\leq n^2$ $\longrightarrow O(n^3)9$
+	
+\paragraph{Beispiel 2} $\text{RELPRIME} = \{ \left<a,b\right> | a, b \in \mathbb{Z}, \text{ teilerfremd} \} \in P$
+
+($a$, $b$ Binärzahlen).
+
+Euklid: In jedem Schritt nimmt die Länge der Zahlen $a$ und $b$ um ein Bit ab.
+
+$\Rightarrow$ Laufzeit $\leq$ Bitzahl des Input $\leq O(\log_2{a} + \log_2{b}) = O(n^1)$
+
+
+\subsection{Klasse NP}
+
+\emph{Definition:} Sprachen, die sich in polynomieller Zeit von einer \textbf{nicht deterministischen} Turing Maschine entscheiden lässt.
+
+$P \subset NP$
+
+\subsubsection{Was ist eine nicht deterministische TM?}
+\[
+	M= (Q, \Sigma, \Gamma, \delta, q_0, q_\text{accept}, q_\text{reject})
+\]
+\[
+	\sigma: Q \times \Gamma \longrightarrow P(Q \times \Gamma \times \{L,R\})
+\]
+Es gibt mehrere Möglichkeiten, wie weitergerechnet wird.
+
+\subsubsection{Was akzeptiert eine n.d. TM?}
+
+$\Leftrightarrow$ es gibt eine Berechnung, die zu $q_\text{accept}$ führt.
+
+\subsubsection{Was ist ein Entscheider?}
+
+Terminiert jede Berechnung?
+
+
+\subsubsection{Wie wird die Laufzeit gemessen?}
+
+Maximum aller möglichen Berechnungswege.
+
+\subsubsection{Wie lässt sich eine n.d. TM simulieren?}
+
+$M$ nicht deterministische TM. $\longrightarrow$ auf Standard-TM simulieren.
+
+
+\begin{itemize}
+	\item Zu einem Input $|w| = n$ ist jede Berechnung $\leq t(n)$
+	\item Anzahl Berechnungen (worst case): in jedem Schritt gibt es $\leq c$ Wahlmöglichkeiten. Total: $c^{t(n)}$ Berechnungswege.
+\end{itemize}
+
+Insgesamt: \[
+	c^{t(n)} \cdot t(n) = 2^{t(n) \log_2 c + \log_2(t(n)} = 2^{O(t(n))}
+\]
+
+$\Rightarrow$ Simulieren einer nicht det. TM macht die Laufzeit exponentiell grösser!
+
+\subsubsection{Verifizierer}
+
+\emph{Definition:} ein Verifizierer für die Sprache $L$ ist eine TM $V$.
+
+\[
+	L = \{ w | \exists \underbracket{c}_{\mathclap{\text{Lösungszertifikat}}} \in C^\ast, \text{ mit } V \text{ akzeptiert } \left< w,c \right> \}
+\]
+
+Anhand Sudoku Beispiel:
+\begin{description}
+\item[$w$] Ursprüngliches ''Sudoku''
+\item[$c$] Fehlende Zahlen
+\end{description}
+
+Ein polynomieller Verifizierer: Verifizierer mit Laufzeit polynomiell in $|w|$.
+
+\paragraph{Beispiel: Sudoku} hat einen polynomiellen Verifizierer:
+
+Sudokus haben $n \times n$ Zahlenblöcke, und von diesen $n$ in der Breite und $n$ in der Höhe.
+
+Aufgabe: $w =$ bekannte Zahlen im Sudokufeld.
+\[
+	L = \{ w | \text{ Sudoku ist lösbar }\}
+\]
+
+Input-Länge: $n^4$.
+
+Verifizierer: $c = $ fertig ausgefülltes Sudoku.
+\begin{enumerate}
+	\item In jeder Zeile: jedes Zeichen genau 1. mal.: $O(n^2 \cdot  n^2 \cdot n^2)$ (Zeilen, Felder, Vergleiche)
+	\item In jeder Spalte, wieder $o(n^6)$
+	\item In jedem $n \times n$-Feld $O(n^6)$
+\end{enumerate}
+Total: $O(n^6)$
+
+\paragraph{Beispiel Faktorisierung:} $L= \{ a \in \mathbb{Z} | a = pq, p,q \text{Primzahlen} \}$
+
+Verifizierer: $c = \left<p,q\right>$
+
+\begin{enumerate}
+	\item Ausmultiplizieren: $\text{Länge } p \cdot \text{ Länge } q$; $\log_2{p} \cdot \log_2{q} \leq (log_2{a})^2 = n^2$
+\end{enumerate}
+
+\paragraph{Satz: } $L \in NP \Leftrightarrow L$ hat polynomiellen Verifizierer.
+
+Beweis: $\Rightarrow$ gegeben $w$: wähle $c=$ Berechnungsweg, der zu $q_\text{accpet}$ führt.
+
+1. Berechnung $c$ nachführen $\longrightarrow t(n)$ also polynomiell.
+
+$\Leftarrow$ Verifizierer $V, c \rightarrow$ nicht det. Maschine:
+\begin{itemize}
+	\item $c$ erraten
+	\item $V$ auf $w,c$ laufen lassen.
+\end{itemize}
+Laufzeit dieser zwei Schritte: Laufzeit $t(|w|)$ polynomiell.
 
 \end{document}

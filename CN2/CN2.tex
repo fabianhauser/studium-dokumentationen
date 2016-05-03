@@ -241,9 +241,13 @@ Link Local Adrdres: 224.0.0.0 - 224.0.0.255
 Global Address Range: 224.0.1.0-238.255.255.255
 Administratively Scoped Address Range (Privately used addresses within private multicast domain): 239.0.0.0 - 239.255.255.255
 
+
+
 \subsubsection{MAC Layer 2}
 	Es gibt auch Multicast-Mac-Adressen 00-00-00 bis 01-00-5e-7f-ff-ff.
 	Es werden jeweils die letzten 23-Bit der IP an 01-00-5e- angegängt.
+	
+	Von der IPv4 Adresse werden die ersten neun Bits abgehackt.
 
 \subsubsection{IGMP}
 
@@ -306,6 +310,8 @@ Provider does usually Multiplexing.
 
 Möglich, mehre Kanäle per Multiplexing zusammenzuhängen.
 
+\subsection{SDM / TDH}?
+
 \subsection{Synchronous Digital Hierarchy (SDH)}
 
 ''Container'' gehen immer im Ring herum. Es gibt eine Spur in jeweils jede Richtung.
@@ -313,6 +319,8 @@ Möglich, mehre Kanäle per Multiplexing zusammenzuhängen.
 Ein Add/Drop Multiplexer Fügt/Entfernt Pakete aus dem Container.
 
 \subsection{PPP}
+
+Layer 2
 
 Point to Point Protocoll
 
@@ -322,8 +330,43 @@ Regelt IP Vergabe, Link Configuration, Quality, Error Detection
 
 Authentication, Callback, compression, Multilink
 
+\subsection{Frame Relay}
+
+\begin{itemize}
+	\item Layer 2
+	\item Macht ein Backbone taugliches ''Ethernet'' im WAN.
+	\item Mehrere logische Verbindungen über eine physische Leitung. Dadurch: Bandbreite geshared.
+	\item Packet Orientiert
+	\item PVC (Permanent Virtual Circuits)
+	\item SVC (Switched Virtual Circuits)
+	\item Virtuelle Verbindungen werden als: DLCI (Data Link Connection Identifier) bezeichnet.
+	\item Es hat 1000 mögliche Adressen
+	\item Kennt keine Redundanz etc.
+	\item QoS \begin{itemize}
+		\item Treffic shaper beim Endpunkt (Steuerung vom Kunden).
+		\item Traffic Policer (Harte forcierung vom Provider)
+		\item Congestion Flags from Network (FECN, BECN, DE-bit)
+	\end{itemize}
+	\[
+		CIR = \frac{Bc}{Ts}
+	\]
+\end{itemize}
+
+Addressen haben eine Lokale Signifikatent (Die Nummer beschreibt pro Ziffer den zu wählenden Weg.
+
+\subsubsection{Begriffe}
+	%TODO: insert img/frame_relay_...
 
 
+\subsection{ATM}
 
+\begin{itemize}
+	\item Cell based switching.
+	\item Wird u.a. von ADSL und UMTS verwendet.
+	\item Realtiv schnell (Immer Ethernet etwas voraus im Speed).
+	\item Ermöglicht leichtes integrieren von QoS
+	\item Schnelles switching da in Hardware realisiert
+	\item Erlaubt CBR (Constant Bit Rate)0
+\end{itemize}
 
 \end{document}

@@ -4,6 +4,9 @@
 \title{Zusammenfassung An2I}
 \author{Fabian Hauser}
  
+ %  -> \dt
+ \newcommand{\dt}{\text{ }\mathrm{d}t}
+ 
 \begin{document}
 \maketitle
 
@@ -531,6 +534,138 @@ Ziel: Finden einer $f(t) = A \cdot \sin(\underbracket{\omega}_{\mathclap{\text{G
 
 \subsubsection{Periodizität}
 
-Primitive Periode: Nächste Wiederholung bei $2\pi$ Abstand
-Periode: Wiederholung bei $2x\pi$ Abstand
+Fourierreihen können nur mit periodischen Funktionen verendet werden.
+
+\begin{description}
+	\item[Primitive Periode:] Nächste Wiederholung bei $2\pi$ Abstand
+	\item[Periode:] Wiederholung bei $2x\pi$ Abstand
+\end{description}
+
+\subsection{Herleitung Fuourier-Reihe}
+
+Gegeben ist Periode $T$. ($f(t+T) = f(t)$ für alle $t \in \mathrm{R}$)
+
+Welche Funktion vom Typ $f(t) = a \cdot \cos(\omega t)$ habe die Periode $T$?
+
+\[
+	a \cdot \cos(\omega t + \omega T) = a \cdot \cos(wt)
+\]
+für alle $t \in \mathbb{R}$. Wegschaffen a (Annahme: $a \neq 0$) und $\cos$:
+\[
+	(\omega t + \omega T = \pm \omega t + 2k\pi \text{ für alle } t \in \mathbb{R}), k \in \mathbb{Z}
+\]
+wenn nur die positive Lösung betrachtet wird (negative Gleichung produziert keine Ergebnisse):
+\[
+	\omega T =  k \pi, k \in \mathbb{Z}
+\]
+
+Daraus schlissen wir: $\omega = \frac{2 \pi}{T} \cdot k, k \in \mathbb{Z}$. Der Term $\frac{2 \pi}{T}$ wird als $\omega_1$ bezeichnet.
+
+\subsubsection{Zentrale Integrale}
+
+\paragraph{1}
+\[
+	\int\limits^T_0 \sin(k \omega_1 t) \cdot \sin(l \omega_1 t) \mathrm{d}t = \int\limits^T_0 \cos(k \omega_1 t) \cdot \cos(l \omega_1 t) \mathrm{d}t = 
+	\begin{cases}
+	0   &für k \neq l \\
+	T/2 &für k = l
+	\end{cases}
+\]
+
+\paragraph{2}
+\[
+	\int\limits^T_0 \sin(k \omega_1 t) \cdot \cos(l \omega_1 t) \mathrm{d}t = 0 \text{ für alle } k,l
+\]
+
+gilt für $\omega_1 = \frac{2\pi}{T}, k,l \in \mathbb{N} \setminus{\{0\}}$
+
+\subsubsection{Flächenminimierung}
+
+
+Gesucht: Signal $s$ mit Periode $T$, $\omega_1$
+
+Ziel: $f(t) = a \cdot \cos(\omega_1 t) + b \sin(\omega_1 t)$
+
+Quadratische Fehlerfläche:
+\[
+	\int\limits^T_0 \left(s(t) - f(t)\right)^2 \mathrm{d}t = \int\limits^T_0\left(s(t) - a \cos(\omega_1 t) - b \sin(\omega_1 t\right)^2 \mathrm{d}t
+\]
+
+\[
+	= \underbracket{\int\limits^T_0 s^2(t) \mathrm{d}t}_\text{Irrelevant (da Konstante)} + a^2 \underbracket{\int\limits^T_0 \cos^2(\omega_1 t) \mathrm{d}t}_{=T/2} + \underbracket{\int\limits^T_0 \sin^2(\omega_1t)\mathrm{d}t}_{=T/2} \]\[
+	- 2a \int\limits^T_0 s(t) \cos(\omega_1 t) \mathrm{d}t - 2b \int\limits^T_0 s(t) \sin(\omega_1 t) \mathrm{d}t + 2ab \underbracket{\int\limits^T_0 \cos(\omega_1 t) \sin(\omega_1t) \mathrm{d}t}_{=0}
+\]
+
+Minimum von $F$ finden mittels $\frac{dF}{da}=0$, $\frac{dF}{db} = 0$, hier mit $a$:
+
+\[
+	\frac{dF}{da} = T \cdot a - 2 \int\limits^T_0 s(t) \cos(\omega_1 t) \mathrm{d}t = 0
+\]
+
+
+\subsubsection{Konstruieren eine Fourierreihe}
+
+Gemäss Bild Fourier-Skript Seite 20
+
+\paragraph{$\omega_1$} \hfill \\
+
+Periode $T=2 \Rightarrow \omega_1 = \frac{2 \pi}{T} = \pi$
+\[
+s(t) = \begin{cases}
+	t & \text{ für } t \in [0,1) \\
+	0 & \text{ für } t \in [1,2)
+\end{cases}
+\]
+Bei Sprüngen liefert die Fourierriehe den Mittelwert der beiden Randstellen.
+
+\paragraph{$a_0$}
+
+\[
+	a_0 = \frac{1}{T} \int\limits^T_0 s(t) \mathrm{d}t = \frac{1}{2} \int\limits^2_0 s(t) \mathrm{d}t \underbracket{=}_{\mathclap{\text{Kästchenzählen}}} \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}
+\]
+
+\paragraph{$a_1$}
+
+\[
+	a_1 = \frac{2}{T} \int\limits^T_0 s(t) \cos(1 \omega_1 t) \mathrm{d}t
+	 = \int\limits^2_0 s(t) \cos(\pi t) \dt
+	 = \int\limits^1_0 \underbracket{s(t)}_{=t} \cos(\pi t) \dt + \int\limits^2_1 \underbracket{s(t)}_{=0} \cos(\pi t) \dt
+	 = \int\limits^1_0 t \cos (\pi t) \dt
+\]
+Dieses letzte Integral müssen wir Ausrechnen, es lässt sich nicht weiter vereinfachen. Üblicherweise partielle Integration.
+\begin{align}
+	a_1 &= \int\limits^1_0 t \cos(\pi t) \dt \\
+		&= \left[ 1 \cdot \frac{1}{\pi} \sin(\pi t) \right]^1_{t=0} - \int\limits^1_0 1 \cdot \frac{1}{\pi} \sin( \pi t) \dt \\
+		&= \underbracket{(1 \cdot \frac{1}{\pi} \underbracket{\sin(\pi 1)}_{=0}) - 0}_{=0} - \frac{1}{\pi} \int\limits^1_0 \sin( \pi t) \dt \\
+		&= \left[ - \frac{1}{\pi} \cos(\pi t) \right]^1_{t=0}  = \frac{1}{\pi^2} \left( \cos(\pi) - \cos(0)\right) = - \frac{2}{\pi^2}
+\end{align}
+
+\paragraph{$a_k$}
+
+Die Berechnung von $a_1$ kann genau so für $a_k$ angewendet werden, nur dass im $\cos$ jeweils ein $k \pi$ statt ein $1 \pi$ steht.
+
+In diesem Fall funktioniert das, weil der $\sin(k\pi)$ für alle $k \in \mathbb{Z}$ gleich $0$ ist. Ausnahme: Endergebnis $- \frac{2}{\pi^2}$ ist nicht möglich.
+
+\[
+	a_k = \frac{\cos(k \pi) -1}{k^2 \pi^2} = \begin{cases}
+		0 & \text{ für } k \text{ gerade} \\
+		- \frac{2}{k^2 \pi^2} & \text{ für } k \text{ ungerade}
+	\end{cases}
+\]
+
+
+\paragraph{$b_k$}
+\[
+	b_k = \int\limits^1_0 t \sin(k \pi t) \dt
+\]
+Für $b_1$ geht alles gleich wie beim $a_1$, bis auf den Schritt der Partiellen Integral, halt mit $\sin$ statt $\cos$.
+% Wird in der Vorlesung im Mai nochmal komlett durchgerechnet werden.
+
+\begin{align*}
+	b_k &= \frac{2}{2} \int\limits^T_0 s(2) \sin(k \pi) \dt
+		&= \int\limits^1_0 \underbracket{s(t)}_{=t} \sin(k \pi t) \dt + \underbracket{\int\limits^2_1 s(t) \sin(k \pi t) \dt}_{=0}
+\end{align*}
+
+
+
 \end{document}

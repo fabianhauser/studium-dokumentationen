@@ -438,6 +438,8 @@ für jede natürliche Zahl $n$
 
 \subsubsection{Normalverteilung}
 
+Bei genügend Messungen sollten wir irgendwann die Normalverteilung erreichen.
+
 %TODO: Picture img/normalverteilung.png
 
 
@@ -472,14 +474,82 @@ Zwei Probleme: Genauigkeit Stichproben/Datenerhebung und Auswertung/Analyse der 
 	\item	Mehrstufige Stichprobe
 \end{itemize}
 
+\subsection{Normalverteilung}
+
+\[
+\bar{X} \Rightarrow N\left(\mu; \frac{\sigma}{\sqrt{n}}\right)
+\]
+
+mit:
+\begin{description}
+	\item[$\sigma$] die Standardabweichung
+	\item[$\mu$] der Mittelwert
+	\item[$n$] die Anzahl Stichproben.
+\end{description}
+
+$\overline{Z}$ ist die Fläche der beiden Bereiche, welche weiter als $z$ vom Durchschnitt entfernt sind.
+\[
+\overline{Z} = \frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}
+\]
+
+Wenn bei mehr Messungen der Mittelwert nicht im Bereich $-z$ bis $z$ liegt, ist etwas faul.
+
+\section{Schätzverfahren}
+
+In der Praxis müssen $\mu$, $\sigma$ und die Verteilfunktion geschätzt werden.
+
+Schätzfunktion: ermöglicht eine Punktschätzung (erfüllt oder nicht erfüllt)
+
+\subsection{Gütekriterien der Schätzfunktionen}
+
+\begin{description}
+	\item[$\hat{T}$] Schätzwert
+	\item[$T$] Tatsächlicher Wert des Parameters der Grundsgesamtheit.
+\end{description}
+
+Der Fehler soll minimiert werden:
+\[
+\hat\mu = \frac{1}{n} \sum^n_{i=1}{x_i} = \bar{x}
+\]
+
+
+\begin{tabu}{ l | c | X}
+Mittelwert & $\mu$ & $ \bar{x} = \frac{1}{n} \sum^n_{i=1}{x_i} $ \\
+\hline
+Varianz & $\sigma^2$ & $ s^2 = \frac{1}{n-1} \sum^n_{i=1}{(x_i - \bar{x})^2} $ \\
+\hline
+Anteilswert/Wahrscheinlichkeit & $p$ & $ \bar{p} = \frac{k}{n} $ \\
+\end{tabu}
+
+\subsection{Verteilungsformen für das Sitchprobenmittel}
+
+$\overline{x}$
+
+\subsubsection{Mit zurücklegen:}
+	Varianz:
+\[
+	\omega_{\overline{X}}^{2} = \frac{\omega^2}{n}
+\]
+	
+\subsubsection{Ohne zurücklegen}
+
+(Der Hintere Faktor kann bei $\leq 0.05$ vernachlässigt werden.
+\[
+	\omega^2_{\overline{X}} = \frac{\omega^2}{n} \cdot \frac{N -n}{N-1}
+\]
+%TODO: Folie 15 Schätzverfahren+
+Wenn $\omega^2$ unbekannt:
+
+
+
 \section{More}
 
-\subsubsection{Beispiel Wahrscheinlichkeit}
+\subsection{Beispiel Wahrscheinlichkeit}
 	
 	Spiel, 1Fr. Einsatz, nach jedem Münzwurf 0.5 chance auf 1Fr.
 	\\
 	
-	\begin{tabular}{| c c c | c | r |}
+	\begin{tabu}{| c c c | c | r |}
 		\hline
 		1 & 1 & 1 & $1/8$ & $2 \cdot 1/8$ \\
 		\hline
@@ -494,7 +564,7 @@ Zwei Probleme: Genauigkeit Stichproben/Datenerhebung und Auswertung/Analyse der 
 		0 & 0 & 0 & $1/8$ & $-1 \cdot 1/8$ \\
 		\hline
 		
-	\end{tabular}
+	\end{tabu}
 	\\
 	
 	E(x) = 0.5 Fr.
