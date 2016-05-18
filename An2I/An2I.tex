@@ -99,11 +99,11 @@ Suche Zahl $m \leq$ max $f^{(N+1)}(x)$ für $x \in [a,b]$. $a$ und $b$ ist der m
 Ziel: Sinus im Intervall $[0, \pi]$ mit Genauigkeit $\Delta = \frac{1}{100}$
 
 \begin{align*}
-	f(x) &= sin(x) \\
-	f'(x) &= cos(x) \\
-	f^{(2)} &= -sin(x) \\
-	f^{(3)} &= -cos(x) \\
-	f^{(4)} &= sin(x) \\
+	f(x) &= \sin(x) \\
+	f'(x) &= \cos(x) \\
+	f^{(2)} &= -\sin(x) \\
+	f^{(3)} &= -\cos(x) \\
+	f^{(4)} &= \sin(x) \\
 \end{align*}
 
 Beim Sinus gilt:
@@ -298,7 +298,7 @@ B/L: $\infty \cdot (\pm 0)$; $\frac{\infty}{\infty}$; $\frac{0\pm}{0\pm}$
 \subsection{Ableitung mit dem limes}
 
 \[
-	f'(x) = \frac{df}{dx}|_{x=x_0} = \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =^\frac{0}{0} = \lim\limits_{x \to x_0} \frac{\frac{d}{dx}(f(x) - f(x_0))}{\frac{d}{dx}(x - x_0} = \lim\limits{x \to x_0} \frac{f'(x) -0}{1 - 0} = f'(x_0)
+	f'(x) = \frac{df}{dx}|_{x=x_0} = \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =^\frac{0}{0} = \lim\limits_{x \to x_0} \frac{\frac{d}{dx}(f(x) - f(x_0))}{\frac{d}{dx}(x - x_0} = \lim\limits_{x \to x_0} \frac{f'(x) -0}{1 - 0} = f'(x_0)
 \]
 
 \section{Integral}
@@ -440,17 +440,17 @@ Wichtig: Negative Flächen werden von positiven Flächen abgezogen.
 \begin{description}
 	\item[$v(t)$] Momentangeschwindigkeit 
 	\[
-		\overline{v} = \frac{s}{T_2- T_1} = \frac{\int\limits^{T_2}_{T_1}{v(t)\mathrm{d}t}}{T_2 - T_1}
+		\bar{v} = \frac{s}{T_2- T_1} = \frac{\int\limits^{T_2}_{T_1}{v(t)\mathrm{d}t}}{T_2 - T_1}
 	\]
-	\item[$\overline{v}$] Durchschnittsgeschwindigkeit
+	\item[$\bar{v}$] Durchschnittsgeschwindigkeit
 \end{description}
 
 Gesucht: Mittlerer Funktionswert im Intervall $[a;b]$, $f(t)$
 \[
-	\overline{f} = \frac{1}{b-a} \underbrace{\int\limits^b_a{f(x)\mathrm{d}x}}_I
+	\bar{f} = \frac{1}{b-a} \underbrace{\int\limits^b_a{f(x)\mathrm{d}x}}_I
 \]
 
-Rechteck mit gleicher Fläche $I = (b-a) \cdot \overline{f}$
+Rechteck mit gleicher Fläche $I = (b-a) \cdot \bar{f}$
 
 \section{Fourierreihe}
 
@@ -654,18 +654,156 @@ In diesem Fall funktioniert das, weil der $\sin(k\pi)$ für alle $k \in \mathbb{
 \]
 
 
-\paragraph{$b_k$}
-\[
-	b_k = \int\limits^1_0 t \sin(k \pi t) \dt
-\]
-Für $b_1$ geht alles gleich wie beim $a_1$, bis auf den Schritt der Partiellen Integral, halt mit $\sin$ statt $\cos$.
-% Wird in der Vorlesung im Mai nochmal komlett durchgerechnet werden.
+\paragraph{$b_k$} Für $b_k$ geht alles gleich wie beim $a_k$, bis auf den Schritt der partiellen Integral, halt mit $\sin$ statt $\cos$.
 
 \begin{align*}
-	b_k &= \frac{2}{2} \int\limits^T_0 s(2) \sin(k \pi) \dt
-		&= \int\limits^1_0 \underbracket{s(t)}_{=t} \sin(k \pi t) \dt + \underbracket{\int\limits^2_1 s(t) \sin(k \pi t) \dt}_{=0}
+	b_k &= \frac{2}{2} \int\limits^2_0 s(2) \sin(k \pi) \dt 
+		= \int\limits^1_0 \underbracket{s(t)}_{=t} \sin(k \pi t) \dt + \underbracket{\int\limits^2_1 s(t) \sin(k \pi t) \dt}_{=0} = \int\limits^1_0 t \sin(k \pi t) \dt \\
+		&= \int\limits^1_0{t \sin(k \pi t)\dt} = \left[ t \cdot \left(-\frac{1}{k \pi}\right) \cos(k \pi t) \right]^1_{t=0} - \int\limits^1_0{ - \frac{1}{k \pi} \cos(k \pi t)\dt} \\
+		&= -\frac{1}{k \pi} - 0 + \underbracket{\frac{1}{k \pi} \left[ \frac{1}{k \pi} \sin(k \pi t) \right]^1_{t=0}}_{\text{=0}} \\
+		&= \frac{\cos(k \pi)}{k \pi} = \begin{cases}
+			-\frac{1}{k \pi} & \text{ für } k \text{ gerade} \\
+			\frac{1}{k \pi} & \text{ für } k \text{ ungerade}
+		\end{cases}
 \end{align*}
 
+Damit lässt sich die Fourierreihe leicht berechnen:
+
+\begin{align*}
+f_n(t) &= a_0 + \sum^n_{k=1}{a_k \cos(k w t) + b_k \sin(k w t)} \\
+	   &= \frac{1}{4} + \sum^n_{k=1}{ \frac{\cos(k \pi) -1}{k^2 \pi^2} \cos(k \pi t) - \frac{\cos(k \pi)}{k \pi} \sin(k \pi t)} \\
+	   &= \underbracket{\frac{1}{4}}_{\text{0.}}
+	    \underbracket{-\frac{2}{1^2 \pi^2} \cos(\pi t) + \frac{1}{1 \cdot \pi} \sin(\pi t)}_{\text{1. Ordnung}}
+	    \underbracket{-\frac{1}{2 \pi} \sin(2 \pi t) -\frac{2}{3^2 \pi^2}}_{\text{2. Ordnung}}
+	    \underbracket{-\cos(3 \pi t) + \frac{1}{3 \pi} \sin(3 \pi t)}_{\text{3. Ordnung}}
+\end{align*} %TODO: w mit \omega ersetzen
+
+\subsection{Satz von Dirichlet}
+
+An unstetigen Stellen liefert die Fourierreihe den Durchschnitt der beiden Grenzwerten, an gewöhnlichen, stetigen Stellen stimmt die Fourierreihe genau.
+
+\subsection{Amplituden-Phasen-Form}
+
+Baut auf das zusammenführen des $\sin$ und $\cos$ Terms mithilfe der Additions-Theoreme. Die Phasen-Verschiebung wird in die Terme aufgenommen.
+
+\begin{align}
+	\cos(t - \varphi) &= \cos(t) \cos(\varphi) + \sin( t) \sin(\varphi) \\
+	\cos(k \omega_1 t - \varphi_k) &= \cos(k \omega_1 t) \cos(\varphi_k) + \sin(k \omega_1 t) \sin(\varphi_k) \\
+	A_K \cos(k \omega_1 t - \varphi_k) &= A_k \cos(k \omega_1 t) \cos(\varphi_k) + A_k \sin(k \omega_1 t) \sin(\varphi_k) \\
+	A_0 + \sum^\infty_{k=1} A_K \cos(k \omega_1 t - \varphi_k) &= A_0 + \sum^\infty_{k=1} A_k \cos(k \omega_1 t) \cos(\varphi_k) + \sum^\infty_{k=1} A_k \sin(k \omega_1 t) \sin(\varphi_k) \\
+	&= \underbracket{A_0}_{a_0} + \sum^\infty_{k=1} \underbracket{A_k \cos(\varphi_k)}_{a_k} \cos(k \omega_1 t) + \sum^\infty_{k=1} \underbracket{A_k \sin(\varphi_k)}_{b_k} \sin(k \omega_1 t)
+\end{align}
+
+Die letzte Gleichung Repräsentiert Fourierreihen; Rechts die Sinus-Cosinus-Form, Links die Amplituden-Phasen-Form ($A_k$ Amplitude, $\varphi_k$ die Phase).
+
+\subsubsection{Umrechnung}
+
+\paragraph{APF in SCF}
+\begin{align*}
+a_0 &= A_0 \\
+a_k &= A_k \cos(\varphi_k) \\
+b_k &= A_k \sin(\varphi_k)
+\end{align*}
+
+\paragraph{Sinus-Cosinus-Form in Amplituden-Phasen-Form}
+
+\begin{align*}
+A_0 &= a_0 \\
+A_k &= \sqrt{a_k^2 + b_k^2} \\
+\tan(\varphi_k) &= \frac{b_k}{a_K} \text{ für } a_k \neq 0 \\
+\varphi_k &= \arctan\left(\frac{b_k}{a_k}\right) + \underbrace{m \pi}_{\mathrlap{\text{Was ist das richtige } m \text{?}}} \\
+\varphi_k &= \underbrace{\begin{cases}
+\arctan\left( \frac{b_k}{a_k} \right) & \text{ für } a_k > 0 \\
+\pi + \arctan\left( \frac{b_k}{a_k} \right) & \text{ für } a_k < 0 \\
+\frac{\pi}{2} & \text{ für } a_k = 0, b_k > 0 \\
+-\frac{\pi}{2} & \text{ für } a_k = 0, b_k < 0 \\
+\text{irrelevant} & \text{ für } a_k = b_k = 0 \\
+\end{cases}}_{\text{Vereinfacht (Perioden ignoriert)}}
+\end{align*}
+
+Kein Standardverfahren für die nicht-lineare Gleichung... Vereinfachung: Analogie zu Koordinatensystemen. $\varphi_k$ als Winkel zur X-Achse, $A_k$ als Vektor, Polare Koordinaten. Der Punkt auf der y-Achse ist $b_k$, auf der x-Achse $a_k$.
+
+\begin{tikzpicture}[scale=2,cap=round,>=latex]
+	% draw the coordinates
+	\draw[->] (-1.05cm,0cm) -- (1.1cm,0cm) node[right,fill=white] {$x$};
+	\draw[->] (0cm,-1.05cm) -- (0cm,1.1cm) node[above,fill=white] {$y$};
+	
+	% draw the unit circle
+	\draw[gray] (0cm,0cm) circle(1cm);
+	
+	% draw line
+	\draw[very thick] (0cm,0cm) -- (35:1cm); % angle line
+	\filldraw (35:1cm) circle(0.8pt); % point
+	\draw (28:1.5cm) node {$A_K =(a_k; b_k)$}; % point label
+	\draw (35/2-4:0.3cm) node {$\varphi_k$}; % angle description
+	\draw (0.5cm,0cm) arc (0:35:0.5cm); %angle circle
+	
+	%x-y-anchor
+	\draw[gray, dashed] ({cos(35)},0cm) -- (35:1cm);
+	\draw ({cos(35)},-0.1cm) node {$b_k$};
+	
+	\draw[gray, dashed] (0cm,{sin(35)}) -- (35:1cm);
+	\draw (-0.1cm,{sin(35)}) node {$a_k$};
+	
+\end{tikzpicture}
+
+
+\paragraph{Berechnung:}
+
+\begin{align*}
+	A_0 &= \frac{1}{4} \\
+	A_k &= +\sqrt{a_k^2 + b_k^2} = \begin{cases}
+		\frac{1}{k \pi} & k \text{ gerade} \\
+		\sqrt{\left(\frac{2}{k^2\pi^2}\right)^2 + \left(\frac{1}{k \pi}\right)^2} & k \text{ ungerade} \\
+	\end{cases} \\
+	\varphi_k &= \begin{cases}
+		-\frac{\pi}{2} & k \text{ gerade} \\
+		\pi + \arctan\left( \frac{\frac{1}{k \pi}}{-\frac{2}{k^2 \pi^2}} \right)& k \text{ ungerade}
+	\end{cases}
+\end{align*}
+
+
+$A_k = \left| a_k \right|$, allerdings muss das angepasste Vorzeichen mit der Phase $\varphi$ korrigiert werden.
+
+
+\subsection{«Schnelle» Berechnung von Fourier-Reihen}
+
+Ermöglicht eine schnellere Berechnung, wenn gewisse Funktionseigenschaften vorhanden sind.
+
+\begin{itemize}
+\item Gerades Signal: Alle Sinus-Terme sind Null.
+\item Integration über eine halbe Periode bei geraden Funktionen, beginnend bei 0. \\
+		Multiplikation des ganzen mit 2.
+\end{itemize}
+
+\subsubsection{Multiplikation gerader und ungerader Funktionen:}
+
+Ungerade: $-$, Gerade: $+$ dann gilt:
+\begin{align*}
+	 G \cdot G &= G \\
+	 UG \cdot UG &= G \\
+	 UG \cdot G &= UG \\
+\end{align*}
+
+\subsubsection{Gerade / Ungerade Funktion}
+
+Sei $r(t)$ ein gerades Signal, dann ist $r(t) \cdot \cos(k \omega_1 t)$ gerade. $r(t) \cdot \sin(k \omega_1 t)$ ist ungerade und daher bei einem geraden Signal gleich $0$.
+
+\begin{align*}
+r(t) \text{ \space\space\space gerade }   &\Rightarrow b_k = 0 \\
+r(t) \text{ ungerade } &\Rightarrow a_0 = 0 \land a_k = 0
+\end{align*}
+
+%TODO: Seite 31 Formeln abschreiben!
+
+
+
+
+
+
+\section{Anwedungen}
+
+Moving Average
 
 
 \end{document}

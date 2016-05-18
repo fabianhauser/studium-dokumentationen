@@ -369,4 +369,81 @@ Addressen haben eine Lokale Signifikatent (Die Nummer beschreibt pro Ziffer den 
 	\item Erlaubt CBR (Constant Bit Rate)0
 \end{itemize}
 
+\subsection{MPLS: Multiprotocol Label Switching}
+
+Vorteile: Skalierung, Plug'n'play, just like an IP net
+
+
+Features: QoS, Traffic Engineering, OAM/MIBs
+
+Usually: Service Provider, Datacenter Provider
+
+\subsubsection{Working}
+
+Label based routing (the router only knows, where to forward a specific label / interface to.
+
+\begin{description}
+	\item[P (Provider) router = label switching router = core router (LSR)] \hfill \\
+		Switches MPLS-labeled packets
+		Runs an IGP and LDP
+	\item[PE (Provider Edge) router = edge router (LSR)] \hfill \\
+		Imposes and removes MPLS labels
+		Runs an IGP, LDP and MP-BGP
+	\item[CE (Customer Edge) router] \hfill \\
+		Connects customer network to MPLS network
+	\item[Route-Target] \hfill \\
+		64 bits identifying routers that should receive the route
+	\item[Route Distinguisher] \hfill \\
+		Attribute of each route used to uniquely identify prefixes among VPNs (64 bits)
+		VRF based (not VPN based)
+	\item[VPN-IPv4 addresses] \hfill \\
+		Address including the 64 bits Route Distinguisher and the 32 bits IP address
+	\item[VRF] \hfill \\
+		Virtual routers: Routing of \emph{(TAG)IP}
+	\item[FEC] \hfill \\
+		is a group of IP packets which are forwarded in the same manner
+	\item[LSR] \hfill \\
+		Label Switch Router
+	\item[LIB] \hfill \\
+		Label Information Base (DB of labels)
+	\item[GRE] \hfill \\
+		IP in IP Verschachteln (unverschlüsselt).
+\end{description}
+
+Layering with multiple Labels are possible.
+
+
+\subsubsection{LDP}
+
+Label Distribution Protocol.
+
+Ähnliches Protokoll: RSVP (reserviert Ressourcen)
+
+\subsubsection{L2TPv3}
+
+Only IP Core is neccessary; no MPLS to allow e.g. Ethernet Virtual Wire Service.
+
+\subsubsection{AToM: Any Technology over MPLS}
+
+Buils on MPLS Core; Wire Connection
+
+Hat VC-Label (VLAN).; Macht Layer 2 über längere Distanzen.
+
+\subsubsection{VPLS}
+
+Virtual Private LAN Service:
+
+MPLS-Core.
+
+Letzte zwei sind heute MPLS Layer-2 VPNs.
+
+Verhinderung von Loop: Spanning Tree wird durch Split-Horizon ersetzt.
+
+
+\subsubsection{QoS \& Traffic engineering}
+
+QoS-Label from IP is mapped to a MPLS-Label-field.
+
+
+
 \end{document}

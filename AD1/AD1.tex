@@ -137,7 +137,7 @@ Mittleres verhalten: T(n)/n
 
 \subsubsection{Trees}
 
-Höhe: $\sqrt(\text{nodes})$
+Höhe: $\sqrt{\text{nodes}}$
 
 
 \paragraph{Binary Tree}
@@ -147,13 +147,13 @@ Hat immer zwei Kindknoten
 Durchiterieren:
 \begin{description}
 	\item[Preorder Traversierung] \hfill \\
-		Es wird jeweils vom Root links durch die Kinder durchgegangen
+		Es wird jeweils vom Root links durch die Kinder durchgegangen (leafes before parent)
 	\item[Postorder Traversierung] \hfill \\
 		Es wird vom linksten Leaf den leafs von links her durchgegangen.
 	\item[Breadth-First]\hfill \\
 		Es werden immer alle Knoten von links nach rechts der Ebene nach abgegangen, beginnend mit dem root
 	\item[Inorder Traversierung] \hfill \\
-		Es wird immer zuerst beim linksuntersten element begonnen, und so dem tree entlang weiter verfahren.
+		Es wird immer zuerst beim linksuntersten element begonnen, und so dem tree entlang weiter gefahren.
 	\item[Euler Tour Traveriserung] \hfill \\
 		Generischer Fall (Preorder, Postorder und Inorder durchgang).
 \end{description}
@@ -165,6 +165,18 @@ Pointer zeigt zwischen Elemente
 \subsection{Information Tree}
 
 
+\subsection{Queues}
+
+\subsubsection{Priority Queues}
+
+Key - Value store, Keys stellen die Priorität, können daher mehrmals vorkommen. Keys müssen Comparable sein.
+
+
+\subsubsection{Heaps}
+
+Das kleinste Element ist der Root, es gilt immer: \textit{key(v) $\geq$ key(parent(v))}
+
+Effizienz: $\lfloor \log n \rfloor$, Höhe: $n = \log(n+1) - 1$
 
 \section{Java cheats}
 \subsection{Arrays}

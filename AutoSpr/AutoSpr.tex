@@ -1053,6 +1053,10 @@ $\Rightarrow$ Laufzeit $\leq$ Bitzahl des Input $\leq O(\log_2{a} + \log_2{b}) =
 
 $P \subset NP$
 
+NP-Probleme sind in polynomieller Zeit verifizierbar (Simulation: in exponentieller Laufzeit)
+
+Vermutlich ist $P \neq NP$ (aber das lässt sich nicht beweisen).
+
 \subsubsection{Was ist eine nicht deterministische TM?}
 \[
 	M= (Q, \Sigma, \Gamma, \delta, q_0, q_\text{accept}, q_\text{reject})
@@ -1146,5 +1150,157 @@ $\Leftarrow$ Verifizierer $V, c \rightarrow$ nicht det. Maschine:
 	\item $V$ auf $w,c$ laufen lassen.
 \end{itemize}
 Laufzeit dieser zwei Schritte: Laufzeit $t(|w|)$ polynomiell.
+
+
+
+
+\subsubsection{Diverse Beispiele}
+
+
+\begin{description}
+	\item[SAT] Satisfiability \\
+		$SAT = \{\varphi | \varphi \text{ eine erfüllbare logische Formel}\} \in NP$ \\
+		Beweis: \begin{enumerate}
+			\item entscheidbar? alle Wertkombinationen durchprobieren
+			\item Zertifikat: Wahrheitswerte (Verlangen der Lösung des Problems)
+			\item Verifizieren: Wahrheitswerte einsetzen $\rightarrow$ Wahrheitswert berechnen.
+			\item Laufzeit $\leq O(n)$
+		\end{enumerate}
+		(nicht desto trotz gibt es clevere Algorithmen)
+	\item[k-CLIQUE] $k-CLIQUE = \{ \left< G \right> | G \text{ ein Graph} \} \in NP$ \\
+		($=k$ Knoten, jeder mit jedem verbunden) \\
+		\begin{enumerate}
+			\item ist sicher entscheidbar.
+			\item Zertifikat: eine $k-CLIQUE$
+			\item Verifikation: kontrolliere, ob jeder mit jedem verbunden ist.
+			\item Laufzeit: $O(n^2)$
+		\end{enumerate}
+	\item[k-VERTEX-COLORING] $= \{ \left< G \right> | G \text{ ist } \underbrace{\text{einfärbbar}}_{\mathclap{\text{Nachbarn haben verschiedene Farben}}} \text{ mit } k \text{ Farben} \}$ \\
+	Beweis: \begin{enumerate}
+		\item Entscheidbar ...bla...
+		\item Zertifikat: Farbverteilung
+		\item Verifikation: Jede Kante kontrollieren ...blah...
+		\item Laufzeit: $\leq{O(n)}$
+	\end{enumerate}
+\end{description}
+
+\subsubsection{Vergleichstechnik: Reduktion}
+
+$f: A \leq B$ ''Leichter''
+
+$B$ entscheidbar $\Rightarrow A$ entscheidbar.
+
+$A$ nicht entscheidbar $\Rightarrow B$ nicht entscheidbar.
+
+Kann man das auch für die Laufzeit? Zusätzlich wird Verlangt, dass $f$ in polynomieller Zeit berechenbar ist:
+
+$f: A \leq_p B$
+
+$B \ in P \Rightarrow \text{ Entscheiden ob } A$:
+\begin{enumerate}
+	\item Übersetzen mit $f \rightarrow$ Polynomiell
+	\item Lösen des übersetzten Problems $\rightarrow$ in P
+\end{enumerate}
+\[
+	\Rightarrow A \in P
+\]
+
+
+\paragraph{Konsequenz:} $f: A \leq_p B$
+\[
+	B \in P \Rightarrow A \in P
+\]
+''leichter''
+\[
+	B \in NP \Rightarrow A \in NP
+\]
+
+\paragraph{Beispiel: Stundenplan} $\in NP$
+
+STUNDENPLAN $\leq_p$ $k$-VERTEX-COLORING $\leq_p$ STUNDENPLAN $\longrightarrow$ polynomiell
+
+\begin{description}
+	\item[Lektionen] $\mapsto$ Knoten
+	\item[Zeitfenster] $\mapsto$ Farben
+	\item[Anzahl Zeitfenster] $\mapsto$ $k$
+	\item[Studierende] $\mapsto$ Kanten
+\end{description}
+
+
+\subsection{Schwierigste Probleme in NP: NP-Vollständig}
+
+Es gibt einige schwierigste Probleme, diese werden NP-Vollständig genannt.
+
+\paragraph{Definition:} $B$ heisst NP vollständig, wenn jedes $A \in NP$ sich auf $A \leq_p B$ reduzieren lässt.
+
+\subsubsection{Satz (Cook-Levin): SAT ist NP-vollständig}
+
+d.h. jedes NP-Problem $A$ ist auf SAT reduzierbar: $A \leq_P$ SAT
+
+\paragraph{1. Argument: } $A$ entscheidbar von nicht-deterministschiem Programm in polynomieller Zeit.
+
+Nicht-deterministische Entscheidungen können durch logische Variablen dargestellt werden: $x_1,x_2,...,x_n$
+
+Programm findet $\begin{cases}
+	q_\text{accept} \\
+	q_\text{reject}
+\end{cases}$
+
+\[
+	\Rightarrow \exists \text{ logische Formel } \varphi(x_1,...,x_n) = \underbrace{\begin{cases}
+		\text{true} & q_\text{accept} \\
+		\text{false} & q_\text{reject}
+	\end{cases}}_{\varphi \in \text{ SAT }}
+\]
+
+\paragraph{2. Sudoku} $\leq_P$ SAT
+
+\[
+	\{ \left< \text{Vorgabe} \right> | \text{ Sudoku-Rätsel lösbar} \} \longrightarrow \{ \varphi | \varphi \text{ erfüllbar}\}
+\]
+
+Teil1: $z_{ij} = \text{ Inhalt aus Zelle } i,j$
+
+Finde $z_{ij}$ so, dass das Sudoku korrekt ausgefüllt ist. $\longrightarrow \exists z_{ij}$ so, dass $\varphi(z_{ij})$ wahr.
+
+Bedingung $\longrightarrow$ Formelfragmente
+
+Vorgabe: $z_{ij} = v_{ij} = $ Vorgabewerte (nur für Vorgabefelder).  
+$\longrightarrow \varphi_\text{Vorgabe} = \bigwedge_{\mathclap{i, j \text{ Vorgabefelder}}} (z_{ij} = v_{ij})$
+
+Zeilenbedingung: \[
+	\varphi_{\text{zeile}, ij}   \bigwedge_{k \neq j} (z_{ij} \neq z_{ik}) \Rightarrow \varphi_\text{zeile} = \bigwedge_{i,j} \varphi_{\text{zeile} i,j}
+\]
+
+Spaltenbedingung \[
+	\varphi_{\text{spalte}, ij} = \bigwedge_{\text{spalte }\neq lj} (z_{ij} \neq z_{lj}) \Rightarrow \varphi_\text{spalte} = \bigwedge_{i,j} \varphi_{\text{spalte } ij}
+\]
+
+
+Ubterquadrat-Bedingung: \[
+\varphi_{\text{unterquadrat}, ij}   \bigwedge_{(k,l) \neq (i,j) \text{ im Unterquadrat}} (z_{ij} \neq z_{ke}) \Rightarrow \varphi_\text{unterquadrat} = \bigwedge_{i,j} \varphi_{\text{unterquadrat} i,j}
+\]
+
+
+Total: \[
+	\varphi = \varphi_\text{vorgabe} \land  \varphi_\text{zeile} \land  \varphi_\text{spalte} \land  \varphi_\text{unterquadrat} 
+\]
+
+Aber: $\varphi$ keine logische Variablen... aus $z_{ij}$ logische Variablen machen.
+
+\[
+	z_{ij} \xrightarrow{\text{ Binärcodierung }} x_{ij,1}, x_{ij,2},  ..., x_{ij,k}
+	\]
+	
+Search/replace: $z_{ij} \neq z_{ke} \rightsquigarrow$ Formel aus $x_{ijs}, x_{kct}$
+
+
+
+
+...
+
+
+
+
 
 \end{document}

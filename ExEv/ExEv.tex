@@ -14,6 +14,8 @@
 
 \emph{Grundsätzlich gilt: Bullshit in - Bullshit out.} - A. Rinkel
 
+\emph{Bestes Beispiel: Newtonsche mechanik: Der Newton lag unter einem Baum, dann ist ihm ein Apfel auf den Kopf gefallen und er sagte: Heureka.}
+
 \subsection{Wissenserwerb druch Experimente nach Shewhart}
 \begin{enumerate}
 	\item	Hypothese formulieren
@@ -138,6 +140,7 @@ Zu erheben sind insbesondere:
 	\item welche Formen der Darstellung
 	\item welche statistischen Analyseverfahren
 \end{itemize}
+
 
 \subsection{Lagemasse (Mittelwerte)}
 \begin{description}
@@ -387,6 +390,12 @@ Wenn ein gewisses Ereignis mit Wahrscheinlichkeit $p$ auftritt, ist die Wahrsche
 	f(x) = P(X=x) = \binom{n}{x}p^x(1-p)^{n-x}
 \]
 
+Eine Binomialverteilung baut auf mehrere Bernoulli-Experimente auf.
+
+\paragraph{Bernoulli-Experiment}
+
+Es gibt nur zwei mögliche Ergebnisse (z.B. Kopf oder Zahl).
+
 \subsubsection{Poisonverteilung I}
 
 Wie wahrscheinlich ist das Auftreten in einem Intervall?
@@ -404,6 +413,8 @@ Erwartungswert=Varianz
 \]
 
 $\mu$ ist in diesem Zusammenhang der Durchschnitt der eingetretenen Fälle.
+
+Kann auch als Näherung an die Binominalverteilung verwendet werden, wenn die Auftrittswahrscheinlichkeit sehr klein ist ($p$ gegen $0$, $n$ gegen $\infty$)
 
 \subsubsection{Rechteckverteilung}
 
@@ -438,7 +449,7 @@ für jede natürliche Zahl $n$
 
 \subsubsection{Normalverteilung}
 
-Bei genügend Messungen sollten wir irgendwann die Normalverteilung erreichen.
+Grenzwertsatz: Bei genügend Messungen sollten wir irgendwann die Normalverteilung erreichen.
 
 %TODO: Picture img/normalverteilung.png
 
@@ -447,6 +458,10 @@ Bei genügend Messungen sollten wir irgendwann die Normalverteilung erreichen.
 	z = \frac{x - \mu}{\sigma}
 \]
 
+
+\subsubsection{Schi-Quadrat-Verteilung}
+
+wird bei der Varianz benötigt.
 
 \subsection{Erzeugen von Zufallszahlen}
 
@@ -541,6 +556,10 @@ $\overline{x}$
 Wenn $\omega^2$ unbekannt:
 
 
+\subsubsection{Freiheitsgrade}
+
+Anzahl möglichkeiten -1; Mehrere Freiheitsgrade werden multipliziert; der Wert kann daraufhin in der chi-quadrat-tabelle ausgelesen werden.
+
 
 \section{More}
 
@@ -568,5 +587,87 @@ Wenn $\omega^2$ unbekannt:
 	\\
 	
 	E(x) = 0.5 Fr.
+
+
+
+\section{Übersicht Statistik}
+
+Es gibt die Welt mit Objekten und Prozessen. Diese Produzieren Daten, welche von einem Rauschen überlagert sind. (naiver Realismus bzw. konstruktivismus)
+
+Das Rauschen ist Vorgegeben ($x$ oder $\mu$)
+
+Ziel: Zusammenhänge der Welt verstehen, wie sie Funktional funktioniert: $f(\text{input}) = \text{output}$), damit wir vorhersagen treffen können.
+
+Dafür machen wir Experimente. Das führt zunächst mal zu Fehlern und vielen Daten (sogenannte empirische Daten).
+
+Daraus leiten wir Histogramme / Empirische Verlagerungen ab; dazu gehören die Lage- und Streuparameter (Mittelwert $\mu$, Daten $\sigma$).
+
+Fehler können wir in maximale Fehler und wahrscheinliche Fehler einteilen. Letztere sind durch die empirischen Daten vorgegeben. Wir versuchen, die zugrundeliegende Ursachen zu ermitteln.
+
+In den Empirischen Daten suchen wir Pattern; dies führt zur theoretischen Verteilung, welche wir mithilfe der Wahscheinlichkeitstehorie herleiten.
+
+Es gibt verschiedene Theoretische Verteilungen:
+
+
+\subsection{Theoretische Verteilungen}
+Wir machen ein Modell
+
+\subsubsection{Diskrete}
+
+(Ja / Nein)
+
+\begin{description}
+	\item[Bernoulli] Ja/Nein (auch Experiment)
+	\item[Binomialverteilung] Stammt aus Bernoulli Experiment, lässt sich durch Poison annähern.
+	\item[Poisonverteilung]
+\end{description}
+
+\subsubsection{Stetige}
+
+\begin{description}
+	\item[Normalverteilung] (Standardverteilung) Gauss
+	\item[Exponentialverteilung]
+	\item[Chi-Quadrat-Verteilung]
+	\item[T-Verteilung, Weilbull, Triangular etc.]
+\end{description}
+
+\subsection{Schliessende Statistik}
+
+Ableitungen aus den Empirischen Daten.
+
+Wir machen eine Intervall-Schätzung. Diese hat wiederum eine Verteilung.
+
+
+\subsection{Vergleich Verteilungspunkte}
+
+Vergleichen neues $\mu$ und $\sigma$ mittels Testverfahren mit der empirischen Verteilung.
+
+\emph{Daraus möchten wir gerne die Funktionalen zusammenhänge herausfinden: Design of Experiments (DoE).}
+
+\section{Versuchsplanung}
+
+Statistik und Fehlerrechnung helfen, mit dem Rauschen und der Fehlerfortplfanzung umzugehen.
+
+Die Versuchsplanung soll:
+
+\begin{itemize}
+\item die Anzahl Versuche möglichst klein halten
+\item nur eine der Grössen / Faktoren ändern \\
+oder
+\item Mit möglichst wenig Versuchen auszukommen.
+\end{itemize}
+
+\subsubsection{Begriffe}
+\begin{description}
+\item[Zielgrössen] ergebnis eines Veruchs (können Messwerte oder daraus berechnte Grössen sein.
+
+\item[Einflussgrössen] Sind grössen, welche die Zielgrössen möglicherweise beeinflussen. Diese Teilen sich auf in Steuergrösse (können auf einen bestimmten Wert eingestellt werden und Störgrössen.
+Störgrössen sind Einflussgrössen, deren Wert für das Produkt oder den Prozess nicht vorgegeben werden kann (z.B. Rauschen, aufgrund von Kosteneinschränkungen.)
+\item[Faktoren] Vermuteteten wesentliche Einflussgrössen.
+\item[Faktorstufen] Festlegen, welche Werte die Faktoren im Versucht annehmen sollen
+\item[Quantitative Faktoren] Zahlenwerte auf einer Messskala
+\item[Qualitative Faktoren] Namen, Beschreibungen oder Bezeichnungen.
+\end{description}
+
 
 \end{document}
