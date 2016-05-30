@@ -41,7 +41,7 @@ Wenn wir folgendes Polynom vervollständigen möchten:
 
 \paragraph{Beispiel II}
 
-Ausgangslage: Funktion $f(x)$, Entwicklungspunkt $x_0$, Ordnung $\mathbb{N}$ \\
+Ausgangslage: Funktion $f(x)$, Entwicklungspunkt $x_0$, Ordnung $\mathbb{N}$ \hfill \\
 
 Taylorpolynom der Ordnung $\mathbb{N}$ : 
 %TODO: Cleanup next equation
@@ -567,8 +567,8 @@ Daraus schlissen wir: $\omega = \frac{2 \pi}{T} \cdot k, k \in \mathbb{Z}$. Der 
 \[
 	\int\limits^T_0 \sin(k \omega_1 t) \cdot \sin(l \omega_1 t) \mathrm{d}t = \int\limits^T_0 \cos(k \omega_1 t) \cdot \cos(l \omega_1 t) \mathrm{d}t = 
 	\begin{cases}
-	0   &für k \neq l \\
-	T/2 &für k = l
+	0   & \text{für } k \neq l \\
+	T/2 & \text{für } k = l
 	\end{cases}
 \]
 
@@ -797,13 +797,253 @@ r(t) \text{ ungerade } &\Rightarrow a_0 = 0 \land a_k = 0
 %TODO: Seite 31 Formeln abschreiben!
 
 
+\subsection{Ableitung Fourier-Reihen aus Formelsammlung}
+
+\subsubsection{Linearität}
+
+Zwei Signale mit der selben Periode können leicht addiert werden ($s(t) = s_1(t) + s_2(t)$), indem alle Elemente jeweils addiert werden.
+
+Wird ein Signal mit einer Konstante Multipliziert, können auch jeweils alle Komponenten in der Fourier-Reihe multipliziert werden.
 
 
+\paragraph{Beispiel}
+
+%TODO: Graph Beispiel 6 Demo Linearität
+
+Bekannt: $T=2 \Rightarrow \omega_1 = \pi$
+
+\begin{tabu}{l | l | l | l}
+	$k$ & 0 & gerade & ungerade \\ \hline
+	$a_k$ & 1/4 & 0 & $-\frac{2}{k^2\pi^2}$ \\ \hline
+	$b_k$ & - & $-\frac{1}{k\pi}$ & $\frac{1}{k\pi}$
+\end{tabu}
 
 
-\section{Anwedungen}
+%TODO: Graph r(t) angeben
 
-Moving Average
+
+Gesucht: Fourierkoeffizienten von $r(t)$
+
+$T=2$, $\omega_1 = \pi$
+
+\subparagraph{Vorgehen:}
+\begin{enumerate}
+	\item Beziehung zwischen den Signalen aufstellen ($r(t)$ durch $s(t)$ ausdrücken): \[
+			r(t) = 1-s(t)  
+		\]
+	\item Ersetzen der Formel aus 1. durch (bekannte) Fourierreihe und Resultat umformen, bis neue Fourier-Koeffizienten abgelesen werden können. (Tipp: $a_k$ und $b_k$ nicht ausformulieren, $\omega_1$ aber schon) \begin{align*}
+			r(t) &= 1- \left( a_0 + \sum^\infty_{k=1} a_k \cos(k \pi t) + b_k \sin(k \pi t)\right) \\
+			&= \underbrace{1 - a_0}_{\widehat{a_0}} + \sum^\infty_{k=1} \underbrace{-a_k}_{\widehat{a_k}} \cos(k \pi t) \underbrace{- b_k}_{\widehat{b_k}} \sin(k \pi t)
+		\end{align*}
+	\item Fourrierkoeffizienten von $r(t)$: 
+	
+	  \begin{tabu}{l | l | l | l}
+			$k$ & 0 & gerade & ungerade \\ \hline
+			$\widehat{a_k}$ & 3/4 & 0 & $\frac{2}{k^2 \pi^2}$ \\ \hline
+			$\widehat{b_k}$ & - & $\frac{1}{k \pi}$ & $-\frac{1}{k \pi}$
+		\end{tabu}
+\end{enumerate}
+
+\subparagraph{Amplituden-Phasenform}
+
+
+\begin{align*}
+	r(t) &= 1 - \left( A_0 + \sum^\infty_{k=1} A_k \cos(k \pi t - \varphi_k) \right) \\
+		&= 1 - A_0 + \sum^\infty_{k=0} - A_k \cos(k \pi t - \varphi_k) \\
+		&= 1 - A_0 + \sum^\infty_{k=1} + A_k \cos(k \pi t - (\varphi_k + \pi))
+\end{align*}
+
+(Wichtig: $\widehat{A_k}$ muss positiv sein!)
+
+\begin{align*}
+	\widehat{A_0} &= 1 - A_0 \\
+	\widehat{A_k} &= A_k \\
+	\widehat{\varphi_k} &= \varphi + \pi
+\end{align*}
+
+
+\subsubsection{Beispiel}
+
+
+%TOOD: Signal von Auftrag 3 einbinden
+
+\[
+f(-t) = 2s(-t) -1
+\]
+\[
+s(t) = \frac{1}{2} + \sum^\infty_{k=1} \left(-\frac{1}{k\pi}\right) \sin(2\pi k t)
+\]
+
+\begin{enumerate}
+	\item Drücken Sie $r(t)$ durch $s(t)$ aus: \[
+		r(t) = 2s(-t) -1 \left[ = \underbrace{-(2s(t) -1)}_{-f(t)} = 1 - 2s(t) \right]
+		\]
+	\item einsetzen von $s(t)$ und umformen \begin{align*}
+		r(t) &= 2 \left( \frac{1}{2} + \sum^\infty_{k=1} \left(-\frac{1}{k\pi}\right) \sin(2\pi k (-t))\right) -1 \\
+		&= 2 \sum^\infty_{k=1} - \frac{1}{k\pi} \sin(2\pi k (-t))\\
+		&= \sum^\infty_{k=1} \frac{2}{k\pi} \sin(2 \pi k t)
+	\end{align*}
+\end{enumerate}
+
+\subsection{Signalspiegelungen, Skalierungen und Verschiebungen}
+
+Ein Signal $s(t)$ sowie deren Fourierreihe ist bekannt: \[
+	s(t) = a_0 + \sum^\infty_{k=1} a_k \cos(k \omega_1 t) + b_k \sin(k \omega_1 t) = A_0 + \sum^\infty_{k=1} A_k \cos( k \omega_1 t - \varphi_k)
+\]
+
+\subsubsection{Spiegelung an $x$-Achse}
+\[
+	r(t) = -s(t) = -a_0 + \sum^\infty_{k=1} (-a_k) \cos(k \omega_1 t) + (-b_k) \sin(k \omega_1 t) = -A_0 + \sum^\infty_{k=1} \underbracket{A_k}_{\mathrlap{\text{Muss } >0}} \cos(k \omega_1 t - (\varphi_k + \pi))
+\] \begin{align*}
+	a_0 &\rightsquigarrow -a_0 \\
+	a_k &\rightsquigarrow -a_k \\
+	b_k &\rightsquigarrow -b_k \\
+	\omega_1 &\rightsquigarrow \omega_1 \\
+	A_0 &\rightsquigarrow -A_0 \\
+	A_k &\rightsquigarrow A_k \\
+	\varphi_k &\rightsquigarrow \varphi_k + \pi
+\end{align*}
+
+\subsubsection{Spiegelung an $y$-Achse (''Zeitumkehr'')}
+\[
+	r(t) = s(-t) = a_0 + \sum^\infty_{k=1} a_k \cos( k \omega_1 t) - b_k \sin(k \omega_1 t)
+	     = A_0 + \sum^\infty_{k=1} A_k \cos(k\omega_1 t + \varphi_k)
+\] \begin{align*}
+a_0 &\rightsquigarrow a_0 \\
+a_k &\rightsquigarrow a_k \\
+b_k &\rightsquigarrow -b_k \\
+\omega_1 &\rightsquigarrow \omega_1 \\
+A_0 &\rightsquigarrow A_0 \\
+A_k &\rightsquigarrow A_k \\
+\varphi_k &\rightsquigarrow -\varphi_k
+\end{align*}
+
+\subsubsection{Streckung in $y$-Richtung um Faktor $c > 0$}
+\[
+	r(t) = c \cdot s(t) = c a_0 + \sum^\infty_{k=1} c a_k \cos(k \omega_1 t) + c b_k \sin(k \omega_1 t) = c A_0 + \sum^\infty_{k=1} c A_k \cos(k \omega_1 t - \varphi_k)
+\] \begin{align*}
+a_0 &\rightsquigarrow c a_0 \\
+a_k &\rightsquigarrow c a_k \\
+b_k &\rightsquigarrow c b_k \\
+\omega_1 &\rightsquigarrow \omega_1 \\
+A_0 &\rightsquigarrow c A_0 \\
+A_k &\rightsquigarrow c A_k \\
+\varphi_k &\rightsquigarrow \varphi_k
+\end{align*}
+
+\subsubsection{Streckung in $x$-Rightung um Faktor $c > 0$ (''Zeitskalierung'')}
+\[
+	r(t) = s(\underbracket{c}_{\mathclap{\text{Streckungsfaktor} \frac{1}{c}}} \cdot t) = a_0 + \sum^\infty_{k=1} a_k \cos(k \omega_1 c t) + b_k \sin(k \omega_1 c t)
+		= A_0 + \sum^\infty_{k=1} A_k \cos(k \omega_1 c t - \varphi_k)
+\] \begin{align*}
+a_0 &\rightsquigarrow a_0 \\
+a_k &\rightsquigarrow a_k \\
+b_k &\rightsquigarrow b_k \\
+\omega_1 &\rightsquigarrow c \omega_1 \\
+A_0 &\rightsquigarrow A_0 \\
+A_k &\rightsquigarrow A_k \\
+\varphi_k &\rightsquigarrow \varphi_k \\
+T &\rightsquigarrow \frac{1}{c} \cdot T
+\end{align*}
+
+\subsubsection{Verschiebung um $c$ entlang der $y$-Achse}
+$r(t) = s(t) + c$; hat nur Einfluss auf $a_0$ und $A_0$
+
+\subsubsection{Verschiebung um $c$ entlang der $x$-Achse}
+Verschiebung um $c$ Einheiten nach rechts.
+\begin{align*}
+	r(t) &= s(t - c) = a_0 + \sum^\infty_{k=1} a_k \cos(k \omega_1 (t-c)) + b_k \sin (k \omega_1 (t - c)) \\
+	&= a_0 + \sum^\infty_{k=1}
+		a_k \left(\cos(k\omega_1 t)\cos(k\omega_1 c) + \sin(k \omega_1 t) \sin(k \omega_1 c)\right)
+		+ b_k \left(\sin(k\omega_1 c) - \cos(k \omega_1 t) \sin(k \omega_1 c)\right) \\
+	&= a_0 + \sum^\infty_{k=1}
+		\underbracket{(a_k \cos(k \omega_1 c) - b_k \sin(k \omega_1 c))}_{\text{''neues'' } a_k} \cdot \cos(k \omega_1 t) +
+		\underbracket{(a_k \sin(k \omega_1 c) + b_k \cos(k \omega_1 c))}_{\text{''neues'' } b_k} \cdot \sin(k \omega_1 t)
+		%TODO: This has yet to come: Amplituden-Phasen-Form
+\end{align*} \begin{align*}
+a_0 &\rightsquigarrow a_0 \\
+a_k &\rightsquigarrow a_k \cos(k \omega_1 c) - b_k \sin(k \omega_1 c) \\
+b_k &\rightsquigarrow a_k \sin(k \omega_1 c) - b_k \cos(k \omega_1 c) \\
+\omega_1 &\rightsquigarrow c \omega_1 \\
+A_0 &\rightsquigarrow A_0 \\
+A_k &\rightsquigarrow A_k %\\
+%\varphi_k &\rightsquigarrow \varphi_k
+%TODO: This has yet to come: Amplituden-Phasen-Form
+\end{align*}
+
+\subsubsection{Beispiel}
+
+%TODO: Graphik Signal aus Beispiel 7
+
+\[
+	r(t) = \frac{\pi}{4} - \frac{1}{\pi} \cos(t) + \frac{1}{2} \sin(t) + ...
+\]
+
+\[
+	s(t) =^1 \frac{1}{\pi} r( \pi \cdot t) =^2 \frac{1}{\pi} \left( \frac{\pi}{4} \cos(\pi t) + \frac{|}{2} \sin(\pi t) + ... \right) = \underbracket{\frac{1}{4}}_{a_0} - \underbracket{- \frac{1}{\pi^2}}_{a_1} \cos(\pi t) + \underbracket{\frac{1}{2 \pi}}_{b_1} \sin(\pi t) + ...
+\]
+
+\begin{enumerate}
+	\item $s(t)$ durch $r(t)$ ausdrücken
+	\item einsehen und vereinfachen
+	\end{enumerate}
+
+
+\subsubsection{Beispiel II}
+%TODO: Signal gem Übung XXXXX
+
+\[
+s(t) = \frac{1}{4} + \frac{1}{\pi} \sum^\infty_{k=1} \frac{1}{k} \left[ \sin\left(\frac{k \pi}{2}\right) \cos(k t) + \left(1 - \cos\left(\frac{k \pi}{2}\right)\right) \sin(kt) \right]
+\]
+
+Wiederholt sich nach $k=4 \approx k=0$
+
+\paragraph{Vorgehen:}
+\begin{enumerate}
+	\item Strecken der Ausgangsfunktion um $\frac{\pi}{2}$: $ \tilde{s}(t) = s\left(\frac{\pi}{2} t\right)$
+	\item Verschieben um $1$: \[
+		r(t) = \tilde{s}(t-1) = s\left(\frac{\pi}{2}(t-1)\right) = s\left(\frac{\pi}{2}t - \frac{\pi}{2}\right)
+	\]
+	\item ''Ausklammern'' $a_k$ und $b_k$, einsetzen neues $s(t)$: \begin{align*}
+	a_k &= \frac{1}{k\pi} \sin\left(\frac{k\pi}{2}\right) \\
+	b_k &= \frac{1}{k\pi} \left(1 - \cos\left(\frac{k\pi}{2}\right)\right) \\
+	r(t) &= \frac{1}{4} + \sum^\infty_{k=1} a_k \cos\left(k \left(\frac{\pi}{2}t
+		- \frac{\pi}{2} \right)\right)
+		+ b_k \sin\left(k\left(\frac{\pi}{2} t
+		- \frac{\pi}{2}\right)\right) \\
+	&= \frac{1}{4} + \sum^\infty_{k=1} a_k \cos\left(\frac{k\pi}{2} t - \frac{k \pi}{2}\right) + b_k \sin\left( \frac{k\pi}{2} t - \frac{k\pi}{2}\right) \\
+	&= \frac{1}{4} + \sum^\infty_{k=1}
+		a_k \left(\cos\left(\frac{k\pi}{2} t\right)\cos\left(\frac{k\pi}{2}\right) + \sin\left(\frac{k\pi}{2} t\right)\sin\left(\frac{k\pi}{2}\right) \right) \\
+		&\hspace{1.35cm} + b_k \left(\sin\left(\frac{k\pi}{2} t\right)\cos\left(\frac{k\pi}{2}\right) - \cos\left(\frac{k\pi}{2} t\right)\sin\left(\frac{k\pi}{2}\right)\right) \\
+	&= \frac{1}{4} + \sum^\infty_{k=1}
+		\underbrace{\left( a_k \cos\left(\frac{k\pi}{2}\right) - b_k \sin\left(\frac{k\pi}{2}\right) \right)}_{\hat{a}_k} \cos\left(k\frac{\pi}{2} t\right) 
+		+ \underbrace{\left( a_k \sin\left(\frac{k\pi}{2}\right) + b_k \cos\left(\frac{k\pi}{2}\right) \right)}_{\hat{b}_k} \sin\left(k\frac{\pi}{2} t\right) \\
+	\hat{a}_0 &= \frac{1}{4} \\
+	\hat{a}_k &= \text{siehe oben} \\
+	\hat{b}_k &= \text{siehe oben} \\
+	\hat{\omega}_1 &= \frac{\pi}{2}
+	\end{align*}
+
+\item Komponenten berechnen (hier exemplarisch für $\hat{a}_k$): 
+	\[
+	\hat{a}_k = \frac{1}{k\pi} \sin\left(\frac{k\pi}{2}\right) \cos\left(\frac{k\pi}{2}\right) - \frac{1}{k\pi}\left(1- \cos\left(\frac{k\pi}{2}\right) \sin\left(\frac{k\pi}{2}\right)\right)
+		\]
+		Möglichkeiten: \begin{itemize}
+			\item Durch Trigo ableiten / vereinfachen.
+			\item Alle Möglichkeiten für verschiedene Zahlen gem. kleinstem gemeinsamen Zyklus auflisten, $k$ entsprechend einsetzen: \[
+			\hat{a}_k = \begin{cases}
+				\frac{1}{k\pi} (0 \cdot 1 - (1 - 1) \cdot 0) = 0 & \text{für } k=0 mod 4 \\
+				\frac{1}{k\pi} (1 \cdot 0 - (1 - 0) \cdot 1) = -\frac{1}{k\pi} & \text{für } k=1 mod 4 \\
+				\frac{1}{k\pi} (0 \cdot -1 - (1 + 1) \cdot 1) = 0 & \text{für } k=2 mod 4 \\
+				\frac{1}{k\pi} (-1 \cdot 0 - (-1 -0) \cdot -1) = \frac{1}{k\pi} & \text{für } k=3 mod 4
+			\end{cases}
+			\]
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Anwedungen}
+
+Moving Average; ''Glättung'' von Signalen mit rauschen
 
 
 \end{document}

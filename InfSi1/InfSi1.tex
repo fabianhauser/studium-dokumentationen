@@ -220,6 +220,8 @@ Requirement:
 	\item Collisions (two files with same hash may not be forged artificially)
 \end{itemize}
 
+Möglichkeit, um Brute-Force zu erschwehren: Hash mehrere male anwenden.
+
 \subsection{PKI}
 
 Eine Drittperson verifiziert die Echtheit eines Schlüssels.
@@ -286,5 +288,22 @@ User Rights
 Logging etc.
 
 
+\section{File and Disk Encryption}
+
+\subsection{Mittels CBC}
+Damit von einem beliebigen Vektor entschlüsselt werden kann, wird aus der Sektornummer der Schlüssel generiert. Problem: Wiederholende Schlüssel für die gleichen Daten.
+
+
+Watermarking: Datei unterjubeln, welche im Nachhinein nachweisen kann.
+
+
+Encrypted Salt Sector IV (ESSIV): Verhindert Watermarking durch Verknüpfen Sektornummer mit einem IV.
+
+
+Problem: Diverse angriffe, wenn nicht alles gechained verknüpft wird, was aus performancegründen nicht geht.
+
+\subsection{XTS}
+
+Jeder AES-Block hat eine individuelle Maske 
 
 \end{document}

@@ -445,5 +445,201 @@ Verhinderung von Loop: Spanning Tree wird durch Split-Horizon ersetzt.
 QoS-Label from IP is mapped to a MPLS-Label-field.
 
 
+\section{IPv6}
+
+Dualstack Issues: IPv6 wurde zuerst probiert, wenn aber keine Internet-Verbindung v6 existiert, wude nach 20-30s timeout v4 genutzt.
+
+\subsection{Header}
+Fixe Header-Länge von 40 Bytes
+Keine Fragmentierung
+Keine Checksumme, machen die anderen Layers schon.
+
+\begin{description}
+\item[Traffic Class] \hfill \\
+	
+\item[Flow Label] \hfill \\
+	Ersatz für Type of Service; QoS Feld.
+	
+\item[Payload Length] \hfill \\
+
+MTU: Wenn das Inhaltliche Paket zu grosse ist, gibt es eine ICMPv6 Fehlermeldung.
+	
+\item[Next Header] \hfill \\
+	Ersatz für Protocol Field (Payload Type).
+	Können neu Gestacked werden; Mehrere Subheaders and Data. (z.B. mehrere TCP pakete in einem IP paket).
+	
+	
+	
+\item[Hop Limit] \hfill \\
+\end{description}
+
+Extension Headers: ICMPv6, Encryption etc.
+
+\subsection{Addresses}
+
+\begin{description}
+	\item[Link local] Intern
+	\item[Unique Local] Firmenintern
+	\item[Global] Global.
+\end{description}
+
+\subsubsection{Casts}
+
+\begin{description}
+\item[Unicast] One to on
+
+\item[Multicast] One to many
+
+\item[Anycast] One-to-one-of-many: Physisch nächster Server.
+\end{description}
+
+Keine Broadcast-Adressen.
+
+
+\subsubsection{Aggregatable Global Unicast Addresses}
+
+%TODO: Screenshot Folie Aggregatable Global UNicast Addresses
+
+IANA has /16
+RIPE has /23
+Proivder has /32
+Customer has /48
+
+\subsubsection{EUI-64}
+
+%TOOD: Screenshot Slide
+
+\subsubsection{Unique-Local Addresses}
+
+Starten mit: fc00::/7
+
+\subsubsection{LinklLocal Addresses}
+
+FE80::/10
+
+(Eselsbrücke: Ethernet)
+
+\subsubsection{Multicast Addresses}
+
+On the local link
+
+FF00::/8
+
+Last 32 Bit werden für die Ethernet-Multicast-Addresse benutzt.
+
+\paragraph{Solicited-Node Multicast Address}
+
+Informationen zur geplanten Zielgruppe sind in der Adresse.
+
+Wird für Duplicated address detection verwendet.
+
+
+24-bit meiner Adresse wird an \textbf{ff02::00:1:FF:\textit{BITS}}
+
+
+
+%TODO: Slide IPV6 Multicast Address overview
+
+
+\subsection{ICMPv6}
+
+\subsubsection{Address Resolution}
+
+ARP is now part of ICMPv6 (type 135 136)
+
+Router listen on Multicast Groups (FF02::1::FF00:1)
+
+Hosts do MAC / IP resolution thereover
+
+\subsubsection{Router Advertisment}
+
+(Type 134)
+
+Contains: Prefix and lease time, autoconfig flag (dhcp y|n)
+
+\subsubsection{Duplicated Address Detection}
+
+Try to ''ping'' address; if it got no reply, it trusts that the address does not exist.
+
+\subsubsection{Redirects}
+
+Advice Host to send package to a other host.
+
+\subsection{DNS / DHCPv6}
+
+There are now AAAA records; many DNS servers answer with v4 and v6 simultanously
+
+Multicast: FF05::1:3
+
+Usual resolution (like DHCPv4)
+
+\subsection{Routing}
+
+RIPng, OSPFv3, IS-IS for IPv6, MP-BGP4, EIGRP for IPv6
+
+Router have two separate daemons running for routing.
+
+\subsection{Transition v4 to v6}
+
+\subsubsection{Dual-Stack}
+Run both v4 and v6.
+
+Sockets are informed, what protocol is required.
+
+\subsubsection{6to4}
+
+Some sort of NAT, but based on IPv4-Addresses in 192.168.xx range.
+
+\subsubsection{NAT-PT}
+
+deprecated!
+
+Possible to NAT v4 and v6.
+
+\section{Optical Networks}
+
+Multimode: 50$\mu$m for step index; 62.5 $\mu$m for graded index
+Bit rate-distance product: $>500$MHz-km
+
+Single-mode: $9\mu$m;
+Bit rate-distance product $>100$ THz-km
+
+
+Eye-Diagram shows the difference between the 1 and 0. Same goes for the width.
+
+\subsection{Light absorbion / semaring}
+
+Absorption by the fiber material
+Scattering (Streuung)of the light from the fiber
+
+Not all waves travel at exactly the same ''speed'', there happens a smearing
+
+Dispersion can be compensated a bit by dispersion shifting.
+
+
+Multiple frequencies have a (small) influence on each other.
+
+
+\subsection{FTTH}
+
+\subsubsection{PON}
+
+One fiber to district, splitting to different places; everything is sent to every receiver.
+
+Upstream is divided into slots.
+
+CATV is overlayed.
+
+Building is cheaper, running-cost is higher.
+
+\subsubsection{PtP}
+
+
+Many fibers
+
+\subsubsection{}
+
+
+\section{Storage}
 
 \end{document}

@@ -1295,12 +1295,225 @@ Aber: $\varphi$ keine logische Variablen... aus $z_{ij}$ logische Variablen mach
 Search/replace: $z_{ij} \neq z_{ke} \rightsquigarrow$ Formel aus $x_{ijs}, x_{kct}$
 
 
+\----
+
+Was bisher geschah: Behauptungs von Satz Cook-Levin: SAT ist NP-vollständig
+
+Für jedes $A  \in $ NP gibt es eine polynomielle Reduktion auf das SAT-Problem. 
+
+\begin{align*}
+A &\longrightarrow \text{ SAT} \\
+\text{Probleminstanz } w &\longrightarrow \varphi \\
+\text{Problem lösbar} & \Leftrightarrow \text{ erfüllbar}
+\end{align*}
+($\varphi$ Bedingungen/Checks, dass das Problem gelöst ist.)
+
+Bereits untersucht: SUDOKU $\longrightarrow$ SAT
+
+\subsubsection{Verallgemeinerung A $\longrightarrow$ SAT}
+
+\paragraph{1. Schritt: Ausfüllrätsel} Spielfeld $n \times m$, in jede Zelle muss ein Zeichen $c \in \Sigma$ eingetragen werden.
+
+Logische Variablen: Für das Feld $i,j$: \[
+	X_{ijc} = true \Leftrightarrow c \text{ im Feld } i,j
+\]
+
+Feld korrekt ausgefüllt: Nur ein Zeichen pro Zelle: \[
+	\bigwedge_{c \in \Sigma} \left( X_{ijc} \land \bigwedge_{d \neq c} \overline{X_{ijd}} \right)
+\]
+
+\[
+	Z_{ij} \neq Z_{ke} \rightsquigarrow \bigwedge_{c \in \Sigma} \overline{X_{ijc} \land X_{klc}}
+\]
+
+Polynomielles Ausfüllrätsel: Länge der Formel, die ein korrekt ausgefülltes Rätsel ausdrückt, ist polynomiell in $nm$. Beispiel: SUDOKU, Kakuro, Minesweeper $\longrightarrow$ SAT
+
+\paragraph{2. Schritt: $A \in $ NP $\rightsquigarrow$ Ausfüllrätsel}
+
+Input $w$ führt in Zeit $t(n) = O(n^k)$ auf $q_\text{accept}$
 
 
-...
+Ein Papier, auf dem Nacheinander alle Berechnungen aufgelistet werden, muss $2t(n)$ breit und $t(n)$ hoch sein.
+Die Spielfeldgrösse ist daher $2t(n)^2 = O(N^2k)$ polynomiell.
+
+Regeln: \begin{itemize}
+		\item 1. Zeile enthält $w$
+		\item letzte Zeile enthält $q_\text{accept}$
+		\item von Zeile zu Zeile: TM-Schritt $\Rightarrow$ 6-Felde beschreibt TM-Übergang.
+	\end{itemize}
+Dies ist ein Ausfüllrätsel (Start und Endwert sind gegeben, Weg ist Rätsel).
+
+Polynomiell? $\underbrace{\text{(letzte Zwei)}}_{\text{immer gleich}} \times \underbrace{O(t(n)^2)}_{\text{polynomiell}} \Rightarrow$ Polynomiell
+
+\----
+
+\subsubsection{Diverse Probleme, welche so schwierig wie SAT sind}
+
+Satz: SAT $\leq_p$ MINESWEEPER-CONSISTENCY (MSC)
+
+\begin{tabu}{r c l}
+	d.h. $\varphi$ &$\longmapsto$& Minesweeper-Zahlen \\
+	erfüllbar & $\Leftrightarrow$& konsistent
+	\end{tabu}
+
+\begin{enumerate}
+\item Schritt: $\varphi \longrightarrow$ logische Schaltung: (AND, OR, NOT)
+\item Schritt: Schaltung $\rightarrow$ Minesweeper-Zahlen \\
+	jedes Element eines Schaltschemas übersetzen.
+\end{enumerate}
+
+\subsection{Der Katalog von Karp}
+
+%TODO: include Problem Tree from 7.7
+
+
+\paragraph{BIP = Binary Integer Programming} \[
+	= \{c,d | c \text{ eine ganzzahlige Matrix, } d \text{ ein ganzzahliger Vektor. } \exists x \text{ binärer Vektor mit } Cx=d \}
+\]
+
+\paragraph{VERTEX-COVER} \[
+	= \{ G, k | \exists k \text{ Knoten, so das sjede Kane } m \text{ einem dieser Knoten endet} \}
+\]
+
+%TODO: Vertex-cover graph
+
+\paragraph{SET-PACKING} \[
+	= \left\{ (S_i)_{i \in I}, k | \exists k \text{ Mengen, die sich nicht schneiden} \right\}
+\]
+
+$k=3$; Gibt es 3 Mengen, welche sich nicht überlappen?
+
+\paragraph{CLIQUE-COVER} \[
+	= \{G,k| \text{ Gibt e s } k \text{ Cliquen so, dass jeder Knoten in genau einer Clique vorkommt.}\}
+\]
+
+\paragraph{EXAT-COVER} \[
+	= \{ (S_i)_\{i \in I\} | \exists \text{ eine Teilmenge } (S_i)_{i \in J}, S_I \cap S_j = \emptyset, \bigcup_{i \in J} S_i = \bigcup_{i \in I} S_i \text{ mit } i,j \in J, i \neq j \}
+\]
+
+\subsubsection{Satz: Das Stundenplan-Problem ist NP-Vollständig}
+
+Elemente:
+
+\begin{tabu}{l c l}
+	\textbf{Stundenplan} &$\leftrightarrow$& \textbf{VERTEX-COLORING} \\
+Lektionen &$\leftrightarrow$& Knoten\\
+Timeslots, Anzahl &$\leftrightarrow$& Farbe, Anzahl\\
+Anmeldung $\leftrightarrow$ Anschlussbedingungen &$\leftrightarrow$& Kante $\rightarrow$ Anschlussbedingungen
+\end{tabu}
+
+Somit ist ein Problem auf das andere reduziert.
+
+
+\subsubsection{Beispiel: Kontrolle beim Schienennetz}
+
+Anzahl Kontrolleure so platzieren, dass jede Teilstrecke vom Standort eines Kontrolleurs aus direkt kontrolliert werden kann.
+
+\begin{tabu}{l c l}
+	\textbf{Bahn} & & \textbf{VERTEX-COVER} \\
+	Anzahl, Kontrolleure (Knoten zugewiesen) &$\leftrightarrow$&$k$ Anzahl ausgezeichneten Knoten, ausgez. Knoten\\
+	Knoten &$\leftrightarrow$& Knoten\\
+	Strecken &$\leftrightarrow$& Kanten\\
+\end{tabu}
+
+$\Rightarrow$ Streckenkontrollierproblem ist NP-vollständig.
+
+
+\subsubsection{Beispiel: Maschine mit $k$ CPUs 100\% auslastbar}
+
+kann man eine maschine mit $k$ CPus vollständig auslasten?
+
+\begin{tabu}{l c l}
+	
+	\textbf{Maschine} & & \textbf{CLIQUE} \\
+	 $k$ CPUs &$\leftrightarrow$& $k$-Clique $= k$ Knoten alle miteinander verbunden.\\
+	Jobs &$\leftrightarrow$& Knoten\\
+	Ausschlussbedingung (''gleichzeitig'' Planbar) &$\leftrightarrow$& Kante\\
+	Alle CPus ausgelastet (Jobs gleichzeit geplant) &$\leftrightarrow$& alle Knoten miteinander Verbunden.\\
+\end{tabu} \\
+
+\textbf{$\Rightarrow$ Jobbplanung ist NP-Vollständig}
+
+
+\section{Turing-Vollständigkeit}
+
+Programmiersprache: $A \subset \Sigma^\ast$
+
+Compiler: Abbildung
+
+$c: A \longrightarrow$ Turing Maschinen-Beschreibungen
+
+$w \longrightarrow M$
+
+$A$ heisst Turing-vollständig, wenn jede berechenbare Funktion in der Sprache $A$ geschrieben werden kann.
+
+TM-Maschinen Simulator $m A:$ Programmm in Sprache $A$ geschrieben, die jede TM-Beschreibung $\left<M,w\right>$ simulieren kann.
+
+Wenn das möglich ist: $\Rightarrow A$ Turing vollständig.
+
+Beispiele:
+\begin{itemize}
+	\item C
+	\item XSLT
+	\item Javascript
+\end{itemize}
+
+Frage: Kann man Turing-Vollständigkeit einer Sprache ''ansehen''? Interessant zum entscheiden: Kontrollstrukturen.
+
+\subsubsection{Sprache: LOOP}
+
+\begin{tabu}{l l l}
+Variablen: & & $x_0,x_1,x_2,...,N$ \\
+Konstanten: & & $0,1,2,...,N$ \\
+Zuweisung: & $:=$ & $x_7 := 1291$ \\
+Operatoren: & $+,-$ & $x_i := x_j \pm c$ \\
+Schleife: & $x$ Ausführungen; einmal eingelesen & LOOP $x$ DO ... END
+\end{tabu}
+
+\paragraph{Beispiel:}
+
+Addition: $x_0 := x_1 + x_2$
+
+\begin{align*}
+	x_0 &:= x_1 + 0 \\
+	\text{LOOP } & x_2 \text{ DO} \\
+		& x_0 := x_0 + 1 \\
+	\text{END}
+\end{align*}
+
+Multiplikation: ''$x_0 = x_1 * x_2$''
+
+\begin{tabu}{l l l}
+$x_0 := 0$ &&  \\
+LOOP $x_1$ DO && \\
+	& LOOP $x_2$ DO &\\
+		&& $x_0 := x_0 + 1$ \\
+	& END & \\
+END
+\end{tabu}
+ 
+IF / ELSE: 
+%TODO: Code
+
+IF x=0 THEN
+	...
+END
+
+
+y := 1
+LOOP x DO
+	y := 0
+END
+LOOP y DO
+	... // true case
+END
 
 
 
+In dieser Sprache ist keine Endlosschleife möglich! $\Rightarrow$ Programm endet immer in endlicher Zeit. HALTE-Problem ist gelöst; \emph{diese Sprache ist also nicht Turing-vollständig.}
 
+\section{Prüfungsvorbereitung}
+
+NP-Vollständige Probleme durchsehen.
 
 \end{document}
