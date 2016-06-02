@@ -7,6 +7,9 @@
  %  -> \dt
  \newcommand{\dt}{\text{ }\mathrm{d}t}
  
+ \setlength{\columnsep}{0cm}
+ \setlength{\columnseprule}{0pt}
+ 
 \begin{document}
 \maketitle
 
@@ -44,10 +47,9 @@ Wenn wir folgendes Polynom vervollständigen möchten:
 Ausgangslage: Funktion $f(x)$, Entwicklungspunkt $x_0$, Ordnung $\mathbb{N}$ \hfill \\
 
 Taylorpolynom der Ordnung $\mathbb{N}$ : 
-%TODO: Cleanup next equation
 \begin{align*}
-P_N(x) &= f(x_0)/0! + f'(x_0)/1! * (x - x_0) = f''(x_x0) / 2! * x(-x_0)^2 + ... + f^(n)(x_0)/n! (x-x_0)^n \\
-&= \sum^N_{k=0}{\frac{k^{(k)}(x_0)}{k!} (x-x_0)^k}
+P_N(x) &= \frac{f(x_0)}{0!} + \frac{f'(x_0)}{1!} \cdot (x - x_0) = \frac{f''(x_x0)}{2!} * x(-x_0)^2 + ... + \frac{f^(n)(x_0)}{n!} (x-x_0)^n \\
+&= \sum^n_{k=0}{\frac{k^{(k)}(x_0)}{k!} (x-x_0)^k}
 \end{align*}
 
 Übrigens: Ein Taylorpolynom der 1. Ordnung ist die Linearisierung:
@@ -291,14 +293,14 @@ B/L: $\infty \cdot (\pm 0)$; $\frac{\infty}{\infty}$; $\frac{0\pm}{0\pm}$
 \subsection{Regel von Bernoulli / Lobital}
 
 \[
-	\lim\limits_{x \to q} \frac{f(x)}{g(x)} =^{\text{Typ } \frac{0}{0}} \lim\limits_{x \to q} \frac{f'(x)}{g'(x)} %TODO: =-text anpassen
+	\lim\limits_{x \to q} \frac{f(x)}{g(x)} \overset{\frac{0}{0}}{=} \lim\limits_{x \to q} \frac{f'(x)}{g'(x)}
 \]
 
 
 \subsection{Ableitung mit dem limes}
 
 \[
-	f'(x) = \frac{df}{dx}|_{x=x_0} = \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} =^\frac{0}{0} = \lim\limits_{x \to x_0} \frac{\frac{d}{dx}(f(x) - f(x_0))}{\frac{d}{dx}(x - x_0} = \lim\limits_{x \to x_0} \frac{f'(x) -0}{1 - 0} = f'(x_0)
+	f'(x) = \frac{df}{dx}|_{x=x_0} = \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} \overset{\frac{0}{0}}{=} \lim\limits_{x \to x_0} \frac{\frac{d}{dx}(f(x) - f(x_0))}{\frac{d}{dx}(x - x_0} = \lim\limits_{x \to x_0} \frac{f'(x) -0}{1 - 0} = f'(x_0)
 \]
 
 \section{Integral}
@@ -670,13 +672,13 @@ In diesem Fall funktioniert das, weil der $\sin(k\pi)$ für alle $k \in \mathbb{
 Damit lässt sich die Fourierreihe leicht berechnen:
 
 \begin{align*}
-f_n(t) &= a_0 + \sum^n_{k=1}{a_k \cos(k w t) + b_k \sin(k w t)} \\
+f_n(t) &= a_0 + \sum^n_{k=1}{a_k \cos(k \omega_1 t) + b_k \sin(k w t)} \\
 	   &= \frac{1}{4} + \sum^n_{k=1}{ \frac{\cos(k \pi) -1}{k^2 \pi^2} \cos(k \pi t) - \frac{\cos(k \pi)}{k \pi} \sin(k \pi t)} \\
 	   &= \underbracket{\frac{1}{4}}_{\text{0.}}
 	    \underbracket{-\frac{2}{1^2 \pi^2} \cos(\pi t) + \frac{1}{1 \cdot \pi} \sin(\pi t)}_{\text{1. Ordnung}}
 	    \underbracket{-\frac{1}{2 \pi} \sin(2 \pi t) -\frac{2}{3^2 \pi^2}}_{\text{2. Ordnung}}
 	    \underbracket{-\cos(3 \pi t) + \frac{1}{3 \pi} \sin(3 \pi t)}_{\text{3. Ordnung}}
-\end{align*} %TODO: w mit \omega ersetzen
+\end{align*}
 
 \subsection{Satz von Dirichlet}
 
@@ -721,33 +723,40 @@ A_k &= \sqrt{a_k^2 + b_k^2} \\
 \end{cases}}_{\text{Vereinfacht (Perioden ignoriert)}}
 \end{align*}
 
-Kein Standardverfahren für die nicht-lineare Gleichung... Vereinfachung: Analogie zu Koordinatensystemen. $\varphi_k$ als Winkel zur X-Achse, $A_k$ als Vektor, Polare Koordinaten. Der Punkt auf der y-Achse ist $b_k$, auf der x-Achse $a_k$.
+Kein Standardverfahren für die nicht-lineare Gleichung...
 
-\begin{tikzpicture}[scale=2,cap=round,>=latex]
-	% draw the coordinates
-	\draw[->] (-1.05cm,0cm) -- (1.1cm,0cm) node[right,fill=white] {$x$};
-	\draw[->] (0cm,-1.05cm) -- (0cm,1.1cm) node[above,fill=white] {$y$};
+\begin{multicols}{2}
+	\begin{tikzpicture}[scale=2,cap=round,>=latex]
+		% draw the coordinates
+		\draw[->] (-1.05cm,0cm) -- (1.1cm,0cm) node[right,fill=white] {$x$};
+		\draw[->] (0cm,-1.05cm) -- (0cm,1.1cm) node[above,fill=white] {$y$};
+		
+		% draw the unit circle
+		\draw[gray] (0cm,0cm) circle(1cm);
+		
+		% draw line
+		\draw[very thick] (0cm,0cm) -- (35:1cm); % angle line
+		\filldraw (35:1cm) circle(0.8pt); % point
+		\draw (28:1.5cm) node {$A_K =(a_k; b_k)$}; % point label
+		\draw (35/2-4:0.3cm) node {$\varphi_k$}; % angle description
+		\draw (0.5cm,0cm) arc (0:35:0.5cm); %angle circle
+		
+		%x-y-anchor
+		\draw[gray, dashed] ({cos(35)},0cm) -- (35:1cm);
+		\draw ({cos(35)},-0.1cm) node {$a_k$};
+		
+		\draw[gray, dashed] (0cm,{sin(35)}) -- (35:1cm);
+		\draw (-0.1cm,{sin(35)}) node {$b_k$};
+		
+	\end{tikzpicture}
 	
-	% draw the unit circle
-	\draw[gray] (0cm,0cm) circle(1cm);
+	Vereinfachung: Analogie zu Koordinatensystemen. $\varphi_k$~als Winkel zur X-Achse $A_k$ als Vektor, Polare Koordinaten. Der Punkt auf der y-Achse ist $b_k$, auf der x-Achse~$a_k$.
 	
-	% draw line
-	\draw[very thick] (0cm,0cm) -- (35:1cm); % angle line
-	\filldraw (35:1cm) circle(0.8pt); % point
-	\draw (28:1.5cm) node {$A_K =(a_k; b_k)$}; % point label
-	\draw (35/2-4:0.3cm) node {$\varphi_k$}; % angle description
-	\draw (0.5cm,0cm) arc (0:35:0.5cm); %angle circle
-	
-	%x-y-anchor
-	\draw[gray, dashed] ({cos(35)},0cm) -- (35:1cm);
-	\draw ({cos(35)},-0.1cm) node {$b_k$};
-	
-	\draw[gray, dashed] (0cm,{sin(35)}) -- (35:1cm);
-	\draw (-0.1cm,{sin(35)}) node {$a_k$};
-	
-\end{tikzpicture}
-
-
+	\begin{align*}
+		a_k &= A_k \cos(\varphi_k) \\
+		b_k &= A_k \sin(\varphi_k)
+	\end{align*}
+\end{multicols}
 \paragraph{Berechnung:}
 
 \begin{align*}
@@ -812,11 +821,13 @@ Wird ein Signal mit einer Konstante Multipliziert, können auch jeweils alle Kom
 
 Bekannt: $T=2 \Rightarrow \omega_1 = \pi$
 
+{\tabulinesep=1.2mm
 \begin{tabu}{l | l | l | l}
 	$k$ & 0 & gerade & ungerade \\ \hline
 	$a_k$ & 1/4 & 0 & $-\frac{2}{k^2\pi^2}$ \\ \hline
 	$b_k$ & - & $-\frac{1}{k\pi}$ & $\frac{1}{k\pi}$
 \end{tabu}
+}
 
 
 %TODO: Graph r(t) angeben
@@ -836,12 +847,14 @@ $T=2$, $\omega_1 = \pi$
 			&= \underbrace{1 - a_0}_{\widehat{a_0}} + \sum^\infty_{k=1} \underbrace{-a_k}_{\widehat{a_k}} \cos(k \pi t) \underbrace{- b_k}_{\widehat{b_k}} \sin(k \pi t)
 		\end{align*}
 	\item Fourrierkoeffizienten von $r(t)$: 
-	
+
+	 {\tabulinesep=1.2mm
 	  \begin{tabu}{l | l | l | l}
 			$k$ & 0 & gerade & ungerade \\ \hline
 			$\widehat{a_k}$ & 3/4 & 0 & $\frac{2}{k^2 \pi^2}$ \\ \hline
 			$\widehat{b_k}$ & - & $\frac{1}{k \pi}$ & $-\frac{1}{k \pi}$
 		\end{tabu}
+		}
 \end{enumerate}
 
 \subparagraph{Amplituden-Phasenform}
@@ -971,6 +984,19 @@ A_k &\rightsquigarrow A_k %\\
 %TODO: This has yet to come: Amplituden-Phasen-Form
 \end{align*}
 
+
+\paragraph{Amplituden Phasen Form}
+\begin{align*}
+r(t) &= s(t -c) = A_0 + \sum^\infty_{k=1} A_k \cos(k \omega_1 (t - \underbrace{c) - \varphi_k}_{\text{neues } \varphi_k})
+\end{align*}
+
+
+\begin{align*}
+A_0 &\rightsquigarrow A_0 \\
+A_k &\rightsquigarrow A_k \\
+\varphi_k &\rightsquigarrow k \omega_1 c + \varphi_k
+\end{align*}
+
 \subsubsection{Beispiel}
 
 %TODO: Graphik Signal aus Beispiel 7
@@ -1043,7 +1069,9 @@ Wiederholt sich nach $k=4 \approx k=0$
 
 \subsection{Anwedungen}
 
-Moving Average; ''Glättung'' von Signalen mit rauschen
+Moving Average; ''Glättung'' von Signalen mit rauschen.
+
+Bildverarbeitung: Faltungsfunktionen einführen, z.B. für Unschärfefilter mit Gaussverteilung, oder Kantenerkennung.
 
 
 \end{document}

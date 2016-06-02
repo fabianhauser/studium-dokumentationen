@@ -1512,6 +1512,166 @@ END
 
 In dieser Sprache ist keine Endlosschleife möglich! $\Rightarrow$ Programm endet immer in endlicher Zeit. HALTE-Problem ist gelöst; \emph{diese Sprache ist also nicht Turing-vollständig.}
 
+
+\subsubsection{1. Versuch: WHILE}
+WHILE= LOOP + unbeschränkte Schleifenkonstruktion.
+
+zusätzliches Konstrukt:
+WHILE $x_i > 0$ DO 
+	...
+END
+$\Rightarrow$ Nur möglich, wenn $x_i$ verändert werden darf $\rightarrow$ Endlosschleife möglich.
+
+\paragraph{Beispiel:}
+
+$x_0 := 1$
+WHILE $x_0 > 0$ DO ... END
+
+
+\subsubsection{2. Versuch GOTO}
+GOTO = sprache ohne LOOP, aber mit bedingtem Sprung.
+
+GOTO Prgrm: 
+\begin{align*}
+	M_1 &: A_1 \\
+	M_2 &: A_2 \\
+	M_3 &: A_3  + \text{IF } x_i = c \text{ THEN GOTO } M_j \text{// bedingter Sprung}\\
+	M_k &: A_k \\
+	\text{''Marken''} &: \text{''Anweisungen''}
+\end{align*}
+
+Unbedingter Sprung: Kriterium definieren, die immer Wahr ist.
+
+\subsubsection{WHILE und GOTO sind äquivalent}
+
+\begin{tabu}{l l X}
+GOTO &$\longrightarrow$ & WHILE \\
+$M_1 : A_1$ etc. & $\longrightarrow$ &
+	Z := 1 \\
+	WHILE $z>0$ DO
+		IF $z=1$ THEN $A_1$ END
+		IF $z=1$ THEN $A_2$ END
+		...
+		IF $z= k+1$ THEN z:=0 END
+	END
+\end{tabu}
+
+\paragraph{Aufbau der $A_i'$}
+
+\begin{itemize}
+	\item ''normale'' Anweisung: \begin{tabu}{ l l }
+		 			$A_i$ &$\longrightarrow$ $\underbrace{A_i; z := z+1}_{A_i'}$
+	 		\end{tabu}
+
+	\item ''GOTOs'': \begin{tabu}{ l l }
+		IF $x_i = c$ THEN GOTO $M_j$ &$\longrightarrow$ IF $x_i = c$ THEN z := j \\
+		$A_e$ &$\longrightarrow$ $A_e'$
+	\end{tabu}
+\end{itemize}
+
+\subsubsection{GOTO und WHILE sind äquivalent}
+
+\begin{tabu}{l l X}
+	WHILE & $\longrightarrow$ & GOTO
+\end{tabu}
+
+WHILE $x_i > 0$ DO 
+	...
+END
+
+\begin{enumerate}
+	\item IF $x_i = 0$ THEN GOTO 4.
+	\item ...
+	\item GOTO 1.
+	\item (Programm geht weiter)
+\end{enumerate}
+
+$\Rightarrow$ WHILE und GOTO sind gleich leistungsfähig.
+
+
+\subsubsection{WHILE und GOTO sind Turing-vollständig}
+
+Methode: schreibe einen Turing-Maschinen Simulator $m$ in GOTO
+
+Plan: \begin{enumerate}
+		\item VM, die GOTO Programme ausführen kann
+		\item Compiler, der Turing-Maschinen-Programme in GOTO-Programme umwandelt.
+	\end{enumerate}
+	
+	Problem: \begin{itemize}
+		\item ''Memory-Layout'' (Wie wird das ganze in Binary Daten übertragen?)
+	\end{itemize}
+	
+	\paragraph{Alphaebet, Zustand,Band}
+	
+\[
+	\Sigma = \{ 0, 1, \text{␣} \} 
+\]
+	mit 2 bit als Zahlen codiert:
+	
+\begin{align*}
+	0 &\rightarrow 1 \\
+	1 &\rightarrow 2 \\
+	\text{␣} &\rightarrow 0
+\end{align*}
+
+\[
+	Q = \{ q_0, q_1, ... \} 
+\]
+
+Band: eine Variable: 4er-Systemdarstellung:
+
+\begin{align*}
+	1 &\rightarrow 1. \text{ Zeichen} \\
+	4 &\rightarrow 2. \text{ Zeichen} \\
+	16 &\rightarrow 3. \text{ Zeichen} \\
+	256 &\rightarrow 4. \text{ Zeichen}
+\end{align*}
+
+\paragraph{Bandoperationen}
+
+\subparagraph{Zelle $z$ vom Band $b$ lesen.}
+Trick: Rightshift von $h = k^s$ mit $k = $ Codelänge in $\Sigma$ und $s = $ Stelle von $z -1$ von rechts.
+
+\[
+z = (b/h) \mod k
+\]
+
+\subparagraph{Zelle $z$ löschen}
+
+$b' = b - z \cdot h$
+
+\subparagraph{Wert $x$ in Zelle schreiben}
+
+$b'' = b' + x \cdot h$
+
+\subparagraph{Kopfbewegung}
+
+Left: $h := h \cdot k$
+
+Right: $h := h/k$
+
+
+\subsubsection{Minimaler Automat}
+
+Brainfuck:
+\begin{tabu}{l l}
+$>$ & $ptr++$ \\
+$<$ & $ptr--$ \\
+$+$ & $++*ptr$ \\
+$-$ & $--*ptr$ \\
+$.$ & putchar$(*ptr)$ \\
+$,$ & $*ptr = $ getchar() \\
+$[$ & $while(*ptr) \{$ \\
+$]$ & $\}$
+\end{tabu}
+
+Es geht sogar noch einfacher mit ook.
+
+\section{Quantencomputer}
+
+
+
 \section{Prüfungsvorbereitung}
 
 NP-Vollständige Probleme durchsehen.
