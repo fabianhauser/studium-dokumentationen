@@ -642,4 +642,37 @@ Many fibers
 
 \section{Storage}
 
+Es wird unterschieden zwischen Block-Level Storage (iSCSI, FibreChannel) und File level Storage (NFS, SMB etc.) 
+
+NAS: über shared netzwerk
+
+SAN: über dedicated storage network
+
+\subsection{SCSI}
+
+SAN Fibre Channel is based on SCSI (Standard for block-based access)
+
+LUN: ''Virtual HDD''
+
+\subsection{Fibre Channel}
+
+%TODO: Slide With Port types here
+
+
+Addressing: World Wide Name (WWN) 64 or 128 bit; every interface has a WWPN (port number).
+
+All Endports regsiter at Switch on address FF FF FC
+
+Similar system like DNS to query paths<
+
+When sending a package, a Token is reserved out of a counter. Only when a acknowledge is received, the token is set free again.
+
+
+
+Largest Domain Size is technically 239. Practically never more than 75 are connected out of performance reasons.
+
+
+
+Virtual SANs: Combine multiple SAN's in a Virtual network. A VSAN may contain multiple zones. A zone is a limited access right.
+
 \end{document}
